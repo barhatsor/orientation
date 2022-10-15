@@ -20,6 +20,8 @@ html, body {
 <script>
 const logEl = document.querySelector('.log');
 document.documentElement.addEventListener('click', async () => {
+      logEl.innerHTML = '<a style="font-size: 50px">➤</a>';
+      
       let permissiona;
       try {
         permissiona = await DeviceMotionEvent.requestPermission();
@@ -33,7 +35,7 @@ document.documentElement.addEventListener('click', async () => {
     window.addEventListener('deviceorientation', onDeviceOrientation);
     });
 function onDeviceOrientation(e) {
-  logEl.textContent = e.alpha + 'deg';
+  //logEl.textContent = e.alpha + 'deg';
   logEl.style.rotate = e.alpha + 'deg';
 }  
 </script>
