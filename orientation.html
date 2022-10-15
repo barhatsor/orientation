@@ -1,2 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 
-
+body {
+  font-family: system-ui;
+}
+
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,shrink-to-fit=no">
+</head>
+<body>
+<div class="log">Allow access to try orientation.</div>
+<script>
+const logEl = document.querySelector('.log');
+logEl.onClick = () => {
+      let permission;
+      try {
+        permission = await DeviceOrientationEvent.requestPermission();
+      } catch (err) {
+        logEl.textContent = 'No orientation access';
+      }
+      if (permission !== 'granted') {
+        logEl.textContent = 'No orientation access';
+      }
+
+    window.addEventListener('deviceorientation', onDeviceOrientation);
+    }
+function onDeviceOrientation(e) {
+  logEl.textContent = e.alpha + 'deg';
+}  
+</script>
+</body>
+</html>
