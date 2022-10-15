@@ -18,7 +18,7 @@ html, body {
 <div class="log">Allow access to try orientation.</div>
 <script>
 const logEl = document.querySelector('.log');
-document.body.addEventListener('click', async () => {
+document.documentElement.addEventListener('click', async () => {
       let permissiona;
       try {
         permissiona = await DeviceMotionEvent.requestPermission();
