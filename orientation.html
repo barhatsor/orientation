@@ -14,18 +14,18 @@ body {
 <div class="log">Allow access to try orientation.</div>
 <script>
 const logEl = document.querySelector('.log');
-logEl.onClick = () => {
-      let permission;
+logEl.onClick = async () => {
+      let permissiona;
       try {
-        permission = await DeviceOrientationEvent.requestPermission();
+        permissiona = await DeviceMotionEvent.requestPermission();
       } catch (err) {
         logEl.textContent = 'No orientation access';
       }
-      if (permission !== 'granted') {
+      if (permissiona !== 'granted') {
         logEl.textContent = 'No orientation access';
       }
 
-    window.addEventListener('deviceorientation', onDeviceOrientation);
+    window.addEventListener('devicemotion', onDeviceOrientation);
     }
 function onDeviceOrientation(e) {
   logEl.textContent = e.alpha + 'deg';
