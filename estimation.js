@@ -22,7 +22,8 @@ function estimation(coord, currPos) {
 
 
 
-//Retrieves relative angle to POV given relative position in 3D space:
+//Retrieves relative angle to camera view 
+//given relative position in 3D space vrpos:
 function getRelativeAngle(vrpos) {
 
   //camera is global variable
@@ -30,10 +31,6 @@ function getRelativeAngle(vrpos) {
   camera.updateMatrix();
   camera.updateMatrixWorld();
   
-  //Create POV frustum:
-  //var frustum = new THREE.Frustum();
-  //frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
-
   // 3D point to check
   var pos = new THREE.Vector3(vrpos.x, vrpos.y, vrpos.z);
 
