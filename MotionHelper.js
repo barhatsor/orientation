@@ -12,6 +12,7 @@ var crd = {latitude: 0, longitude: 0, accuracy: 0};//return from callback
 var State = -1;
 
 
+
 /*
 var velocity = {curr: 0, prev: 0, prev_prev: 0};
 var position = {x: 0, y: 0, z: 0};
