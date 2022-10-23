@@ -2,12 +2,12 @@
 function estimation(coord,currPos)
 {
     //If the globcenter is not initialized:
-    if(PosCoord.lat==0 && PosCoord.lon==0) return;
+    if(coord.lat==0 && coord.lon==0) return;
     
     const z = -8;
 
     //Get the relative position to world center:
-    let result = GetDirection(WorldCenterPos, PosCoord);//distance in [km]
+    let result = GetDirection(currPos, coord);//distance in [km]
 
     let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Scale);
     let dist = CameraWrapper.position.distanceTo(vrpos);//[km*Scale]
