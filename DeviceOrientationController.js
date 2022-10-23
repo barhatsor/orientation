@@ -513,8 +513,6 @@ window.addEventListener("deviceorientation", function (event) {
     {
         let compass_ = GetCompassHeading(event.webkitCompassHeading,
             event.beta, event.gamma);
-        //let compass_ = event.webkitCompassHeading;
-
         if(compass_!=null && event!=null && event.alpha!=null && event.beta!=null && event.gamma!=null) {
           if(DEBUG_LEVEL>0)
           {
@@ -535,9 +533,7 @@ window.addEventListener("deviceorientation", function (event) {
         {
           document.querySelector('.permission-prompt').style.display = 'none';
         }
-        //let comp_ptr = document.querySelector('[rotation-helper]').components['rotation-helper'];
         if(!isNaN(compass_) && compass_!=null) {
-            //comp_ptr.data.cmpss_heading = compass_;//compass heading relative to z axis.
             window.dispatchEvent(new CustomEvent('rotation-is-set',
                 {detail: {compass_reading: compass_}}));
         }
@@ -547,7 +543,6 @@ window.addEventListener("deviceorientation", function (event) {
 //For android devices:
 window.addEventListener("deviceorientationabsolute", function (event) {
     function handleOrientationEvent(event) {
-        //document.getElementById("id04").innerHTML = `Handle orientation event A# ${++this.num_of_handled_ori_events}`;
         // alpha: rotation around z-axis
         let rotateDegrees = event.alpha;
         let rotateDegreesIOS = event.absolute;
@@ -559,17 +554,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
         let compass_heading = GetCompassHeading(event.alpha, event.beta, event.gamma);
         
         if(!isNaN(compass_heading) && compass_heading!=null) {
-          //comp_ptr.data.cmpss_heading = compass_heading;//compass heading relative to z axis.
-          if(DEBUG_LEVEL>0)
-          {
-            document.getElementById("AndroidEvent").innerHTML =
-            `ANDR_ORNT_EVENT [abs=${event.absolute}
-              alpha= ${event.alpha.toFixed(1)}
-              beta= ${event.beta.toFixed(1)}
-              gamma ${event.gamma.toFixed(1)}
-              cmpss_head=${compass_heading.toFixed(1)}`;
-            }
-
+          
             OrientationGrantedFlag = true;//Set global flag to on
             //If orientation is enabled hide the rotation permition button:
             if(OrientationGrantedFlag)
