@@ -493,7 +493,7 @@ function onClick() {
         // handle regular non iOS 13+ devices
     }
 }
-
+/*
 //Define the location options:
 let options = { //location options
     enableHighAccuracy: true,
@@ -518,7 +518,7 @@ function activateLocation()
         // handle regular non iOS 13+ devices
     }
 }
-
+*/
 
 
 
