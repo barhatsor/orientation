@@ -12,59 +12,120 @@ html, body {
   margin: 0;
 }
 
+canvas {
+  pointer-events: none;
+}
+
 </style>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,shrink-to-fit=no">
 </head>
 <body ontouchstart>
-<div class="log">Allow access to try orientation.</div>
 
-
-<!--Included scripts:-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
-<script src='./GenericFuncs.js'></script>
-<script src='./DeviceOrientationController.js'></script>
-<script src='./MotionHelper.js'></script>
-<script src='./RotationHelper.js'></script>
-<script src='./main.js'></script>
-<script src='./estimation.js'></script>
-
-
-
-
+<div class="log">Allow access to try orientation.<br></div>
 
 
 <script>
-const logEl = document.querySelector('.log');
-document.documentElement.addEventListener('click', async () => {
-      logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
-      
-      let permissiona;
-      try {
-        permissiona = await DeviceMotionEvent.requestPermission();
-      } catch (err) {
-        logEl.textContent = 'No orientation access';
-      }
-      if (permissiona !== 'granted') {
-        logEl.textContent = 'No orientation access';
-      }else{
-        logEl.textContent = 'Got orientation access';
-      }
-      
 
-    window.addEventListener('deviceorientation', onDeviceOrientation);
-    }
-    );
+const logEl = document.querySelector('.log');
+
+function onLog(args) {
+  
+  if (logEl.innerHTML.split('<br>').length > 10) {
     
+    logEl.innerHTML = '';
+    
+  }
+  
+  logEl.innerHTML += '<br>' + args;
+  
+}
+
+console.log = onLog;
+window.onerror = onLog;
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
+<script src="GenericFuncs.js"></script>
+<script src="DeviceOrientationController.js"></script>
+<script src="MotionHelper.js"></script>
+<script src="RotationHelper.js"></script>
+<script src="main.js"></script>
+<script src="estimation.js"></script>
+
+
+<script>
+
+document.documentElement.addEventListener('click', async () => {
+  
+  //logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
+
+  let motionPermission;
+  
+  try {
+    
+    motionPermission = await DeviceMotionEvent.requestPermission();
+    
+  } catch (err) {
+    
+    console.log('No orientation access');
+    
+  }
+  
+  if (motionPermission !== 'granted') {
+    
+    console.log('No orientation access');
+    
+  }
+
+  OrientationGrantedFlag = true;
+  
+  console.log('Got orientation!');
+
+  window.addEventListener('deviceorientation', onDeviceOrientation);
+    
+});
+
+/*
 function onDeviceOrientation(e) {
-   
-  //onClick();//TBD@@
   
   //logEl.textContent = e.alpha + 'deg';
   logEl.style.rotate = e.alpha + 'deg';
-}
   
-</script>
+}
+*/
 
+function onDeviceOrientation(e) {
+  
+  const compassHeading = GetCompassHeading(e.alpha, event.beta, event.gamma);
+  
+  if (compassHeading) {
+    
+    window.dispatchEvent(new CustomEvent('rotation-is-set', {
+      detail: {
+        compass_reading: compassHeading
+      }
+    }));
+    
+  }
+  
+  
+  const parkPos = {
+    lat: 31.335425, 
+    lng: 34.896735
+  };
+  
+  const resp = estimation(parkPos);
+  
+  //logEl.innerHTML = resp.aspect.dy + 'deg, ' + resp.walkDist + 'min';
+  
+  logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
+  logEl.style.rotate = resp.aspect.dy + 'deg';
+  
+}
+
+</script>
 
 </body>
 </html>
