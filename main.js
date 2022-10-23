@@ -58,8 +58,6 @@ const animate = function () {
 animate();
 
 
-
-
 //Start Sequence of initialization:
 //Initialize location module
 InitMovement();
