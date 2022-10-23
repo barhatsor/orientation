@@ -22,6 +22,15 @@ function estimation(coord,currPos)
 }
 
 
+
+//Retrieves relative angle to POV
+function getRelativeAngle()
+{
+  //CheckInFOV(camera, TargetObjectGlob, el);
+  
+}
+
+
 function testVitals()
 {
   //Check GPS data availability:
