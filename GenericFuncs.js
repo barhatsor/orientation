@@ -4,6 +4,7 @@ var GlobMarkers=[];
 var GlobDebugFlag=false;
 
 
+
 //Calculate compass heading from orientation event data:
 //returns true north:
 function GetCompassHeading(alpha, beta, gamma) {
