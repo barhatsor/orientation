@@ -83,7 +83,7 @@ function testVitals() {
   
   const testCurrPos = {
     "lat": 31.3363433,
-    "lon": 34.8966079,
+    "lon": 34.8966079
   };
   
   //Test function
