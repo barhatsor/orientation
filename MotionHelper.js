@@ -82,7 +82,6 @@ function GetGPSLoc() {
     SetInitPosPlayer(positionGPS, CenterPos);
     //Dispatch event that the GPS position is confirmed:
     State = 1;
-    //LastDeviceGPS.accuracy = 3;//[m]
   }
 }
 
