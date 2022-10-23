@@ -28,7 +28,7 @@ function testVitals()
   console.log('GPS location: '+ positionGPS.toString());
   
   //Check Rotation data availability:
-  console.log('Rotation data: '+ )
+  console.log('Rotation data: '+ CameraWrapper.rotation.y)
   
 }
 
