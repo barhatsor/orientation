@@ -2,6 +2,8 @@
 //Estimate time to target in minutes: (assuming walking spped is WALK_SPEED km/h)
 function estimation(coord, currPos) {
   
+  currPos = positionGPS; // @@ test
+  
   //If the globcenter is not initialized:
   if (coord.lat == 0 && coord.lon == 0) {
     return;
