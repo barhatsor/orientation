@@ -474,7 +474,7 @@ DeviceOrientationController.prototype = Object.create( THREE.EventDispatcher.pro
 
 //Call back for Rotation request:
 var OrientationGrantedFlag=false;
-
+/*
 function onClick() {
     // feature detect
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -489,7 +489,7 @@ function onClick() {
     } else {
         // handle regular non iOS 13+ devices
     }
-}
+}*/
 
 
 
@@ -530,10 +530,10 @@ window.addEventListener("deviceorientation", function (event) {
         //beta is roll
         //hide the orientation button:
         OrientationGrantedFlag=true;
-        if(OrientationGrantedFlag)
+        /*if(OrientationGrantedFlag)
         {
           document.querySelector('.permission-prompt').style.display = 'none';
-        }
+        }*/
         if(!isNaN(compass_) && compass_!=null) {
             window.dispatchEvent(new CustomEvent('rotation-is-set',
                 {detail: {compass_reading: compass_}}));
