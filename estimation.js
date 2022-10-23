@@ -41,7 +41,7 @@ function testVitals()
   }; //some other place in Beer-Sheva
   
   //Test function
-  console.log('Testing estimation:' + estimation(testCoord1, testCoord2);
+  console.log('Testing estimation:' + estimation(testCoord1, testCoord2));
 }
 
 
