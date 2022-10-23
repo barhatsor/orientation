@@ -21,6 +21,17 @@ function estimation(coord,currPos)
 }
 
 
+function testVitals()
+{
+  //Check GPS data availability:
+  
+  
+  //Check Rotation data availability:
+  
+  
+}
+
+
 
 
 
