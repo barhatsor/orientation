@@ -118,7 +118,7 @@ window.onerror = function(message, source) {
     }
 };
 
-
+/*
 //Calculates difference between angle1 to angle2:
 function delta_angle(angle1,angle2)
 {
@@ -128,7 +128,7 @@ function delta_angle(angle1,angle2)
     angle1q.setFromEuler(new THREE.Euler(0, angle1, 0));
     angle2q.setFromEuler(new THREE.Euler(0, angle2, 0));
     return angle1q.angleTo(angle2q);
-}
+}*/
 
 
 
