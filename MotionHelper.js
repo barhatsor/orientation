@@ -194,3 +194,47 @@ function UpdateCameraPos(newPos)
     CameraWrapper.position.z = v_res.z;
   }
 }
+
+
+//Function interpulates position between vector v1 to vector v2 in n_step steps
+//Returns the next position - mid_position:
+//Usage:
+//In function animate:
+//Current position
+//let v1 = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
+//Target position
+//let v2 = new THREE.Vector3(res.x,res.y,res.z);
+//Number of steps to transition  - configuration
+//let num_steps = 100;//1% in frame render
+//SmoothMotion(v1, v2, 20)
+//Globals:
+var curr_step = 0; //is midposition between to points
+var last_vb = null;
+var last_mid_pos = null;
+
+function SmoothMotion(va,vb,num_steps) {
+  //If in the middle of interpulation the destination moved,
+  //We will start from the finish and update the new destination position with same step
+  if (last_vb != null) {
+    if (!last_vb.equals(vb)) {
+      curr_step = 0;
+      last_vb = vb;
+      return last_mid_pos;
+    }
+  }else{
+    last_vb = vb;
+  }
+  //Update the alpha (percent/100 of final value)
+  let alpha = curr_step / num_steps;
+
+  //If we've reached the target:
+  if (alpha > 1) {
+    curr_step = 0;
+    last_mid_pos =vb;
+    return last_mid_pos;
+  } else { //not yet reached the target
+    curr_step++;
+    last_mid_pos =va.lerp(vb, alpha);
+    return last_mid_pos;
+  }
+}
