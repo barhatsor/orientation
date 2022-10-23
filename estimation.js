@@ -30,6 +30,9 @@ function testVitals()
   //Check Rotation data availability:
   console.log('Rotation data: '+ CameraWrapper.rotation.y);
   
+  //Test function
+  
+  console.log('Testing estimation:' + estimation(coord,positionGPS)
 }
 
 
