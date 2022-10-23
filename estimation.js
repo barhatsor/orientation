@@ -12,11 +12,12 @@ function estimation(coord, currPos) {
   let result = GetDirection(currPos, coord); //distance in [km]
 
   let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Scale);
+  
   let dist = CameraWrapper.position.distanceTo(vrpos); //[km*Scale]
 
   let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(0); //in[minutes]
 
-  return walkingTime;
+  return 'walking distance: '+ walkingTime +'in [min], aspect:'+ JSON.stringify(getAspect(vrpos));
 
 }
 
@@ -24,7 +25,7 @@ function estimation(coord, currPos) {
 
 //Retrieves relative angle to camera view 
 //given relative position in 3D space vrpos:
-function getRelativeAngle(vrpos) {
+function getAspect(vrpos) {
 
   //"camera" is global variable which defines the current point view of the player
 
@@ -68,5 +69,5 @@ function testVitals() {
   }; //some other place in Beer-Sheva
 
   //Test function
-  console.log('Testing estimation:' + estimation(testCoord1, testCoord2) + ' minutes');
+  console.log('Testing estimation:' + estimation(testCoord1, testCoord2) );
 }
