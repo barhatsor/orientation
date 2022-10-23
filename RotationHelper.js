@@ -23,7 +23,6 @@ function InitRot()
 //Function sets initial rotation
 function SetInitRotation(e)
 {
-    console.log('Got rotation privilages')
     if( (e.detail.compass_reading!=0) && !(isNaN(e.detail.compass_reading))) {        
 
         let cmpss360 = e.detail.compass_reading;
