@@ -135,7 +135,8 @@ function onDeviceOrientation(e) {
   logEl.innerHTML = '<div style="font-size: 90px;rotate:-90deg">➤</div>';
   logEl.style.rotate = -resp.aspect.dy + 'deg';
  
-  log2.textContent = resp.aspect.dy.toFixed(1) + 'resp';
+  //log2.textContent = resp.aspect.dy.toFixed(1) + 'resp';
+  log2.textContent = 'cmpss:'resp.aspect.dy.toFixed(1);
 
 }
 
