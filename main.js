@@ -21,18 +21,20 @@ camera.add(laser);
 
 
 //Create Renderer:
-const renderer = new THREE.WebGLRenderer( { alpha: true } );
+/*const renderer = new THREE.WebGLRenderer( { alpha: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.domElement.style.position = 'absolute';
 renderer.domElement.style.top = 0;
 document.body.appendChild( renderer.domElement);
+*/
 
 
 //Create texture plane:
-const material1 = new THREE.MeshBasicMaterial({
+/*const material1 = new THREE.MeshBasicMaterial({
     map: loader.load('./border.png'),
 });
+
 const planeGeo = new THREE.PlaneGeometry( 500, 500, 1000 );
 const mesh = new THREE.Mesh(planeGeo, material1);
 mesh.rotation.x = Math.PI * -.5;
@@ -41,13 +43,14 @@ mesh.position.z = -10;
 function addPlane() {
   scene.add(mesh);
 }
+*/
 
 //DEBUG:
-var dir = 0;
+//var dir = 0;
 
 
 //Create css scene:
-const scene2 = new THREE.Scene();
+/*const scene2 = new THREE.Scene();
 scene2.add(CameraWrapper);
 
 //The current target object, arrows points it's direction
@@ -59,6 +62,7 @@ cssRenderer.setSize( window.innerWidth, window.innerHeight );
 cssRenderer.domElement.style.position = 'absolute';
 cssRenderer.domElement.style.top = 0;
 document.body.appendChild( cssRenderer.domElement );
+*/
 
 //Create device binded controls:
 var DevControls = new DeviceOrientationController( camera, renderer.domElement );
@@ -69,9 +73,10 @@ DevControls.connect();
 const animate = function () {
   //Check if marker in FOV of camera
   dir = CheckInFOV(camera, TargetObjectGlob, el);
-  changeArrow(dir);
+  //changeArrow(dir);
+  
   //Hide direction arrows if no markers:
-  if(GlobMarkersList.length==0) changeArrow(0);
+  //if(GlobMarkersList.length==0) changeArrow(0);
 
   //Update player position to next_pos - is updated from GPS
   UpdateCameraPos(next_pos);
@@ -79,8 +84,8 @@ const animate = function () {
   DevControls.update();
   requestAnimationFrame(animate);
 
-  renderer.render(scene, camera);
-  cssRenderer.render(scene2, camera);
+  //renderer.render(scene, camera);
+  //cssRenderer.render(scene2, camera);
 };
 
 //Call animate recurring function:
@@ -88,6 +93,7 @@ animate();
 
 
 // Create Stream video
+/*
 navigator.mediaDevices.getUserMedia({
     video: {
         width: {
@@ -111,6 +117,7 @@ navigator.mediaDevices.getUserMedia({
 }).catch((err) => {
   console.log("Couldn't get video");
 });
+*/
 
 //Determine the invocation method:
 InvokeAppOrigin = GetInvocationMethod();
