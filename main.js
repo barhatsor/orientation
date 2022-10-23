@@ -120,7 +120,7 @@ navigator.mediaDevices.getUserMedia({
 */
 
 //Determine the invocation method:
-InvokeAppOrigin = GetInvocationMethod();
+//InvokeAppOrigin = GetInvocationMethod();
 
 //Start Sequence of initialization:
 //Initialize location module
@@ -129,21 +129,20 @@ InitMovement();
 //Init the rotation module:
 InitRot();
 
-
 //Init virtual environment:
-InitVR();
+//InitVR();
 
 //Mapbox init:
-MapboxInit();
+//MapboxInit();
 
 //Initialize Firebase connection:
 //InitFirebase();
 
 //Set listeners for Local Storage:
-InitStorage();
+//InitStorage();
 
 //Dedetects if page was suspended:
-var lastFired = new Date().getTime();
+/*var lastFired = new Date().getTime();
 var now=0;
 setInterval(function() {
     now = new Date().getTime();
@@ -159,3 +158,4 @@ setInterval(function() {
     }
     lastFired = now;
 }, 100); //interval of 100 ml sec
+*/
