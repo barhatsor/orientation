@@ -17,6 +17,12 @@ html, body {
 </head>
 <body ontouchstart>
 <div class="log">Allow access to try orientation.</div>
+
+
+<!--Included scripts:-->
+
+
+
 <script>
 const logEl = document.querySelector('.log');
 document.documentElement.addEventListener('click', async () => {
@@ -39,5 +45,7 @@ function onDeviceOrientation(e) {
   logEl.style.rotate = e.alpha + 'deg';
 }  
 </script>
+
+
 </body>
 </html>
