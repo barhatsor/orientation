@@ -84,7 +84,7 @@ const animate = function () {
   DevControls.update();
   requestAnimationFrame(animate);
 
-  //renderer.render(scene, camera);
+  renderer.render(scene, camera);
   //cssRenderer.render(scene2, camera);
 };
 
