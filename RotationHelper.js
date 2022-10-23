@@ -14,6 +14,7 @@ function InitRot()
 {
     //Bind the initial rotation event:
     window.addEventListener('rotation-is-set', SetInitRotation);
+    
 }
 
 
@@ -22,6 +23,7 @@ function InitRot()
 //Function sets initial rotation
 function SetInitRotation(e)
 {
+    console.log('Got rotation privilages')
     if( (e.detail.compass_reading!=0) && !(isNaN(e.detail.compass_reading))) {        
         //let cmpss360 = 360-e.detail.compass_reading;
         let cmpss360 = e.detail.compass_reading;
@@ -29,6 +31,8 @@ function SetInitRotation(e)
 
         let rot_y_ = RotTransform(cmpss180);
         if(isNaN(rot_y_))rot_y_=0;//ERROR
+        
+        console.log('Got actual rotation',rot_y_+'[deg]')
 
         let rot_y = rot_y_*Math.PI/180;
 
