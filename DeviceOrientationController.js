@@ -515,7 +515,7 @@ window.addEventListener("deviceorientation", function (event) {
             event.beta, event.gamma);
         if(compass_!=null && event!=null && event.alpha!=null && event.beta!=null && event.gamma!=null) {
           
-          if(DEBUG_LEVEL>0)
+          /*if(DEBUG_LEVEL>0)
           {
             document.querySelect("log").innerHTML =
             `orientation event fired, webkit cmpss=${compass_.toFixed(1)}}
@@ -523,7 +523,7 @@ window.addEventListener("deviceorientation", function (event) {
             beta=${event.beta.toFixed(1)}
             gamma=${event.gamma.toFixed(1)}
             `;
-          }
+          }*/
         }
         //gamma is pitch.
         //alpha is azimuth
