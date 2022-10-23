@@ -116,7 +116,9 @@ function onDeviceOrientation(e) {
     lng: 34.896735
   };
   
-  console.log(JSON.stringify(estimation(parkPos)));
+  const resp = estimation(parkPos);
+  
+  console.log(resp.aspect.dy + 'deg, ' + resp.walkDist + 'min');
   
 }
 
