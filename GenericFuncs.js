@@ -7,12 +7,6 @@ var InvokeAppOrigin = "none";//define app invocation method
 
 
 
-
-
-
-
-
-
 //Calculate compass heading from orientation event data:
 //returns true north:
 function GetCompassHeading(alpha, beta, gamma) {
@@ -188,18 +182,6 @@ function Convert360to180(deg)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 //Check if object in your FOV: and returns if it's on the
 //Returns direction of arrow one of the following [right, left, up] and position on screen [0,2] left to right
 //left(-1) on the right (+1) or inside POV
@@ -262,62 +244,9 @@ function CheckInFOV(camera,object,el) {
   }
 
 
-//Create arrow to point to marker which outside the POV
-var arrow = document.querySelector('.arrow-wrapper');
-var arrowTop = document.querySelector('.arrow.top');
-var w_width = window.innerWidth - arrowTop.clientWidth - 10;
-function changeArrow(dir) {
 
-  if(dir.direction == 'up'){
-    arrowTop.style.display = '';
-    arrowTop.style.transform = '';
-    arrowTop.style.right = '';
 
-    //If the marker is inside the box but higher than furstrum:
-    if(dir.position>0 && dir.position<=2){
-      let pos_left = (dir.position/2)*w_width;//position from high left corner of screen (position is [0,2])
-      arrowTop.style.left = pos_left + 'px';
-    }
-    else { //Marker is way outside -  use diagonal arrow and put it on the left / right corner
-      if (dir.position < 0) { //Place left
-        arrowTop.style.left = '10px';
-        arrowTop.style.transform = 'rotate(50deg)';
-      }
-      if (dir.position > 2) { //Place right
-        arrowTop.style.left = 'auto';
-        arrowTop.style.right = '10px';
-        arrowTop.style.transform = 'rotate(140deg)';
-      }
-    }
-    arrow.style.display = 'none';
-    return;
-  }
-  else {
-    if (dir.direction == 'left') {
-      arrow.style.display = '';
-      arrow.style.transform = 'scale(-1, 1)';
-    }
-    else if (dir.direction == 'right') {
-      arrow.style.display = '';
-      arrow.style.transform = 'scale(1, 1)';
-    }
-    else {
-      arrow.style.display = 'none';
-    }
 
-    arrowTop.style.display = 'none';
-  }
-}
-
-function copy(text) {
-  var textArea = document.createElement("textarea");
-  textArea.value = text;
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-  document.execCommand('copy');
-  document.body.removeChild(textArea);
-}
 
 
 
