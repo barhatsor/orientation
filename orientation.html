@@ -69,19 +69,19 @@ document.documentElement.addEventListener('click', async () => {
     
   } catch (err) {
     
-    logEl.textContent = 'No orientation access';
+    console.log('No orientation access');
     
   }
   
   if (motionPermission !== 'granted') {
     
-    logEl.textContent = 'No orientation access';
+    console.log('No orientation access');
     
   }
 
   OrientationGrantedFlag = true;
   
-  logEl.textContent = 'Got orientation!';
+  console.log('Got orientation!');
 
   window.addEventListener('deviceorientation', onDeviceOrientation);
   
