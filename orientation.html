@@ -30,6 +30,12 @@ html, body {
 
 <script>
 
+console.log = (args) => {
+  
+  logEl.innerHTML += '<br>' + args;
+  
+};
+
 const logEl = document.querySelector('.log');
 
 document.documentElement.addEventListener('click', async () => {
