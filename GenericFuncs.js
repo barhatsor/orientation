@@ -3,7 +3,7 @@ var GlobCenter = {lat:0,lon:0};
 var GlobMarkers=[];
 var GlobDebugFlag=false;
 
-
+const DEBUG_LEVEL=0;
 
 //Calculate compass heading from orientation event data:
 //returns true north:
