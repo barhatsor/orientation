@@ -72,27 +72,12 @@ function InitMovement() {
 //If success in getCurrent position:
 function nav_geo_success(pos) {
   var crd_ = pos.coords;
-  /*if(DEBUG_LEVEL>0)
-  {
-  document.getElementById("GPSloc").innerHTML = 'GPS:' +
-    `{LAT:${crd_.latitude.toFixed(8)},` + `LON:${crd_.longitude.toFixed(8)}} `
-    + `Accuracy:${crd_.accuracy.toFixed(1)} meters`;
-  }*/
-  // Check accuracy:
-  if (crd_.accuracy > 65) { // If accuracy is less than 30 meters
-    //toggleAlert(true);
-  } else {
-    //toggleAlert(false);
-    //document.querySelector('.alert').classList.remove('gps');
-  }
 
   if ((!isNaN(crd_.latitude)) && (!isNaN(crd_.longitude))) {
     data.crd_lat = pos.coords.latitude;
     data.crd_lon = pos.coords.longitude;
     data.crd_accuracy = pos.accuracy;
-    //Get current time in [sec]
-    //let dtime = new Date();
-    //let time_vel_delta = dtime - last_time;
+    
     UpdatePos();
   }
 }
@@ -140,8 +125,6 @@ function GetGPSLoc() {
 //Set initial position for the player in VR space:
 function SetInitPosPlayer(PosCoord, WorldCenterPos) {
 
-  //this.data.world_center_lon = PosCoord.lon;
-  //this.data.world_center_lat = PosCoord.lat;
   CenterPos.lon = PosCoord.lon;
   CenterPos.lat = PosCoord.lat;
 
@@ -150,7 +133,7 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
   GlobCenter.lon = PosCoord.lon;
 
   const z = 1;
-  //CameraWrapper.position = new THREE.Vector3(0,z,0);
+  
   CameraWrapper.position.x = 0;
   CameraWrapper.position.y = z;
   CameraWrapper.position.z = 0;
