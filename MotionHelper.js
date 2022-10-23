@@ -22,12 +22,7 @@ var State = -1;
 //comp_ptr: null,
 var dbg = {Pos: null, STATS: null, camera_wrapper: null};//dbg ptrs
 var dbg_delta_time_frame = 0;
-/*options : { //location options
-enableHighAccuracy: true,
-    timeout: 10000,
-    maximumAge: 0
-},
-*/
+
 
 var init_bearing = null; //array used for initial gps test
 var init_vel = null;//array used for initial gps test
@@ -73,16 +68,16 @@ function nav_geo_success(pos) {
   var crd_ = pos.coords;
   if(DEBUG_LEVEL>0)
   {
-  document.getElementById("GPSloc").innerHTML = 'GPS:' +
+  /*document.getElementById("GPSloc").innerHTML = 'GPS:' +
     `{LAT:${crd_.latitude.toFixed(8)},` + `LON:${crd_.longitude.toFixed(8)}} `
     + `Accuracy:${crd_.accuracy.toFixed(1)} meters`;
-  }
+  }*/
   // Check accuracy:
   if (crd_.accuracy > 65) { // If accuracy is less than 30 meters
-    toggleAlert(true);
+    //toggleAlert(true);
   } else {
-    toggleAlert(false);
-    document.querySelector('.alert').classList.remove('gps');
+    //toggleAlert(false);
+    //document.querySelector('.alert').classList.remove('gps');
   }
 
   if ((!isNaN(crd_.latitude)) && (!isNaN(crd_.longitude))) {
