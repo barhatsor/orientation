@@ -66,9 +66,9 @@ function InitMovement() {
 //If success in getCurrent position:
 function nav_geo_success(pos) {
   var crd_ = pos.coords;
-  if(DEBUG_LEVEL>0)
+  /*if(DEBUG_LEVEL>0)
   {
-  /*document.getElementById("GPSloc").innerHTML = 'GPS:' +
+  document.getElementById("GPSloc").innerHTML = 'GPS:' +
     `{LAT:${crd_.latitude.toFixed(8)},` + `LON:${crd_.longitude.toFixed(8)}} `
     + `Accuracy:${crd_.accuracy.toFixed(1)} meters`;
   }*/
