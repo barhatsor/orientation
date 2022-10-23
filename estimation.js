@@ -17,7 +17,7 @@ function estimation(coord, currPos) {
 
   let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(0); //in[minutes]
 
-  return 'walking distance: '+ walkingTime +'in [min], aspect:'+ JSON.stringify(getAspect(vrpos));
+  return {walkDist: walkingTime, aspect: getAspect(vrpos) };
 
 }
 
@@ -69,5 +69,6 @@ function testVitals() {
   }; //some other place in Beer-Sheva
 
   //Test function
-  console.log('Testing estimation:' + estimation(testCoord1, testCoord2) );
+  let res = estimation(testCoord1, testCoord2);
+  console.log('Testing estimation: walk distance in min' + res.walkDist + ',aspect:'+JSON.stringify(res.aspect) );
 }
