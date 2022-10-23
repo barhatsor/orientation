@@ -30,13 +30,18 @@ function testVitals()
   //Check Rotation data availability:
   console.log('Rotation data: '+ CameraWrapper.rotation.y);
   
-  let testCoord = {
+  let testCoord1 = {
     "lat": 31.241779897014453,
     "lng": 34.81248870780638
   }; //Some where in Beer Sheva
   
+  let testCoord2 = {
+    "lat": 31.243256162385038,
+    "lng": 34.81265196913165
+  }; //some other place in Beer-Sheva
+  
   //Test function
-  console.log('Testing estimation:' + estimation(testCoord,positionGPS)
+  console.log('Testing estimation:' + estimation(testCoord1, testCoord2);
 }
 
 
