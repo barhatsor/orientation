@@ -220,14 +220,14 @@ function CheckInFOV(camera,object,el) {
           let pos_ = dangle_y/(FOVcamera/2)+1;//dangle_y is [-FOVcamera/2,FOVcamera/2]
           if(DEBUG_LEVEL>0)
           {
-          el.innerHTML = `Outside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}, pos=${pos_.toFixed(1)}`;
+          //el.innerHTML = `Outside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}, pos=${pos_.toFixed(1)}`;
           }
           return {direction: 'up', position:pos_ };//put arrow up, position is [0,2] where 0 is most left and 2 most right
         }
       }
       if(DEBUG_LEVEL>0)
       {
-        el.innerHTML = `Outside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}`;
+        //el.innerHTML = `Outside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}`;
       }
       //If the marker is not higher than frustum,check if on his left or right:
       if(Math.sign(dangle_y) == -1) return {direction: 'right',position: 0};//object is on the right put arrow right
@@ -237,7 +237,7 @@ function CheckInFOV(camera,object,el) {
       //el.innerHTML = "Inside of FOV"
       if(DEBUG_LEVEL>0)
       {
-        el.innerHTML = `Inside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}`;
+        //el.innerHTML = `Inside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}`;
       }
       return {direction: 'inside',position:0};
     }
