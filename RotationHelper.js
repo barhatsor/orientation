@@ -19,13 +19,12 @@ function InitRot()
 
 
 
-
 //Function sets initial rotation
 function SetInitRotation(e)
 {
     console.log('Got rotation privilages')
     if( (e.detail.compass_reading!=0) && !(isNaN(e.detail.compass_reading))) {        
-        //let cmpss360 = 360-e.detail.compass_reading;
+
         let cmpss360 = e.detail.compass_reading;
         let cmpss180 = (cmpss360-180)%180;//to range [-180,180]
 
@@ -37,12 +36,9 @@ function SetInitRotation(e)
         let rot_y = rot_y_*Math.PI/180;
 
         //Set player rotation:
-        //CameraWrapper.rotation = new THREE.Vector3(0, rot_y, 0);//[-pi..pi]
         CameraWrapper.rotation.x = 0;
         CameraWrapper.rotation.y = rot_y;//[-pi..pi]
         CameraWrapper.rotation.z = 0;
-
-        //pltf_ptr.object3D.rotation.set(0, rot_y, 0);//[-pi..pi]
 
         if(CmpssEventCounter>5) {
             window.removeEventListener('rotation-is-set', SetInitRotation);
@@ -56,14 +52,4 @@ function SetInitRotation(e)
     }
 }
 
-/*
-//Receives cmpss in [-180,180] and returng rot.y for the platform
-function RotTransform(cmpss)
-{
-    if(cmpss>=-180 && cmpss<-90 ) return cmpss+90;
-    if(cmpss >=-90 && cmpss<0) return cmpss+90;
-    if(cmpss>=0 && cmpss<90) return cmpss+90;
-    if (cmpss>=90 && cmpss<180) return cmpss - 270;
 
-    return NaN;
-}*/
