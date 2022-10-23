@@ -511,9 +511,6 @@ function error(message, source) {
 //For IOS devices:
 window.addEventListener("deviceorientation", function (event) {
     {
-      
-        console.log('got device orientation event')
-
         let compass_ = GetCompassHeading(event.webkitCompassHeading,
             event.beta, event.gamma);
         if(compass_!=null && event!=null && event.alpha!=null && event.beta!=null && event.gamma!=null) {
