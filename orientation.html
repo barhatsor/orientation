@@ -84,15 +84,7 @@ document.documentElement.addEventListener('click', async () => {
   console.log('Got orientation!');
 
   window.addEventListener('deviceorientation', onDeviceOrientation);
-  
-  
-  const parkPos = {
-    lat: 31.335425, 
-    lng: 34.896735
-  };
-  
-  estimation(parkPos);
-  
+    
 });
 
 /*
@@ -117,6 +109,14 @@ function onDeviceOrientation(e) {
     }));
     
   }
+  
+  
+  const parkPos = {
+    lat: 31.335425, 
+    lng: 34.896735
+  };
+  
+  console.log(JSON.stringify(estimation(parkPos)));
   
 }
 
