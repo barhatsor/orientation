@@ -1,8 +1,10 @@
-
+//Estimate time to target in minutes: (assuming walking spped is WALK_SPEED km/h)
 function estimation(coord,currPos)
 {
     //If the globcenter is not initialized:
     if(coord.lat==0 && coord.lon==0) return;
+    
+    const WALK_SPEED = 3;//km/h
     
     const z = -8;//TBD??
 
@@ -12,8 +14,9 @@ function estimation(coord,currPos)
     let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Scale);
     let dist = CameraWrapper.position.distanceTo(vrpos);//[km*Scale]
 
-
-    let walkingTime = (((dist/Scale)/3)*60).toFixed(0);//in[minutes]
+    let walkingTime = (((dist/Scale)/WALK_SPEED)*60).toFixed(0);//in[minutes]
+    
+    return walkingTime;
     
 }
 
