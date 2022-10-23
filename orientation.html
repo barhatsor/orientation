@@ -50,7 +50,11 @@ document.documentElement.addEventListener('click', async () => {
 
     window.addEventListener('deviceorientation', onDeviceOrientation);
     });
+    
 function onDeviceOrientation(e) {
+   
+  onClick();//TBD@@
+  
   //logEl.textContent = e.alpha + 'deg';
   logEl.style.rotate = e.alpha + 'deg';
 }  
