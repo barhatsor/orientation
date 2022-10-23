@@ -52,17 +52,15 @@ function nav_geo_success(pos) {
 //Alert for low GPS signal
 function toggleAlert(boolean) {
   if (boolean) {
-    document.querySelector('.alert').classList.add('visible');
+    console.log('Low GPS!');
   } else {
-    document.querySelector('.alert').classList.remove('visible');
+    console.log('GPS ok.');
   }
 }
 
 //If fail in get current position:
 function nav_geo_error(err) {
-
-  toggleAlert(true);
-  document.querySelector('.alert').classList.add('gps');
+  console.log('No GPS!');
 }
 
 
