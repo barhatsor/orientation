@@ -126,16 +126,10 @@ function GetDirection(Location_source, Location_target) {
 // Error
 window.onerror = function(message, source) {
     try {
-        document.querySelector('.title').classList.add('error');
-        document.querySelector('.title a').innerHTML =
-            message +
-            '<br><span style="opacity:0.5">' +
-            source.replace('https://getaround.berryscript.com/', '') +
-            '</span>';
+      console.log('error:',message);
     }
     catch {
-        document.querySelector('.title a').innerHTML = 'Unknown error<br><span style="opacity:0.5">' +
-        source.replace('https://getaround.berryscript.com/', '') + '</span>';
+        console.log('error really bad:',message);
     }
 };
 
