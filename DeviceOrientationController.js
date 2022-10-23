@@ -545,6 +545,9 @@ window.addEventListener("deviceorientation", function (event) {
 
 //For android devices:
 window.addEventListener("deviceorientationabsolute", function (event) {
+  
+    console.log('got device orientation absolute event')
+
     function handleOrientationEvent(event) {
         // alpha: rotation around z-axis
         let rotateDegrees = event.alpha;
