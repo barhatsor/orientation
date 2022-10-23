@@ -92,6 +92,7 @@ function nav_geo_success(pos) {
 }
 
 
+
 //Alert for low GPS signal
 function toggleAlert(boolean) {
   if (boolean) {
