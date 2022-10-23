@@ -86,7 +86,12 @@ document.documentElement.addEventListener('click', async () => {
   window.addEventListener('deviceorientation', onDeviceOrientation);
   
   
-  testVitals();
+  const parkPos = {
+    lat: 31.335425, 
+    lng: 34.896735
+  };
+  
+  estimation(parkPos);
   
 });
 
