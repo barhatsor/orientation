@@ -25,9 +25,10 @@ function testVitals()
 {
   //Check GPS data availability:
   
+  console.log('GPS location: '+ positionGPS.toString());
   
   //Check Rotation data availability:
-  
+  console.log('Rotation data: '+ )
   
 }
 
