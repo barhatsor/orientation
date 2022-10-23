@@ -130,19 +130,7 @@ function delta_angle(angle1,angle2)
     return angle1q.angleTo(angle2q);
 }
 
-//Function returns delta bearing between two bearings in a range of [-pi,pi]
-/*function relativeBearing(b1Rad, b2Rad)
-{
-    let b1y = Math.cos(b1Rad);
-    let b1x = Math.sin(b1Rad);
-    let b2y = Math.cos(b2Rad);
-    let b2x = Math.sin(b2Rad);
-    let crossp = b1y * b2x - b2y * b1x;
-    let dotp = b1x * b2x + b1y * b2y;
-    if(crossp > 0.)
-        return Math.acos(dotp);
-    return -Math.acos(dotp);
-}*/
+
 
 //Convert degrees [-180, 180) to [0..360]
 function Convert180to360(deg)
@@ -225,4 +213,19 @@ function error(message, source) {
 
     }
 }
+
+
+//Function returns delta bearing between two bearings in a range of [-pi,pi]
+/*function relativeBearing(b1Rad, b2Rad)
+{
+    let b1y = Math.cos(b1Rad);
+    let b1x = Math.sin(b1Rad);
+    let b2y = Math.cos(b2Rad);
+    let b2x = Math.sin(b2Rad);
+    let crossp = b1y * b2x - b2y * b1x;
+    let dotp = b1x * b2x + b1y * b2y;
+    if(crossp > 0.)
+        return Math.acos(dotp);
+    return -Math.acos(dotp);
+}*/
 
