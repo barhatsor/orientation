@@ -2,13 +2,10 @@
  * -------
  * threeVR (https://github.com/richtr/threeVR)
  * -------
- *
  * W3C Device Orientation control (http://www.w3.org/TR/orientation-event/)
  * with manual user drag (rotate) and pinch (zoom) override handling
- *
  * Author: Rich Tibbett (http://github.com/richtr)
  * License: The MIT License
- *
  **/
 
 
@@ -493,32 +490,6 @@ function onClick() {
         // handle regular non iOS 13+ devices
     }
 }
-/*
-//Define the location options:
-let options = { //location options
-    enableHighAccuracy: true,
-    timeout: 10000,
-    maximumAge: 0
-};
-
-//Callback for location access request:
-function activateLocation()
-{
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-        DeviceMotionEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    //window.addEventListener('deviceorientation', () => {});
-                    //navigator.geolocation.watchPosition(nav_geo_success, nav_geo_error, options);
-                }
-            })
-            .catch(console.error);
-    } else {
-        //navigator.geolocation.watchPosition(nav_geo_success, nav_geo_error, options);
-        // handle regular non iOS 13+ devices
-    }
-}
-*/
 
 
 
