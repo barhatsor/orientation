@@ -21,13 +21,13 @@ camera.add(laser);
 
 
 //Create Renderer:
-/*const renderer = new THREE.WebGLRenderer( { alpha: true } );
+const renderer = new THREE.WebGLRenderer( { alpha: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.domElement.style.position = 'absolute';
 renderer.domElement.style.top = 0;
 document.body.appendChild( renderer.domElement);
-*/
+
 
 
 //Create texture plane:
