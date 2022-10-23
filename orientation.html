@@ -9,7 +9,13 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
   margin: 0;
+}
+
+.log2 {
+  margin-bottom: -20px;
+  margin-top: 20px;
 }
 
 canvas {
@@ -22,6 +28,8 @@ canvas {
 <body ontouchstart>
 
 <div class="log">Allow access to try orientation.<br></div>
+
+<div class="log2"></div>
 
 
 <script>
@@ -97,6 +105,8 @@ function onDeviceOrientation(e) {
 }
 */
 
+const log2 = document.querySelector('.log2');
+
 function onDeviceOrientation(e) {
   
   //const compassHeading = GetCompassHeading(e.alpha, event.beta, event.gamma);
@@ -125,6 +135,8 @@ function onDeviceOrientation(e) {
   logEl.innerHTML = '<div style="font-size: 90px;rotate:-90deg">➤</div>';
   logEl.style.rotate = resp.aspect.dy + 'deg';
  
+  log2.innerHTML = resp.walkDist + ' min';
+
 }
 
 </script>
