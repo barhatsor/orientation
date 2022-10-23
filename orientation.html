@@ -17,21 +17,28 @@ html, body {
 </head>
 <body ontouchstart>
 <div class="log">Allow access to try orientation.</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
+<script src='./GenericFuncs.js'></script>
+<script src='./DeviceOrientationController.js'></script>
+<script src='./MotionHelper.js'></script>
+<script src='./RotationHelper.js'></script>
+<script src='./main.js'></script>
+<script src='./estimation.js'></script>
+
+
 <script>
-
-let OrientationGrantedFlag = false;
-
-const logEl = document.querySelector('.log');
 
 document.documentElement.addEventListener('click', async () => {
   
   logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
 
-  let motionPermission;
+  let permissiona;
   
   try {
     
-    motionPermission = await DeviceMotionEvent.requestPermission();
+    permissiona = await DeviceMotionEvent.requestPermission();
     
   } catch (err) {
     
@@ -39,7 +46,7 @@ document.documentElement.addEventListener('click', async () => {
     
   }
   
-  if (motionPermission !== 'granted') {
+  if (permissiona !== 'granted') {
     
     logEl.textContent = 'No orientation access';
     
@@ -53,12 +60,18 @@ document.documentElement.addEventListener('click', async () => {
   
 });
 
+/*
 function onDeviceOrientation(e) {
-    
-  //logEl.textContent = e.alpha + 'deg';
-  //logEl.style.rotate = e.alpha + 'deg';
   
-  const compassHeading = GetCompassHeading(event.alpha, event.beta, event.gamma); // .webkitCompassHeading
+  //logEl.textContent = e.alpha + 'deg';
+  logEl.style.rotate = e.alpha + 'deg';
+  
+}
+*/
+
+function onDeviceOrientation(e) {
+  
+  const compassHeading = GetCompassHeading(e.alpha, event.beta, event.gamma);
   
   if (compassHeading) {
     
@@ -70,8 +83,9 @@ function onDeviceOrientation(e) {
     
   }
   
-}
+});
 
 </script>
+
 </body>
 </html>
