@@ -74,7 +74,13 @@ function testVitals() {
     lon: 34.896735
   };
   
+  const testCurrPos = {
+    "lat": 31.3363433,
+    "lon": 34.8966079,
+  };
+  
   //Test function
-  let res = estimation(testCoord1, testCoord2);
+  //let res = estimation(testCoord1, testCoord2);
+  let res = estimation(parkPos, testCurrPos);
   console.log('Testing estimation: walk distance in minutes' + res.walkDist + ', aspect[deg]:'+JSON.stringify(res.aspect) );
 }
