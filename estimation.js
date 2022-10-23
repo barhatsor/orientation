@@ -26,7 +26,7 @@ function estimation(coord, currPos) {
 //given relative position in 3D space vrpos:
 function getRelativeAngle(vrpos) {
 
-  //camera is global variable
+  //"camera" is global variable which defines the current point view of the player
 
   camera.updateMatrix();
   camera.updateMatrixWorld();
@@ -46,7 +46,10 @@ function getRelativeAngle(vrpos) {
 }
 
 
+
+
 function testVitals() {
+  
   //Check GPS data availability:
 
   console.log('GPS location: ' + JSON.stringify(positionGPS));
