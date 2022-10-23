@@ -55,13 +55,13 @@ function addPlane() {
 //DEBUG:
 //var dir = 0;
 
+var TargetObjectGlob=null;
 
 //Create css scene:
 /*const scene2 = new THREE.Scene();
 scene2.add(CameraWrapper);
 
 //The current target object, arrows points it's direction
-var TargetObjectGlob=null;
 
 //Create COOL renderer:
 var cssRenderer = new COOLRenderer();
