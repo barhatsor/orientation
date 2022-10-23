@@ -3,9 +3,6 @@ var GlobCenter = {lat:0,lon:0};
 var GlobMarkers=[];
 var GlobDebugFlag=false;
 
-//var InvokeAppOrigin = "none";//define app invocation method
-
-
 
 //Calculate compass heading from orientation event data:
 //returns true north:
@@ -42,19 +39,6 @@ function GetCompassHeading(alpha, beta, gamma) {
     return compassHeading;
 }
 
-
-// Error. Params: message (required), source (optional)
-function error(message, source) {
-    document.querySelector('.title').classList.add('error');
-    document.querySelector('.title a').innerHTML = message;
-    if (source) {
-        document.querySelector('.title a').innerHTML +=
-        '<br><span style="opacity:0.5">' +
-        source +
-        '</span>';
-
-    }
-}
 
 
 
@@ -227,4 +211,18 @@ function CheckInFOV(camera,object,el) {
       return {direction: 'inside',position:0};
     }
   }
+  
+  
+  // Error. Params: message (required), source (optional)
+function error(message, source) {
+    document.querySelector('.title').classList.add('error');
+    document.querySelector('.title a').innerHTML = message;
+    if (source) {
+        document.querySelector('.title a').innerHTML +=
+        '<br><span style="opacity:0.5">' +
+        source +
+        '</span>';
+
+    }
+}
 
