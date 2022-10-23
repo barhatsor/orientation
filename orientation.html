@@ -135,7 +135,7 @@ function onDeviceOrientation(e) {
   logEl.innerHTML = '<div style="font-size: 90px;rotate:-90deg">➤</div>';
   logEl.style.rotate = resp.aspect.dy + 'deg';
  
-  log2.textContent = JSON.stringify(positionGPS) + ' min';
+  log2.textContent = positionGPS /*JSON.stringify(positionGPS)*/ + 'gps';
 
 }
 
