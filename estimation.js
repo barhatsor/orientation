@@ -43,8 +43,8 @@ function getAspect(vrpos) {
   let dangle_x = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
   let dangle_z = laser_rot.z * 180 / 3.14;
 
-  return {y:dangle_y,x:dangle_x,z:dangle_z};//in degrees;
-  //return laser.rotation;
+  //return {y:dangle_y,x:dangle_x,z:dangle_z};//in degrees;
+  return laser.rotation;
 }
 
 
