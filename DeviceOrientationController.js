@@ -544,7 +544,7 @@ window.addEventListener("deviceorientation", function (event) {
 //For android devices:
 window.addEventListener("deviceorientationabsolute", function (event) {
   
-    console.log('got device orientation absolute event')
+    //console.log('got device orientation absolute event')
     //works for chrome on Macos:
 
     function handleOrientationEvent(event) {
