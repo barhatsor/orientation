@@ -40,6 +40,12 @@ console.log = (args) => {
   
 };
 
+window.onerror = (args) => {
+  
+  logEl.innerHTML += '<br>' + args;
+  
+}
+
 const logEl = document.querySelector('.log');
 
 document.documentElement.addEventListener('click', async () => {
