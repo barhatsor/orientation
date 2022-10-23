@@ -13,46 +13,6 @@ var State = -1;
 
 
 
-/*
-var velocity = {curr: 0, prev: 0, prev_prev: 0};
-var position = {x: 0, y: 0, z: 0};
-var bearing = {curr: 0, prev: 0};
-var acceleration = 0;
-var delta_dist = 0;
-var d_err = 0;
-var invalid_motion_type_time = 0;
-
-
-
-
-var time_since_last_update = 0;
-var scene_time = 0;//in seconds since start of scene
-//comp_ptr: null,
-var dbg = {Pos: null, STATS: null, camera_wrapper: null};//dbg ptrs
-var dbg_delta_time_frame = 0;
-
-
-var init_bearing = null; //array used for initial gps test
-var init_vel = null;//array used for initial gps test
-var init_iteration = 0;//number of iterations for init location
-var init_time_interval = 0; //time in seconds between gps location signals
-var id_watch = null;
-
-var last_time = 0; //last time in [seconds] from 1970
-
-//GPS simulation:
-var GPS_sim = {
-  sign_x: [0, -1, 0, 1],
-  sign_y: [1, 0, -1, 0],
-  LWdlt_time: 0, //[sec]hold last time since last request from linear walk
-  leg_cnt: 1,
-  s_ind: 0,
-  IsOn: true,
-  SIM_D_SEC: 1
-};
-*/
-
-
 
 
 //Function initializes movement params
