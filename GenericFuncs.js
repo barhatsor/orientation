@@ -189,7 +189,7 @@ function CheckInFOV(camera,object,el) {
 // Error
 window.onerror = function(message, source) {
     try {
-      console.log('err wnd:',message+source);
+      console.log('err wnd:',message+ ' '+source);
       
     }
     catch {
