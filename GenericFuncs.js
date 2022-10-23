@@ -127,6 +127,7 @@ function GetDirection(Location_source, Location_target) {
 window.onerror = function(message, source) {
     try {
       console.log('error:',message);
+      
     }
     catch {
         console.log('error really bad:',message);
