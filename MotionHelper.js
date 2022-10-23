@@ -206,66 +206,8 @@ function UpdateCameraPos(newPos)
 }
 
 
-//Calculate estimated velocity [km/h]: (distance in meters and time delta in seconds)
-function calcVel(delta_distance, timeDelta) {
-  return (delta_distance) / timeDelta * 3600;//[km/h]
-}
 
 
-//Function calculates the estimated acceleration between given two way points assuming delta time:
-function GetAcceleration(prev_vel, next_vel, delta_time) {
-  return ((next_vel - prev_vel) / delta_time); //time in [seconds] vel in m/sec
-}
-
-
-//-------------Simulation of GPS signal:
-//Function implements Linear walk  - based on the sign array:
-function LinearWalk(scene_time, curr_pos) {
-
-  scene_time = new Date();
-  //const SIM_D_SEC = 1;
-  //const delta_ = 0.0001;//@@ need to check if to make bigger
-  //const delta_ = 0.0000015/this.data.Scale;//@@ need to check if to make bigger
-  //const delta_ = 0.0001;//is ~40km/h for deltatime=1sec
-  const delta_ = 0.000025;//is ~40km/h for deltatime=1sec
-  let sign_y = GPS_sim.sign_y;
-  let sign_x = GPS_sim.sign_x;
-  let lat = 0;
-  let lon = 0;
-  let leg_cnt = GPS_sim.leg_cnt;
-  let s_ind = GPS_sim.s_ind;
-  let x = 0;
-  let y = 0;
-
-  //if (delta_loc_time_changed > SIM_D_SEC && ((scene_time - this.GPS_sim.LWdlt_time) > SIM_D_SEC)) //LOC_DELTA_TIME_MAX_SIM)
-
-  if ((scene_time - GPS_sim.LWdlt_time) > GPS_sim.SIM_D_SEC) //LOC_DELTA_TIME_MAX_SIM)
-  {
-    GPS_sim.LWdlt_time = scene_time;
-    if (GPS_sim.leg_cnt < 30) {
-      y = sign_y[GPS_sim.s_ind] * delta_;
-      x = sign_x[GPS_sim.s_ind] * delta_;
-      GPS_sim.leg_cnt++;
-    } else {
-      if (GPS_sim.s_ind < (sign_x.length - 1))
-        GPS_sim.s_ind++;
-      else
-        GPS_sim.s_ind = 0;
-      GPS_sim.leg_cnt = 0;
-    }
-
-    lat = curr_pos.lat + y;//(+is north)
-    lon = curr_pos.lon + x; //("+" is east)
-  } else {
-    lat = curr_pos.lat;
-    lon = curr_pos.lon;
-  }
-  let res = {lat_: lat, lon_: lon};
-  //this.GPS_sim.leg_cnt = this.GPS_sim.leg_cnt;
-  //this.GPS_sim.s_ind = s_ind;
-
-  return res;
-}
 
 
 //Function checks if the initial location is ok: //NOT Used
