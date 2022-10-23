@@ -3,6 +3,7 @@
 function estimation(coord, currPos) {
   
   currPos = positionGPS; // @@ test
+  coord.lon = coord.lng;
   
   //If the globcenter is not initialized:
   if (coord.lat == 0 && coord.lon == 0) {
