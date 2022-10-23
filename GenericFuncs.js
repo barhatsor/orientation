@@ -186,28 +186,9 @@ function CheckInFOV(camera,object,el) {
   }
   
   
-// Error
-window.onerror = function(message, source) {
-    try {
-      console.log('err wnd:',message+ ' '+source);
-      
-    }
-    catch {
-        console.log('error really bad:',message);
-    }
-};  
-// Error. Params: message (required), source (optional)
-function error(message, source) {
-    document.querySelector('.title').classList.add('error');
-    document.querySelector('.title a').innerHTML = message;
-    if (source) {
-        document.querySelector('.title a').innerHTML +=
-        '<br><span style="opacity:0.5">' +
-        source +
-        '</span>';
 
-    }
-}
+  
+
 
 
 //Function returns delta bearing between two bearings in a range of [-pi,pi]
