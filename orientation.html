@@ -35,8 +35,8 @@ html, body {
 
 <script>
 const logEl = document.querySelector('.log');
-document.documentElement.addEventListener('click', async () => {
-      logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
+document.documentElement.addEventListener('click', onClick //async () => {
+      //logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
       
       /*let permissiona;
       try {
@@ -51,16 +51,18 @@ document.documentElement.addEventListener('click', async () => {
       }*/
       
 
-    window.addEventListener('deviceorientation', onDeviceOrientation);
-    });
+    //window.addEventListener('deviceorientation', onDeviceOrientation);
+    //}
+    );
     
 function onDeviceOrientation(e) {
    
-  onClick();//TBD@@
+  //onClick();//TBD@@
   
   //logEl.textContent = e.alpha + 'deg';
   logEl.style.rotate = e.alpha + 'deg';
-}  
+}
+  
 </script>
 
 
