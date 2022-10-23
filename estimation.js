@@ -69,6 +69,10 @@ function testVitals() {
     "lon": 34.81265196913165
   }; //some other place in Beer-Sheva
 
+const parkPos = {
+    lat: 31.335425, 
+    lon: 34.896735
+  };
   //Test function
   let res = estimation(testCoord1, testCoord2);
   console.log('Testing estimation: walk distance in minutes' + res.walkDist + ', aspect[deg]:'+JSON.stringify(res.aspect) );
