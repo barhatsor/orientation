@@ -1,3 +1,6 @@
+//GPS motion helper module:
+
+
 //Globals:
 const Scale = 1000;//scale km to pixel
 var velocity = {curr: 0, prev: 0, prev_prev: 0};
@@ -42,6 +45,9 @@ var GPS_sim = {
   IsOn: true,
   SIM_D_SEC: 1
 };
+
+
+
 
 
 //Function initializes movement params
