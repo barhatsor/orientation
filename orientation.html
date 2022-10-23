@@ -38,7 +38,7 @@ const logEl = document.querySelector('.log');
 document.documentElement.addEventListener('click', async () => {
       logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
       
-      let permissiona;
+      /*let permissiona;
       try {
         permissiona = await DeviceMotionEvent.requestPermission();
       } catch (err) {
@@ -48,7 +48,8 @@ document.documentElement.addEventListener('click', async () => {
         logEl.textContent = 'No orientation access';
       }else{
         logEl.textContent = 'Got orientation access';
-      }
+      }*/
+      
 
     window.addEventListener('deviceorientation', onDeviceOrientation);
     });
