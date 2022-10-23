@@ -2,7 +2,8 @@
 function estimation(coord,currPos)
 {
     //If the globcenter is not initialized:
-    if(coord.lat==0 && coord.lon==0) return;
+    if(coord.lat==0 && coord.lon==0) 
+      return;
     
     const WALK_SPEED = 3;//km/h
     
