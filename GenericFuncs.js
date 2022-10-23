@@ -131,7 +131,7 @@ function delta_angle(angle1,angle2)
 }
 
 //Function returns delta bearing between two bearings in a range of [-pi,pi]
-function relativeBearing(b1Rad, b2Rad)
+/*function relativeBearing(b1Rad, b2Rad)
 {
     let b1y = Math.cos(b1Rad);
     let b1x = Math.sin(b1Rad);
@@ -142,7 +142,7 @@ function relativeBearing(b1Rad, b2Rad)
     if(crossp > 0.)
         return Math.acos(dotp);
     return -Math.acos(dotp);
-}
+}*/
 
 //Convert degrees [-180, 180) to [0..360]
 function Convert180to360(deg)
