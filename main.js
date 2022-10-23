@@ -79,7 +79,8 @@ DevControls.connect();
 //Animate function for rendering:
 const animate = function () {
   //Check if marker in FOV of camera
-  dir = CheckInFOV(camera, TargetObjectGlob, el);
+  //dir = CheckInFOV(camera, TargetObjectGlob, el);
+  dir = CheckInFOV(camera, TargetObjectGlob, 0);
   //changeArrow(dir);
   
   //Hide direction arrows if no markers:
