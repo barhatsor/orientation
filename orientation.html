@@ -100,6 +100,7 @@ function onDeviceOrientation(e) {
   
   const compassHeading = GetCompassHeading(e.alpha, event.beta, event.gamma);
   
+  /*
   if (compassHeading) {
     
     window.dispatchEvent(new CustomEvent('rotation-is-set', {
@@ -123,7 +124,7 @@ function onDeviceOrientation(e) {
   logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
   logEl.style.rotate = resp.aspect.dy + 'deg';
   
-}
+}*/
 
 </script>
 
