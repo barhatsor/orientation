@@ -35,9 +35,9 @@ function getAspect(vrpos) {
   // 3D point to check
   var pos = new THREE.Vector3(vrpos.x, vrpos.y, vrpos.z);
 
-  pos.x = vrpos.x //* Scale;
+  pos.x = vrpos.x * Scale;
   pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random()));
-  pos.z = vrpos.y //* Scale;
+  pos.z = vrpos.y * Scale;
   
   //Create laser to the object to measure the delta angle:
   laser.lookAt(pos);
