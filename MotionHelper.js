@@ -9,6 +9,7 @@ var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
 var next_pos=null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
 var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
 var crd = {latitude: 0, longitude: 0, accuracy: 0};//return from callback
+var State = -1;
 
 
 /*
@@ -25,7 +26,6 @@ var invalid_motion_type_time = 0;
 
 var time_since_last_update = 0;
 var scene_time = 0;//in seconds since start of scene
-var State = -1;
 //comp_ptr: null,
 var dbg = {Pos: null, STATS: null, camera_wrapper: null};//dbg ptrs
 var dbg_delta_time_frame = 0;
