@@ -118,7 +118,8 @@ function onDeviceOrientation(e) {
   
   const resp = estimation(parkPos);
   
-  logEl.innerHTML = resp.aspect.dy + 'deg, ' + resp.walkDist + 'min';
+  //logEl.innerHTML = resp.aspect.dy + 'deg, ' + resp.walkDist + 'min';
+  logEl.style.rotate = resp.aspect.dy + 'deg';
   
 }
 
