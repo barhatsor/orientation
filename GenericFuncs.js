@@ -127,6 +127,13 @@ function Convert360to180(deg)
 
 
 
+
+
+
+//------Optional functions:
+
+
+
 //Check if object in your FOV: and returns if it's on the
 //Returns direction of arrow one of the following [right, left, up] and position on screen [0,2] left to right
 //left(-1) on the right (+1) or inside POV
@@ -177,11 +184,6 @@ function CheckInFOV(camera,object,el) {
       return {direction: 'inside',position:0};
     }
   }
-  
-  
-  
-  
-  
   
   
 // Error
