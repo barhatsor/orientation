@@ -562,10 +562,10 @@ window.addEventListener("deviceorientationabsolute", function (event) {
           
             OrientationGrantedFlag = true;//Set global flag to on
             //If orientation is enabled hide the rotation permition button:
-            if(OrientationGrantedFlag)
+            /*if(OrientationGrantedFlag)
             {
               document.querySelector('.permission-prompt').style.display = 'none';
-            }
+            }*/
             //Set the event for compass reading is ready and reliable:
             window.dispatchEvent(new CustomEvent('rotation-is-set',
             {detail: {compass_reading: compass_heading}}));
