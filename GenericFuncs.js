@@ -107,18 +107,6 @@ function GetDirection(Location_source, Location_target) {
     return result;
 }
 
-// Error
-window.onerror = function(message, source) {
-    try {
-      console.log('error:',message);
-      
-    }
-    catch {
-        console.log('error really bad:',message);
-    }
-};
-
-
 
 
 
@@ -191,7 +179,20 @@ function CheckInFOV(camera,object,el) {
   }
   
   
-  // Error. Params: message (required), source (optional)
+  
+  
+  
+// Error
+window.onerror = function(message, source) {
+    try {
+      console.log('error:',message);
+      
+    }
+    catch {
+        console.log('error really bad:',message);
+    }
+};  
+// Error. Params: message (required), source (optional)
 function error(message, source) {
     document.querySelector('.title').classList.add('error');
     document.querySelector('.title a').innerHTML = message;
