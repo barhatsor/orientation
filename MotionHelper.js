@@ -65,8 +65,6 @@ function InitMovement() {
   
   //GPS_sim.IsOn = false;
   
-  
-  
   id_watch = navigator.geolocation.watchPosition(nav_geo_success, nav_geo_error, this.options);
 
   window.addEventListener('gps-coord-set', () => {
