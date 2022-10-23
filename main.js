@@ -43,8 +43,6 @@ DevControls.connect();
 
 //Animate function for rendering:
 const animate = function () {
-  //Check if marker in FOV of camera
-  //dir = CheckInFOV(camera, TargetObjectGlob, 0);
   
   //Update player position to next_pos - is updated from GPS
   UpdateCameraPos(next_pos);
