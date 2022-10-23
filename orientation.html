@@ -46,6 +46,8 @@ document.documentElement.addEventListener('click', async () => {
       }
       if (permissiona !== 'granted') {
         logEl.textContent = 'No orientation access';
+      }else{
+        logEl.textContent = 'Got orientation access';
       }
 
     window.addEventListener('deviceorientation', onDeviceOrientation);
