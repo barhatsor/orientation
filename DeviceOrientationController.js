@@ -624,7 +624,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
 
 
 
-/*
+/* Usage:
 //Bind the initial rotation event:
 window.addEventListener('rotation-is-set', this.SetInitRotation);
 //};
