@@ -15,7 +15,7 @@ function estimation(coord, currPos) {
   
   let dist = CameraWrapper.position.distanceTo(vrpos); //[km*Scale]
 
-  let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(0); //in[minutes]
+  let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(1); //in[minutes]
 
   return {walkDist: walkingTime, aspect: getAspect(vrpos) };
 
