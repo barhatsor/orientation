@@ -23,10 +23,11 @@ function estimation(coord,currPos)
 
 
 
-//Retrieves relative angle to POV
-function getRelativeAngle()
+//Retrieves relative angle to POV given relative position in 3D space:
+function getRelativeAngle(vrpos)
 {
-  //CheckInFOV(camera, TargetObjectGlob, el);
+  //Crete 3D element:
+  
   
 }
 
