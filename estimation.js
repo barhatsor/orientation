@@ -74,6 +74,7 @@ function testVitals() {
     lon: 34.896735
   };
   
+  
   //kosta
   const park2 = 
   { 
