@@ -3,6 +3,7 @@
 
 //Counter for init reading:
 var CmpssEventCounter=0;
+
 //Hold compass heading :
 var CompassHeading=0;
 Initial_cmpss_val=0; //for debug only
