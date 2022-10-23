@@ -6,7 +6,6 @@
 
 
 //Create texture loader and scene:
-//const loader = new THREE.TextureLoader();
 const scene = new THREE.Scene();
 
 //Create the camera wrapper - he will be aligned  to north and moved by GPS:
@@ -14,7 +13,6 @@ const CameraWrapper = new THREE.Object3D();
 CameraWrapper.position.set(0, 0, 0.01 );
 
 //Define perspective camera:
-//const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 );
 camera.position.set(0, 0, 0 );
 
@@ -46,7 +44,7 @@ DevControls.connect();
 //Animate function for rendering:
 const animate = function () {
   //Check if marker in FOV of camera
-  dir = CheckInFOV(camera, TargetObjectGlob, 0);
+  //dir = CheckInFOV(camera, TargetObjectGlob, 0);
   
   //Update player position to next_pos - is updated from GPS
   UpdateCameraPos(next_pos);
@@ -63,9 +61,6 @@ animate();
 
 
 
-
-//Determine the invocation method:
-//InvokeAppOrigin = GetInvocationMethod();
 
 //Start Sequence of initialization:
 //Initialize location module
