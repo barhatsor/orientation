@@ -3,7 +3,7 @@ var GlobCenter = {lat:0,lon:0};
 var GlobMarkers=[];
 var GlobDebugFlag=false;
 
-var InvokeAppOrigin = "none";//define app invocation method
+//var InvokeAppOrigin = "none";//define app invocation method
 
 
 
