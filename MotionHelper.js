@@ -188,6 +188,7 @@ function UpdatePos() {
   }
 }
 
+/*
 //Updates current position of player:
 function UpdateCameraPos(newPos)
 {
@@ -203,4 +204,4 @@ function UpdateCameraPos(newPos)
     CameraWrapper.position.y = v_res.y;
     CameraWrapper.position.z = v_res.z;
   }
-}
+}*/
