@@ -174,16 +174,9 @@ function UpdatePos() {
   let d_err_m = d_err2 * 1000 / Scale;//[meter]
   let LMT = 1;//[meter]
 
-  //If gps moves more than LMT [meters] move the player
-  if (d_err_m > LMT) {
-    //UpdateCameraPos(next_pos);
-    //Signal that there is gps update:
-    //if (this.delta_dist > 20)//bigger than 20 meters
-    window.dispatchEvent(new CustomEvent('gps-position-update', {}));
-  }
 }
 
-/*
+
 //Updates current position of player:
 function UpdateCameraPos(newPos)
 {
@@ -199,4 +192,4 @@ function UpdateCameraPos(newPos)
     CameraWrapper.position.y = v_res.y;
     CameraWrapper.position.z = v_res.z;
   }
-}*/
+}
