@@ -87,6 +87,6 @@ function testVitals() {
   
   //Test function
   //let res = estimation(testCoord1, testCoord2);
-  let res = estimation(parkPos, testCurrPos);
+  let res = estimation(park2, testCurrPos);
   console.log('Testing estimation: walk distance in minutes' + res.walkDist + ', aspect[deg]:'+JSON.stringify(res.aspect) );
 }
