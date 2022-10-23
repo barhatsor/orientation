@@ -52,7 +52,7 @@ function SetInitRotation(e)
     }
 }
 
-
+/*
 //Receives cmpss in [-180,180] and returng rot.y for the platform
 function RotTransform(cmpss)
 {
@@ -62,4 +62,4 @@ function RotTransform(cmpss)
     if (cmpss>=90 && cmpss<180) return cmpss - 270;
 
     return NaN;
-}
+}*/
