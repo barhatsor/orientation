@@ -14,8 +14,6 @@ function InitRot()
 {
     //Bind the initial rotation event:
     window.addEventListener('rotation-is-set', SetInitRotation);
-    //deviceorientation
-    //rotation-is-set
 }
 
 
