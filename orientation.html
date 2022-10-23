@@ -29,7 +29,16 @@ html, body {
 <script src='./estimation.js'></script>
 
 
-
+<div class="prompt-wrapper permission-prompt visible">
+  <div class="prompt">
+    <h1>Allow rotation access to see markers</h1>
+    <div class="buttons">
+      <div onclick="document.querySelector('.permission-prompt').classList.remove('visible')">Cancel</div>
+      <hr>
+      <div onclick="document.querySelector('.permission-prompt').classList.remove('visible');onClick()">Allow</div>
+    </div>
+  </div>
+</div>
 
 
 
