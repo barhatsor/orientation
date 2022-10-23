@@ -557,11 +557,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
         let frontToBack = event.beta;
 
         let compass_heading = GetCompassHeading(event.alpha, event.beta, event.gamma);
-
-        //let comp_ptr = document.querySelector('[rotation-helper]').components['rotation-helper'];
-        //if(this.comp_ptr == null)
-        //let comp_ptr = document.querySelector('[rotation-helper]').components['rotation-helper'];
-
+        
         if(!isNaN(compass_heading) && compass_heading!=null) {
           //comp_ptr.data.cmpss_heading = compass_heading;//compass heading relative to z axis.
           if(DEBUG_LEVEL>0)
