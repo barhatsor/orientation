@@ -136,7 +136,8 @@ function onDeviceOrientation(e) {
   logEl.style.rotate = -resp.aspect.dy + 'deg';
  
   //log2.textContent = resp.aspect.dy.toFixed(1) + 'resp';
-  log2.textContent = 'cmpss: '+(CameraWrapper.rotation.y*180/3.14).toFixed(1);
+  //log2.textContent = 'cmpss: '+(CameraWrapper.rotation.y*180/3.14).toFixed(1);
+  log2.textContent = 'cmpss: '+(CompassHeading).toFixed(1);
 
 }
 
