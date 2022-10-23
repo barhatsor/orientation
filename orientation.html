@@ -34,19 +34,23 @@ canvas {
 
 <script>
 
-console.log = (args) => {
-  
-  logEl.innerHTML += '<br>' + args;
-  
-};
+const logEl = document.querySelector('.log');
 
-window.onerror = (args) => {
+function onLog(args) {
+  
+  if (logEl.innerHTML.split('<br>').length > 10) {
+    
+    logEl.innerHTML = '';
+    
+  }
   
   logEl.innerHTML += '<br>' + args;
   
 }
 
-const logEl = document.querySelector('.log');
+console.log = onLog;
+window.onerror = onLog;
+
 
 document.documentElement.addEventListener('click', async () => {
   
