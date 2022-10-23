@@ -206,6 +206,7 @@ function CheckInFOV(camera,object,el) {
     laser.rotation.z=0;
 
     const FOVcamera = 75;//is defined in perspecive camera at index.html
+    
     //Check if outside of frustum:
     if (!frustum.containsPoint(pos)) {
 
@@ -213,27 +214,16 @@ function CheckInFOV(camera,object,el) {
       if(Math.sign(dangle_x) == -1){
         if((dangle_x > (-180 + FOVcamera/2)) && (dangle_x< -95 )){
           let pos_ = dangle_y/(FOVcamera/2)+1;//dangle_y is [-FOVcamera/2,FOVcamera/2]
-          if(DEBUG_LEVEL>0)
-          {
-          //el.innerHTML = `Outside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}, pos=${pos_.toFixed(1)}`;
-          }
+          
           return {direction: 'up', position:pos_ };//put arrow up, position is [0,2] where 0 is most left and 2 most right
         }
       }
-      if(DEBUG_LEVEL>0)
-      {
-        //el.innerHTML = `Outside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}`;
-      }
+      
       //If the marker is not higher than frustum,check if on his left or right:
       if(Math.sign(dangle_y) == -1) return {direction: 'right',position: 0};//object is on the right put arrow right
       if(Math.sign(dangle_y) == 1) return {direction: 'left',position: 2};//object is on the left, put arrow left
-      //return Math.sign(dangle_y); //y: right +1 left -1, x: up: -1
-    }else{
-      //el.innerHTML = "Inside of FOV"
-      if(DEBUG_LEVEL>0)
-      {
-        //el.innerHTML = `Inside of FOV dy=${dangle_y.toFixed(1)}, dx=${dangle_x.toFixed(1)}, dz=${dangle_z.toFixed(1)}`;
-      }
+
+    }else{      
       return {direction: 'inside',position:0};
     }
   }
