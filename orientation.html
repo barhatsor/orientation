@@ -56,11 +56,11 @@ document.documentElement.addEventListener('click', async () => {
   
   //logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
 
-  let permissiona;
+  let motionPermission;
   
   try {
     
-    permissiona = await DeviceMotionEvent.requestPermission();
+    motionPermission = await DeviceMotionEvent.requestPermission();
     
   } catch (err) {
     
