@@ -547,6 +547,7 @@ window.addEventListener("deviceorientation", function (event) {
 window.addEventListener("deviceorientationabsolute", function (event) {
   
     console.log('got device orientation absolute event')
+    //works for chrome on Macos:
 
     function handleOrientationEvent(event) {
         // alpha: rotation around z-axis
