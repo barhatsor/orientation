@@ -514,9 +514,10 @@ window.addEventListener("deviceorientation", function (event) {
         let compass_ = GetCompassHeading(event.webkitCompassHeading,
             event.beta, event.gamma);
         if(compass_!=null && event!=null && event.alpha!=null && event.beta!=null && event.gamma!=null) {
+          
           if(DEBUG_LEVEL>0)
           {
-            document.getElementById("IOSEvent").innerHTML =
+            document.querySelect("log").innerHTML =
             `orientation event fired, webkit cmpss=${compass_.toFixed(1)}}
             alpha=${event.alpha.toFixed(1)}
             beta=${event.beta.toFixed(1)}
