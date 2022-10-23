@@ -6,7 +6,7 @@ function estimation(coord,currPos)
     
     const WALK_SPEED = 3;//km/h
     
-    const z = -8;//see the z of the player position (which is set to be z=4)
+    const z = -8;//see the z of the player position (which is set to be z=4 in motionHelper module)
 
     //Get the relative position to world center:
     let result = GetDirection(currPos, coord);//distance in [km]
