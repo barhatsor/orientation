@@ -36,7 +36,7 @@ function GetDirection(Location_source, Location_target) {
     let y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
     let x = Math.cos(phi1) * Math.sin(phi2) -
         Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
-    let brng = THREE.Math.radToDeg(Math.atan2(y, x));// * THREE.Math.Rad2Deg;
+    let brng = THREE.Math.radToDeg(Math.atan2(y, x));
 
     let bearing = brng;//bearing in [deg]
 
