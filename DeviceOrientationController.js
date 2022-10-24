@@ -8,6 +8,7 @@
 
 var DeviceOrientationController = function ( object, domElement ) {
 
+    
     this.object = object;
     
     this.element = domElement || document; //if null points to the document
@@ -29,6 +30,9 @@ var DeviceOrientationController = function ( object, domElement ) {
 
     var deviceQuat = new THREE.Quaternion();
     
+
+
+
 
     //Function constrains this object field of view:
     this.constrainObjectFOV = function () {
