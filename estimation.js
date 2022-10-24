@@ -40,7 +40,7 @@ function getAspect(vrpos) {
   var pos = new THREE.Vector3(vrpos.x, vrpos.y, vrpos.z);
 
   pos.x = -vrpos.x * Scale;
-  pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random()));
+  pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random())); //height of the point relative to plane xz
   pos.z = vrpos.y * Scale;
   
   //Create laser to the object to measure the delta angle:
