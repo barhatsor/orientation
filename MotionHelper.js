@@ -67,7 +67,24 @@ function nav_geo_success(pos) {
   }
 }
 
+//Set initial position for the player in VR space:
+function SetInitPosPlayer(PosCoord, WorldCenterPos) {
 
+  CenterPos.lon = PosCoord.lon;
+  CenterPos.lat = PosCoord.lat;
+
+  const z = 1; //TBD@@
+  
+  CameraWrapper.position.x = 0;
+  CameraWrapper.position.y = z;
+  CameraWrapper.position.z = 0;
+
+  //Signal that there is gps:
+  window.dispatchEvent(new CustomEvent('gps-coord-set',
+    {detail: {position: this.CenterPos}}));
+}
+
+/*
 //Function estimates next position of camera
 function estimateNextCameraPos()
 {
@@ -85,7 +102,7 @@ function estimateNextCameraPos()
   //let d_err2 = next_pos.distanceTo(currentPosition);
   //let d_err_m = d_err2 * 1000 / Scale;//[meter]
 }
-
+*/
 
 
 //If fail in get current position:
@@ -148,22 +165,7 @@ function UpdatePos() {
 }*/
 
 
-//Set initial position for the player in VR space:
-function SetInitPosPlayer(PosCoord, WorldCenterPos) {
 
-  CenterPos.lon = PosCoord.lon;
-  CenterPos.lat = PosCoord.lat;
-
-  const z = 1; //TBD@@
-  
-  CameraWrapper.position.x = 0;
-  CameraWrapper.position.y = z;
-  CameraWrapper.position.z = 0;
-
-  //Signal that there is gps:
-  window.dispatchEvent(new CustomEvent('gps-coord-set',
-    {detail: {position: this.CenterPos}}));
-}
 
 
 
