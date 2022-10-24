@@ -103,18 +103,18 @@ function UpdateCameraPos()
   
   let v_res=null;
   
-  if(newPos!=null) {
+  if(next_pos!=null) {
     
     if(!isNaN(CameraWrapper.position.x)) {
       
       let origin = new THREE.Vector3(CameraWrapper.position.x, 
                     CameraWrapper.position.y, CameraWrapper.position.z);
       
-      v_res = SmoothMotion(origin, newPos, 100);
+      v_res = SmoothMotion(origin, next_pos, 100);
       
     }else{
       
-      v_res = newPos;
+      v_res = next_pos;
       
     }
     
