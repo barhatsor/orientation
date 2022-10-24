@@ -38,9 +38,6 @@ laser.add(arrow);
 const scene2 = new THREE.Scene();
 scene2.add(CameraWrapper);
 
-//The current target object, arrows points it's direction
-var TargetObjectGlob=null;
-
 //Create COOL renderer:
 var cssRenderer = new COOLRenderer();
 cssRenderer.setSize( window.innerWidth, window.innerHeight );
