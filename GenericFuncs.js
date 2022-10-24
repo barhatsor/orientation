@@ -1,5 +1,6 @@
 //Globals:
-var GlobCenter = {lat:0,lon:0};
+//var GlobCenter = {lat:0,lon:0};
+
 var GlobMarkers=[];
 var GlobDebugFlag=false;
 
