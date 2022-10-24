@@ -34,7 +34,7 @@ canvas {
 <body ontouchstart>
 
 <div class="init">Allow access to try orientation.<br></div>
-
+<br>
 <div class="log2"></div>
 
 <div class="console"></div>
@@ -144,8 +144,8 @@ function onDeviceOrientation(e) {
   if(Math.abs(resp.aspect.z) > 165)
   {
     arrowEl.innerHTML = '<div style="font-size: 50px;">&#128532</div>';
-    //log2.textContent = 'Behind you!';
-    log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
+    log2.textContent = 'Behind you!';
+    //log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
 
   }else{
     arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>'
