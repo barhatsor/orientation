@@ -150,7 +150,8 @@ function onDeviceOrientation(e) {
     arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>'
     arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg'//-resp.aspect.dy + 'deg';
     
-    log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
+    //log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
+    log2.textContent = resp.walkDist.toFixed(0) + 'min'
   }
 
 }
