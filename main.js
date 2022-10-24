@@ -37,19 +37,7 @@ laser.add(arrow);
 
 
 
-//Create texture plane:
-const loader = new THREE.TextureLoader();
-const material1 = new THREE.MeshBasicMaterial({
-    map: loader.load('./border.png'),
-});
-const planeGeo = new THREE.PlaneGeometry( 500, 500, 1000 );
-const mesh = new THREE.Mesh(planeGeo, material1);
-mesh.rotation.x = Math.PI * -.5;
-mesh.position.y = -10;
-mesh.position.z = -10;
-function addPlane() {
-  scene.add(mesh);
-}
+
 
 
 
@@ -76,6 +64,22 @@ renderer.setPixelRatio( window.devicePixelRatio );
 renderer.domElement.style.position = 'absolute';
 renderer.domElement.style.top = 0;
 document.body.appendChild( renderer.domElement);
+
+
+
+//Create texture plane:
+const loader = new THREE.TextureLoader();
+const material1 = new THREE.MeshBasicMaterial({
+    map: loader.load('./border.png'),
+});
+const planeGeo = new THREE.PlaneGeometry( 500, 500, 1000 );
+const mesh = new THREE.Mesh(planeGeo, material1);
+mesh.rotation.x = Math.PI * -.5;
+mesh.position.y = -10;
+mesh.position.z = -10;
+function addPlane() {
+  scene.add(mesh);
+}
 
 
 var TargetObjectGlob=null;
