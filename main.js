@@ -24,7 +24,7 @@ scene.add(CameraWrapper);
 let laser = new THREE.Object3D();
 camera.add(laser);
 
-const arrowEl = document.querySelector('.log');
+//const arrowEl = document.querySelector('.log');
 let arrow = new COOLObject( arrowEl );
 laser.add(arrow);
 
