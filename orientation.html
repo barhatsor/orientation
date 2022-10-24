@@ -141,19 +141,17 @@ function onDeviceOrientation(e) {
   
   const resp = estimation(east,positionGPS);
   
-  //logEl.innerHTML = resp.aspect.dy + 'deg, ' + resp.walkDist + 'min';
-  
-  //logEl.innerHTML = '<div style="font-size: 90px;rotate: -90deg">➤</div>';
-  //logEl.innerHTML = '<div style="font-size: 90px;rotate:'+ -90deg">➤</div>';
-  
-  
-  arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg'//-resp.aspect.dy + 'deg';
- 
-
-  log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
-  
-  //log2.textContent = 'cmpss: '+(CameraWrapper.rotation.y*180/3.14).toFixed(1);
-  //log2.textContent = 'cmpss: '+(CompassHeading).toFixed(1);
+  if(Math.abs(resp.aspect.z) > 120)
+  {
+    arrowEl.innerHTML = '<div style="font-size: 90px;">&#128532</div>';
+    log2.textContent = 'Behind you!';
+    
+  }else{
+    arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>'
+    arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg'//-resp.aspect.dy + 'deg';
+    
+    log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
+  }
 
 }
 
