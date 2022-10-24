@@ -25,6 +25,9 @@ let laser = new THREE.Object3D();
 camera.add(laser);
 
 
+let arrow = new COOLObject( element1 );
+
+
 //Create Renderer:
 const renderer = new THREE.WebGLRenderer( { alpha: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
