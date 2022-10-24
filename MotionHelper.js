@@ -131,6 +131,7 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
 function UpdateCameraPos(newPos)
 {
   let v_res=null;
+  
   if(newPos!=null) {
     
     if(!isNaN(CameraWrapper.position.x)) {
