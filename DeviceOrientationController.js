@@ -76,11 +76,15 @@ var DeviceOrientationController = function ( object, domElement ) {
 
     }.bind( this );
 
+
+
     this.onScreenOrientationChange = function () {
         this.screenOrientation = window.orientation || 0;
 
         fireEvent( CONTROLLER_EVENT.SCREEN_ORIENTATION );
     }.bind( this );
+
+
 
     this.onCompassNeedsCalibration = function ( event ) {
         event.preventDefault();
@@ -189,7 +193,8 @@ var DeviceOrientationController = function ( object, domElement ) {
 
                 }
 
-                if ( this.freeze ) return;
+                if ( this.freeze ) 
+                  return;
 
                 //this.object.quaternion.slerp( deviceQuat, 0.07 ); // smoothing
                 this.object.quaternion.copy( deviceQuat );
