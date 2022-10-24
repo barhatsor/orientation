@@ -24,6 +24,11 @@ scene.add(CameraWrapper);
 let laser = new THREE.Object3D();
 camera.add(laser);
 
+//Set up the arrow:
+
+const arrowEl = document.createElement( 'div' );
+arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>';
+
 //const arrowEl = document.querySelector('.log');
 let arrow = new COOLObject( arrowEl );
 laser.add(arrow);
