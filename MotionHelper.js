@@ -3,13 +3,11 @@
 
 //Globals:
 const Scale = 1000;//scale km to pixel
+
 var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};
 var positionXYZ = null;//is Vector3 represents position we got from gps in [km*Scale] metrics
 
 var CenterPos = {lat: 0, lon: 0}; //Center of the world new Location(31.3365254f, 34.8968868f)
-//var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
-//var next_pos = null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
-//var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
 var worldIsSet = false;
 
 
