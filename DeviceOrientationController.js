@@ -9,13 +9,13 @@
 var DeviceOrientationController = function ( object, domElement ) {
 
     this.object = object;
-    this.element = domElement || document;
+    
+    this.element = domElement || document; //if null points to the document
 
     this.freeze = true;
 
     this.useQuaternions = true; // use quaternions for orientation calculation by default
 
-    
     this.deviceOrientation = {}; //Holds the updated orientation sensor data from the browser
      
     this.screenOrientation = window.orientation || 0; //depricated
