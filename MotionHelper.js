@@ -95,6 +95,9 @@ function nav_geo_error(err) {
   
 }
 
+
+
+/*
 //Update player position and bearing:
 function UpdatePos() {
 
@@ -121,7 +124,7 @@ function UpdatePos() {
   //let LMT = 1;//[meter]
 
 }
-
+*/
 
 //Get GPS position location:
 /*function GetGPSLoc() {
@@ -151,7 +154,7 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
   CenterPos.lon = PosCoord.lon;
   CenterPos.lat = PosCoord.lat;
 
-  const z = 1;
+  const z = 1; //TBD@@
   
   CameraWrapper.position.x = 0;
   CameraWrapper.position.y = z;
