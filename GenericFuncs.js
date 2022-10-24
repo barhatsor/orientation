@@ -42,20 +42,6 @@ function GetCompassHeading(alpha, beta, gamma) {
 
 
 
-
-//Utility function for navigator.geolocation.getCurrentPosition
-/*
-function showPosition(position)
-{
-  if(DEBUG_LEVEL>0)
-  {
-    document.getElementById("GPSloc").innerHTML = "ERR Getting location last location:" +
-    "Latitude: " + position.coords.latitude +
-    "<br>Longitude: " + position.coords.longitude;
-    console.warn(`LST COORD(${position.coords.latitude}), ${position.coords.longitude}`);
-  }
-}*/
-
 //Get direction from pt. of origin to target :
 //distance[km],[x,y]-in [km] and bearing[deg from north]
 //from pt of origin to target location:
