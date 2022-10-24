@@ -45,11 +45,11 @@ function getAspect(vrpos) {
   
   let laser_rot = new THREE.Vector3(laser.rotation.x, laser.rotation.y, laser.rotation.z);
 
-  let dangle_y = laser_rot.y * 180 / 3.14;
-  let dangle_x = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
-  let dangle_z = laser_rot.z * 180 / 3.14;
+  let ly = laser_rot.y * 180 / 3.14;
+  let lx = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
+  let lz = laser_rot.z * 180 / 3.14;
 
-  return {y:dangle_y,x:dangle_x,z:dangle_z};//in degrees;
+  return {y:ly,x:lx,z:lz};//in degrees;
   //return {y:laser.rotation.y * 180 / 3.14,x: laser.rotation.x * 180 / 3.14,z: laser.rotation.z * 180 / 3.14};
 }
 
