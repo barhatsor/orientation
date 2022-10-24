@@ -27,24 +27,27 @@ canvas {
 </head>
 <body ontouchstart>
 
-<div class="log">Allow access to try orientation.<br></div>
+<div class="arrow">Allow access to try orientation.<br></div>
 
 <div class="log2"></div>
+
+<div class="console"></div>
 
 
 <script>
 
-const logEl = document.querySelector('.log');
+//Set logs on screen:
+const consoleEl = document.querySelector('.console');
 
 function onLog(args) {
   
-  if (logEl.innerHTML.split('<br>').length > 10) {
+  if (consoleEl.innerHTML.split('<br>').length > 10) {
     
-    logEl.innerHTML = '';
+    consoleEl.innerHTML = '';
     
   }
   
-  logEl.innerHTML += '<br>' + args;
+  consoleEl.innerHTML += '<br>' + args;
   
 }
 
