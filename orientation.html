@@ -51,10 +51,16 @@ function onLog(args) {
   
 }
 
+//Uncomment to flush logs to screen
+/*
 console.log = onLog;
 window.onerror = onLog;
+*/
+
 
 </script>
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
@@ -68,6 +74,8 @@ window.onerror = onLog;
 
 
 <script>
+
+
 
 document.documentElement.addEventListener('click', async () => {
   
@@ -99,6 +107,7 @@ document.documentElement.addEventListener('click', async () => {
     
     
 });
+
 
 /*
 function onDeviceOrientation(e) {
