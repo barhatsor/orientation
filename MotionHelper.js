@@ -4,7 +4,7 @@
 //Globals:
 const Scale = 1000;//scale km to pixel
 
-var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};
+var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};//GPS position of the player
 var positionXYZ = null;//is Vector3 represents position we got from gps in [km*Scale] metrics
 
 var CenterPos = {lat: 0, lon: 0}; //Center of the world new Location(31.3365254f, 34.8968868f)
