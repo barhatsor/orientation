@@ -36,9 +36,11 @@ function InitMovement() {
 
 //If success in getCurrent position:
 function nav_geo_success(pos) {
+  
   var crd_ = pos.coords;
 
   if ((!isNaN(crd_.latitude)) && (!isNaN(crd_.longitude))) {
+    
     data.crd_lat = pos.coords.latitude;
     data.crd_lon = pos.coords.longitude;
     data.crd_accuracy = pos.accuracy;
@@ -52,7 +54,9 @@ function nav_geo_success(pos) {
 
 //If fail in get current position:
 function nav_geo_error(err) {
-  console.log('gps error: ',JSON.stringify(err))
+  
+  console.log('gps error: ',JSON.stringify(err));
+  
 }
 
 //Update player position and bearing:
@@ -95,7 +99,9 @@ function GetGPSLoc() {
   positionGPS.lon = LastDeviceGPS.lon;
 
   if (data.crd_lat != 0 && data.crd_lon != 0 && State != 1) {
+    
     SetInitPosPlayer(positionGPS, CenterPos);
+    
     //Dispatch event that the GPS position is confirmed:
     State = 1;
   }
