@@ -142,7 +142,7 @@ function onDeviceOrientation(e) {
   
   const resp = estimation(east,positionGPS);
   
-  if(Math.abs(resp.aspect.z) > 120)
+  if(Math.abs(resp.aspect.z) > 175)
   {
     arrowEl.innerHTML = '<div style="font-size: 50px;rotate: 1deg">&#128532</div>';
     log2.textContent = 'Behind you!';
