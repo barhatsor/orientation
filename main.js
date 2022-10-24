@@ -79,6 +79,7 @@ const animate = function () {
   requestAnimationFrame(animate);
 
   renderer.render(scene, camera);
+  cssRenderer.render(scene2, camera);
   
 };
 
