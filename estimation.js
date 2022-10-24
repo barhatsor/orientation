@@ -49,7 +49,6 @@ function getAspect(vrpos) {
   let lz = laser_rot.z * 180 / 3.14;
 
   return {y:ly,x:lx,z:lz};//in degrees;
-  //return {y:laser.rotation.y * 180 / 3.14,x: laser.rotation.x * 180 / 3.14,z: laser.rotation.z * 180 / 3.14};
 }
 
 
