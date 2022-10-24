@@ -30,9 +30,10 @@ function estimation(coord, currPos) {
 //given relative position in 3D space vrpos:
 function getAspect(vrpos) {
 
-  //"camera" is global variable which defines the current point view of the player
-
+  //"camera" is global variable 
+  //which defines the current point view of the player
   camera.updateMatrix();
+  
   camera.updateMatrixWorld();
   
   // 3D point to check
@@ -53,6 +54,7 @@ function getAspect(vrpos) {
   let lz = laser_rot.z * 180 / 3.14;
 
   return {y:ly,x:lx,z:lz};//in degrees;
+  
 }
 
 
