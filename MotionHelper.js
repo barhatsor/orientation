@@ -78,7 +78,7 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
   const z = 1;
   
   CameraWrapper.position.x = 0;
-  CameraWrapper.position.y = z;
+  CameraWrapper.position.y = z; //height of the camera relative to plane xz in VR world
   CameraWrapper.position.z = 0;
 
   //Signal that there is gps:
