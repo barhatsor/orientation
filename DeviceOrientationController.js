@@ -3,6 +3,9 @@
  * W3C Device Orientation control (http://www.w3.org/TR/orientation-event/)
  * Author: Rich Tibbett (http://github.com/richtr)
  * License: The MIT License
+
+ * Added:
+ * Compass readings for android and ios
  **/
 
 
