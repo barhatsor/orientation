@@ -13,9 +13,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 
     this.freeze = true;
 
-    this.enableManualDrag = true; // enable manual user drag override control by default
-    this.enableManualZoom = true; // enable manual user zoom override control by default
-
     this.useQuaternions = true; // use quaternions for orientation calculation by default
 
     
@@ -62,17 +59,20 @@ var DeviceOrientationController = function ( object, domElement ) {
     }.bind( this )();
 
     this.constrainObjectFOV = function () {
+      
         relativeFOVFrustrumHeight = startFOVFrustrumHeight * ( window.innerHeight / startClientHeight );
 
         relativeVerticalFOV = THREE.Math.radToDeg( 2 * Math.atan( relativeFOVFrustrumHeight / 2000 ) );
 
         this.object.fov = relativeVerticalFOV;
+        
     }.bind( this );
 
+    
+    //Get the sensor data form browser event:
     this.onDeviceOrientationChange = function ( event ) {
+      
         this.deviceOrientation = event;
-        //document.getElementById("Logs").innerHTML = `${event}`;
-        //document.getElementById("Rotation").innerHTML = `${event.alpha}`;
 
     }.bind( this );
 
@@ -222,7 +222,9 @@ var DeviceOrientationController = function ( object, domElement ) {
         this.freeze = false;
     };
 
+
     this.disconnect = function () {
+      
         this.freeze = true;
 
         window.removeEventListener( 'resize', this.constrainObjectFOV, false );
