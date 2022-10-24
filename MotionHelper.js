@@ -83,7 +83,7 @@ function UpdatePos() {
 
   let d_err_m = d_err2 * 1000 / Scale;//[meter]
   
-  let LMT = 1;//[meter]
+  //let LMT = 1;//[meter]
 
 }
 
