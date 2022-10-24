@@ -31,21 +31,6 @@ document.appendChild(arrowEl);
 
 
 
-//Create css scene:
-const scene2 = new THREE.Scene();
-scene2.add(CameraWrapper);
-
-//Create COOL renderer:
-var cssRenderer = new COOLRenderer();
-cssRenderer.setSize( window.innerWidth, window.innerHeight );
-cssRenderer.domElement.style.position = 'absolute';
-cssRenderer.domElement.style.top = 0;
-document.body.appendChild( cssRenderer.domElement );
-
-
-
-
-
 
 //Create Renderer:
 const renderer = new THREE.WebGLRenderer( { alpha: true } );
@@ -74,7 +59,6 @@ const animate = function () {
   requestAnimationFrame(animate);
 
   renderer.render(scene, camera);
-  cssRenderer.render(scene2, camera);
   
 };
 
