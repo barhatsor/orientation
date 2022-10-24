@@ -144,7 +144,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
         return function () {
             
-            //Ignore all but azimuth: (for magic compass requirement)
+            //Ignore all but azimuth: (for magic "compass-lazer" requirement)
             alpha  = THREE.Math.degToRad( this.deviceOrientation.alpha || 0 ); // Z
             beta   = 0.1//THREE.Math.degToRad( this.deviceOrientation.beta  || 0 ); // X'
             gamma  = 0.1//THREE.Math.degToRad( this.deviceOrientation.gamma || 0 ); // Y''
