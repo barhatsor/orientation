@@ -41,14 +41,22 @@ function SetInitRotation(e)
         CameraWrapper.rotation.y = rot_y;//[-pi..pi]
         CameraWrapper.rotation.z = 0;
 
-        if(CmpssEventCounter>5) {
+        //Compass tends to be icorrect in the beginning, so we take 5 takes of it:
+        if(CmpssEventCounter > 5) 
+        {
             window.removeEventListener('rotation-is-set', SetInitRotation);
+            
             console.log('Rotation module is loaded and ready');
+            
             Initial_cmpss_val = cmpss180;
+            
             CmpssEventCounter=0;
+            
         }else{
+          
             CmpssEventCounter++;
         }
+        
         CompassHeading = e.detail.compass_reading;
     }
 }
