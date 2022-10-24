@@ -68,6 +68,23 @@ function nav_geo_success(pos) {
 }
 
 
+//Function estimates next position of camera
+function estimateNextCameraPos(){
+  //Get current position of camera wrapper:
+  let currentPosition = CameraWrapper.position;
+  
+  //Get distance to new position:
+  let res4 = GetDirection(CenterPos, positionGPS); //[km]
+  
+  //Update next position of camera (global variable)
+  next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
+  
+  //for debug only:
+  //let d_err2 = next_pos.distanceTo(currentPosition);
+  //let d_err_m = d_err2 * 1000 / Scale;//[meter]
+}
+
+
 
 //If fail in get current position:
 function nav_geo_error(err) {
@@ -85,6 +102,9 @@ function UpdatePos() {
   //If it's in init state, don't update the position and bearing
   if (State == -1) 
       return;
+
+
+
 
   //Get current position of camera wrapper:
   let currentPosition = CameraWrapper.position;
