@@ -241,6 +241,7 @@ DeviceOrientationController.prototype = Object.create( THREE.EventDispatcher.pro
 //Get compass reading (for IOS devices):
 window.addEventListener("deviceorientation", function (event) {
     {
+        
         let compass_ = GetCompassHeading(event.webkitCompassHeading,
             event.beta, event.gamma);
         
@@ -252,7 +253,7 @@ window.addEventListener("deviceorientation", function (event) {
         
         if(!isNaN(compass_) && compass_!=null) {
             window.dispatchEvent(new CustomEvent('rotation-is-set',
-                {detail: {compass_reading: compass_}}));
+                                {detail: {compass_reading: compass_}}));
         }
     }
 });
@@ -278,7 +279,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
                       
             //Set the event for compass reading is ready and reliable:
             window.dispatchEvent(new CustomEvent('rotation-is-set',
-            {detail: {compass_reading: compass_heading}}));
+                                {detail: {compass_reading: compass_heading}}));
           }
         }
     
