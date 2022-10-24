@@ -49,6 +49,7 @@ var DeviceOrientationController = function ( object, domElement ) {
     }.bind( this );
 
     
+    
     //Get the sensor data form browser event:
     this.onDeviceOrientationChange = function ( event ) {
       
