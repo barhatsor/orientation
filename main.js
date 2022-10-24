@@ -26,7 +26,7 @@ camera.add(laser);
 
 const arrowEl = document.querySelector('.log');
 let arrow = new COOLObject( arrowEl );
-
+laser.add(arrow);
 
 //Create Renderer:
 const renderer = new THREE.WebGLRenderer( { alpha: true } );
