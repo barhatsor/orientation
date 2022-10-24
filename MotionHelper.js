@@ -19,13 +19,15 @@ var worldIsSet = false;
 //Function initializes movement params
 function InitMovement() {
   
-  //Update the world center position and setup params (default):
+  //Set the world center position to default value:
   CenterPos.lat = 32.159106367661465;
   CenterPos.lon = 34.80578701716976;
-    
+   
+  //Set event handler on GPS event: 
   id_watch = navigator.geolocation.watchPosition(nav_geo_success, 
                                     nav_geo_error, this.options);
 
+  //Listen to listener to completion event
   window.addEventListener('gps-coord-set', () => {
     console.log('Location initialized and stable')
   });
