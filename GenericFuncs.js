@@ -1,7 +1,7 @@
 //Globals:
 
 //var GlobMarkers=[];
-var GlobDebugFlag=false;
+//var GlobDebugFlag=false;
 
 const DEBUG_LEVEL=0;
 
