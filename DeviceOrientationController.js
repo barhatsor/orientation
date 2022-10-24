@@ -398,9 +398,9 @@ var DeviceOrientationController = function ( object, domElement ) {
         return function () {
 
             alpha  = THREE.Math.degToRad( this.deviceOrientation.alpha || 0 ); // Z
-            beta   = THREE.Math.degToRad( this.deviceOrientation.beta  || 0 ); // X'
-            gamma  = 1 //THREE.Math.degToRad( this.deviceOrientation.gamma || 0 ); // Y''
-            orient = THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
+            beta   = 0.1//THREE.Math.degToRad( this.deviceOrientation.beta  || 0 ); // X'
+            gamma  = 0.1//THREE.Math.degToRad( this.deviceOrientation.gamma || 0 ); // Y''
+            orient = 0.1//THREE.Math.degToRad( this.screenOrientation       || 0 ); // O
 
             // only process non-zero 3-axis data
             if ( alpha !== 0 && beta !== 0 && gamma !== 0) {
