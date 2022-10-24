@@ -4,7 +4,9 @@
 //Globals:
 const Scale = 1000;//scale km to pixel
 var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};
-var CenterPos = {lat: 0, lon: 0}; //new Location(31.3365254f, 34.8968868f)
+var positionXYZ = null;//is Vector3 represents position we got from gps in [km*Scale] metrics
+
+var CenterPos = {lat: 0, lon: 0}; //Center of the world new Location(31.3365254f, 34.8968868f)
 //var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
 var next_pos = null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
 var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
@@ -42,6 +44,15 @@ function nav_geo_success(pos) {
     
     positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
     positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
+    
+    //Get current position of camera wrapper:
+    let currentPosition = CameraWrapper.position;
+  
+    //Convert from lat,lon -> x,y to next position of the camera(positionGPS):
+    let res4 = GetDirection(CenterPos, positionGPS); //[km]
+  
+    //Store the next camera position int vector form:
+    let positionXYZ = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
   
     let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
     
@@ -92,15 +103,6 @@ function nav_geo_error(err) {
 function UpdateCameraPos()
 {
   
-  //Get current position of camera wrapper:
-  let currentPosition = CameraWrapper.position;
-  
-  //Convert from lat,lon -> x,y to next position of the camera(positionGPS):
-  let res4 = GetDirection(CenterPos, positionGPS); //[km]
-  
-  //Store the next camera position int vector form:
-  let next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
-  
   let v_res=null;
   
   if(next_pos!=null) {
@@ -110,12 +112,12 @@ function UpdateCameraPos()
       let origin = new THREE.Vector3(CameraWrapper.position.x, 
                     CameraWrapper.position.y, CameraWrapper.position.z);
       
-      //Interpulate the motion
-      v_res = SmoothMotion(origin, next_pos, 100);
+      //Interpulate the motion from origin to positionXYZ
+      v_res = SmoothMotion(origin, positionXYZ, 100);
       
     }else{
       
-      v_res = next_pos;
+      v_res = positionXYZ;
       
     }
     
