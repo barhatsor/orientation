@@ -24,7 +24,7 @@ scene.add(CameraWrapper);
 let laser = new THREE.Object3D();
 camera.add(laser);
 
-//Set up the arrow:
+//Set up the arrow and add it to the document:
 const arrowEl = document.createElement( 'div' );
 arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>';
 document.body.appendChild(arrowEl);
