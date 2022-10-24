@@ -28,20 +28,9 @@ var DeviceOrientationController = function ( object, domElement ) {
         relativeVerticalFOV;
 
     var deviceQuat = new THREE.Quaternion();
+    
 
-    var fireEvent = function () {
-        var eventData;
-
-        return function ( name ) {
-            eventData = arguments || {};
-
-            eventData.type = name;
-            eventData.target = this;
-
-            this.dispatchEvent( eventData );
-        }.bind( this );
-    }.bind( this )();
-
+    //Function constrains this object field of view:
     this.constrainObjectFOV = function () {
       
         relativeFOVFrustrumHeight = startFOVFrustrumHeight * ( window.innerHeight / startClientHeight );
@@ -108,7 +97,9 @@ var DeviceOrientationController = function ( object, domElement ) {
         var finalMatrix = new THREE.Matrix4();
 
         var deviceEuler = new THREE.Euler();
+        
         var screenEuler = new THREE.Euler();
+        
         var worldEuler = new THREE.Euler( - Math.PI / 2, 0, 0, 'YXZ' ); // - PI/2 around the x-axis
 
         var screenTransform = new THREE.Matrix4();
