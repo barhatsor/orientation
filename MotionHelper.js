@@ -62,6 +62,7 @@ function nav_geo_success(pos) {
       
       InitWorldCenter(positionGPS, CenterPos);
       worldIsSet = true;
+      
     }    
   }
 }
