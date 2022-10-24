@@ -120,6 +120,7 @@ const log2 = document.querySelector('.log2');
 
 function onDeviceOrientation(e) {
   
+  initEl.style.display = 'none'; //TBD@@
   
   const parkPos = {
     lat: 31.335425, 
@@ -143,7 +144,7 @@ function onDeviceOrientation(e) {
   
   if(Math.abs(resp.aspect.z) > 120)
   {
-    arrowEl.innerHTML = '<div style="font-size: 90px;">&#128532</div>';
+    arrowEl.innerHTML = '<div style="font-size: 80px;">&#128532</div>';
     log2.textContent = 'Behind you!';
     
   }else{
