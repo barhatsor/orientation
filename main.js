@@ -38,6 +38,7 @@ laser.add(arrow);
 
 
 //Create texture plane:
+const loader = new THREE.TextureLoader();
 const material1 = new THREE.MeshBasicMaterial({
     map: loader.load('./border.png'),
 });
