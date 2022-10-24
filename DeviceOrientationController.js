@@ -204,9 +204,6 @@ DeviceOrientationController.prototype = Object.create( THREE.EventDispatcher.pro
 
 
 
-
-//Call back for Rotation request:
-
 //Get compass reading (for IOS devices):
 window.addEventListener("deviceorientation", function (event) {
     {
