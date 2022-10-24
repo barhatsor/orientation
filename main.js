@@ -27,7 +27,7 @@ camera.add(laser);
 //Set up the arrow:
 const arrowEl = document.createElement( 'div' );
 arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>';
-document
+document.appendChild(arrowEl);
 
 
 
