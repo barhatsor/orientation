@@ -79,17 +79,19 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 
     this.onScreenOrientationChange = function () {
+        
         this.screenOrientation = window.orientation || 0;
 
-        fireEvent( CONTROLLER_EVENT.SCREEN_ORIENTATION );
+        //fireEvent( CONTROLLER_EVENT.SCREEN_ORIENTATION );
     }.bind( this );
 
 
 
     this.onCompassNeedsCalibration = function ( event ) {
-        event.preventDefault();
+      
+        //event.preventDefault();
 
-        fireEvent( CONTROLLER_EVENT.CALIBRATE_COMPASS );
+        //fireEvent( CONTROLLER_EVENT.CALIBRATE_COMPASS );
     }.bind( this );
 
     
@@ -137,6 +139,7 @@ var DeviceOrientationController = function ( object, domElement ) {
         var screenTransform = new THREE.Matrix4();
 
         var worldTransform = new THREE.Matrix4();
+        
         worldTransform.makeRotationFromEuler(worldEuler);
 
         return function (alpha, beta, gamma, screenOrientation) {
