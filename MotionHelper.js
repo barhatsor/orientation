@@ -163,9 +163,9 @@ function SmoothMotion(va,vb,num_steps) {
     last_mid_pos =vb;
     return last_mid_pos;
   } else { 
-    //not yet reached the target
+    //not yet reached the target, return next step towards the target
     curr_step++;
-    last_mid_pos =va.lerp(vb, alpha);
+    last_mid_pos = va.lerp(vb, alpha);
     return last_mid_pos;
   }
 }
