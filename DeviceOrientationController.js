@@ -231,8 +231,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 
         window.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
-        this.element.removeEventListener( 'mousedown', this.onDocumentMouseDown, false );
-        this.element.removeEventListener( 'touchstart', this.onDocumentTouchStart, false );
     };
 
 };
