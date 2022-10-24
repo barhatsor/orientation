@@ -18,8 +18,10 @@ var DeviceOrientationController = function ( object, domElement ) {
 
     this.useQuaternions = true; // use quaternions for orientation calculation by default
 
-    this.deviceOrientation = {};
-    this.screenOrientation = window.orientation || 0;
+    
+    this.deviceOrientation = {}; //Holds the updated orientation sensor data from the browser
+     
+    this.screenOrientation = window.orientation || 0; //depricated
 
     
 
@@ -198,7 +200,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
     }();
 
-    //External public function:
+    //Public function to update rotation values:
     this.update = function () {
         this.updateDeviceMove();
     };
