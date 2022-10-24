@@ -25,7 +25,7 @@ var DeviceOrientationController = function ( object, domElement ) {
     this.screenOrientation = window.orientation || 0; //depricated
 
 
-    // Consistent Object Field-Of-View fix components
+    // Consistent Object Field-Of-View fix components (in case of window size change)
     var startClientHeight = window.innerHeight,
         startFOVFrustrumHeight = 2000 * Math.tan( THREE.Math.degToRad( ( this.object.fov || 75 ) / 2 ) ),
         relativeFOVFrustrumHeight, 
@@ -186,8 +186,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 
         window.addEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
 
-        window.addEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
-
         this.freeze = false;
     };
 
@@ -199,8 +197,6 @@ var DeviceOrientationController = function ( object, domElement ) {
         window.removeEventListener( 'resize', this.constrainObjectFOV, false );
 
         window.removeEventListener( 'deviceorientation', this.onDeviceOrientationChange, false );
-
-        window.removeEventListener( 'compassneedscalibration', this.onCompassNeedsCalibration, false );
 
     };
 
