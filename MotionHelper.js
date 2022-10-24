@@ -88,12 +88,7 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
 
 
 
-//Error handler for GPS event:
-function nav_geo_error(err) {
-  
-  console.log('gps error: ',JSON.stringify(err));
-  
-}
+
 
 
 //Updates current position of player:
@@ -176,6 +171,14 @@ function SmoothMotion(va,vb,num_steps) {
     last_mid_pos =va.lerp(vb, alpha);
     return last_mid_pos;
   }
+}
+
+
+//Error handler for GPS event:
+function nav_geo_error(err) {
+  
+  console.log('gps error: ',JSON.stringify(err));
+  
 }
 
 
