@@ -231,7 +231,3 @@ function GetDirection(Location_source, Location_target) {
     };
     return result;
 }
-
-
-
-
