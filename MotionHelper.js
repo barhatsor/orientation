@@ -69,7 +69,9 @@ function nav_geo_success(pos) {
 
 
 //Function estimates next position of camera
-function estimateNextCameraPos(){
+function estimateNextCameraPos()
+{
+  
   //Get current position of camera wrapper:
   let currentPosition = CameraWrapper.position;
   
