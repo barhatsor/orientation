@@ -105,9 +105,6 @@ function UpdatePos() {
   if (State == -1) 
       return;
 
-
-
-
   //Get current position of camera wrapper:
   let currentPosition = CameraWrapper.position;
   
@@ -127,7 +124,7 @@ function UpdatePos() {
 
 
 //Get GPS position location:
-function GetGPSLoc() {
+/*function GetGPSLoc() {
   
   //If real GPS signal is available:
   //LastDeviceGPS.lat = data.crd_lat;
@@ -145,7 +142,7 @@ function GetGPSLoc() {
     //Dispatch event that the GPS position is confirmed:
     State = 1;
   }
-}
+}*/
 
 
 //Set initial position for the player in VR space:
@@ -174,8 +171,20 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
 
 
 //Updates current position of player:
-function UpdateCameraPos(newPos)
+function UpdateCameraPos()
 {
+  
+  //Get current position of camera wrapper:
+  let currentPosition = CameraWrapper.position;
+  
+  //Get distance to new position:
+  let res4 = GetDirection(CenterPos, positionGPS); //[km]
+  
+  //Update next position of camera (global variable)
+  let next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
+  
+  
+  
   let v_res=null;
   
   if(newPos!=null) {
