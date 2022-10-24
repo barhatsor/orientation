@@ -210,8 +210,10 @@ function GetDirection(Location_source, Location_target) {
     //where phi1, lambda1 is the start point, phi2,lambda2 the end point(delta_lambda is the difference in longitude)
 
     let y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
+    
     let x = Math.cos(phi1) * Math.sin(phi2) -
         Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
+        
     let brng = THREE.Math.radToDeg(Math.atan2(y, x));
 
     let bearing = brng;//bearing in [deg]
@@ -220,8 +222,8 @@ function GetDirection(Location_source, Location_target) {
     bearing = (bearing + 360) % 360;
 
     let brng_tmp = (brng + 360) % 360;
-    let x_ = distance * Math.cos(THREE.Math.degToRad(brng_tmp));// * THREE.Math.Deg2Rad);//km*Scale
-    let y_ = distance * Math.sin(THREE.Math.degToRad(brng_tmp));// * THREE.Math.Deg2Rad);//km*Scale
+    let x_ = distance * Math.cos(THREE.Math.degToRad(brng_tmp));//km*Scale
+    let y_ = distance * Math.sin(THREE.Math.degToRad(brng_tmp));//km*Scale
 
     let result = {
         distance_: distance,
