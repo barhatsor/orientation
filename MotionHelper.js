@@ -55,7 +55,7 @@ function nav_geo_success(pos) {
     let res4 = GetDirection(CenterPos, positionGPS); //[km]
   
     //Store the next camera position int vector form (global):
-    let positionXYZ = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
+    positionXYZ = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
   
     let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
     
