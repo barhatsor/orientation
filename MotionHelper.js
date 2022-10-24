@@ -151,10 +151,6 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
   CenterPos.lon = PosCoord.lon;
   CenterPos.lat = PosCoord.lat;
 
-  //Update the global center position:
-  //GlobCenter.lat = PosCoord.lat; //TBD refactoring - make it the same one
-  //GlobCenter.lon = PosCoord.lon;
-
   const z = 1;
   
   CameraWrapper.position.x = 0;
