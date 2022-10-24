@@ -32,21 +32,9 @@ document.body.appendChild(arrowEl);
 
 
 
-//Create Renderer:
-/*
-const renderer = new THREE.WebGLRenderer( { alpha: true } );
-renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.setPixelRatio( window.devicePixelRatio );
-renderer.domElement.style.position = 'absolute';
-renderer.domElement.style.top = 0;
-document.body.appendChild( renderer.domElement);
-*/
 
-
-//var TargetObjectGlob=null;
 
 //Create device binded controls:
-//var DevControls = new DeviceOrientationController( camera, renderer.domElement );
 var DevControls = new DeviceOrientationController( camera, null );
 DevControls.connect();
 
@@ -60,8 +48,6 @@ const animate = function () {
 
   DevControls.update();
   requestAnimationFrame(animate);
-
-  //renderer.render(scene, camera);
   
 };
 
