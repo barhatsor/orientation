@@ -6,6 +6,7 @@ var CmpssEventCounter=0;
 
 //Hold compass heading :
 var CompassHeading=0;
+
 Initial_cmpss_val=0; //for debug only
 
 
@@ -65,10 +66,17 @@ function SetInitRotation(e)
 //Receives cmpss in [-180,180] and returng rot.y for the platform
 function RotTransform(cmpss)
 {
-    if(cmpss>=-180 && cmpss<-90 ) return cmpss+90;
-    if(cmpss >=-90 && cmpss<0) return cmpss+90;
-    if(cmpss>=0 && cmpss<90) return cmpss+90;
-    if (cmpss>=90 && cmpss<180) return cmpss - 270;
+    if(cmpss>=-180 && cmpss<-90 ) 
+        return cmpss+90;
+    
+    if(cmpss >=-90 && cmpss<0) 
+        return cmpss+90;
+    
+    if(cmpss>=0 && cmpss<90) 
+        return cmpss+90;
+    
+    if (cmpss>=90 && cmpss<180) 
+        return cmpss - 270;
 
     return NaN;
 }
