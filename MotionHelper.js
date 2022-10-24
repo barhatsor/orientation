@@ -95,10 +95,10 @@ function UpdateCameraPos()
   //Get current position of camera wrapper:
   let currentPosition = CameraWrapper.position;
   
-  //Get distance to new position:
+  //Convert from lat,lon -> x,y to next position of the camera(positionGPS):
   let res4 = GetDirection(CenterPos, positionGPS); //[km]
   
-  //Update next position of camera (global variable)
+  //Store the next camera position int vector form:
   let next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
   
   let v_res=null;
@@ -110,6 +110,7 @@ function UpdateCameraPos()
       let origin = new THREE.Vector3(CameraWrapper.position.x, 
                     CameraWrapper.position.y, CameraWrapper.position.z);
       
+      //Interpulate the motion
       v_res = SmoothMotion(origin, next_pos, 100);
       
     }else{
