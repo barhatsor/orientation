@@ -497,12 +497,14 @@ window.addEventListener("deviceorientation", function (event) {
 window.addEventListener("deviceorientationabsolute", function (event) {
 
     function handleOrientationEvent(event) {
-        // alpha: rotation around z-axis
+      
+        // alpha: rotation around z-axis (azimuth)
         let rotateDegrees = event.alpha;
         let rotateDegreesIOS = event.absolute;
-        // gamma: left to right
+        
+        // gamma: left to right (pitch)
         let leftToRight = event.gamma;
-        // beta: front back motion
+        // beta: front back motion (roll)
         let frontToBack = event.beta;
 
         let compass_heading = GetCompassHeading(event.alpha, event.beta, event.gamma);
@@ -514,8 +516,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
             {detail: {compass_reading: compass_heading}}));
           }
         }
-    //document.getElementById("AndroidEvent").innerHTML =
-    //    `ANDR_ORNT_EVENT [abs= ${event.absolute} alpha= ${event.alpha.toFixed(1)}]`;
+    
     handleOrientationEvent(event);
 });
 
