@@ -38,14 +38,29 @@ function InitMovement() {
 //If success in getCurrent position:
 function nav_geo_success(pos) {
   
-  var crd_ = pos.coords;
+  //var crd_ = pos.coords;
 
-  if ((!isNaN(crd_.latitude)) && (!isNaN(crd_.longitude))) {
+  if ((!isNaN(pos.coords.latitude)) && (!isNaN(pos.coords.longitude))) {
     
+    /*
     data.crd_lat = pos.coords.latitude;
     data.crd_lon = pos.coords.longitude;
     data.crd_accuracy = pos.accuracy;
+    */
     
+    positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
+    positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
+  
+    let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
+    
+    //if (data.crd_lat != 0 && data.crd_lon != 0 && State != 1) {
+    if (positionGPS.lat != 0 && positionGPS.lat != 0 && State != 1) {
+      
+      SetInitPosPlayer(positionGPS, CenterPos);
+      
+      //Dispatch event that the GPS position is confirmed:
+      State = 1;
+    }
     UpdatePos();
     
   }
