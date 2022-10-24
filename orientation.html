@@ -151,7 +151,7 @@ function onDeviceOrientation(e) {
     arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg'//-resp.aspect.dy + 'deg';
     
     //log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
-    log2.textContent = 'range: '//+ resp.walkDist.toFixed(1) + 'min';
+    log2.textContent = 'range: ' + resp.walkDist;
   }
 
 }
