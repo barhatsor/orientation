@@ -19,7 +19,7 @@ function InitMovement() {
   LastDeviceGPS.lat = 0;
   LastDeviceGPS.lon = 0;
 
-  //Update the world center position and setup params:
+  //Update the world center position and setup params (default):
   CenterPos.lat = 32.159106367661465;
   CenterPos.lon = 34.80578701716976;
     
