@@ -20,28 +20,12 @@ var DeviceOrientationController = function ( object, domElement ) {
      
     this.screenOrientation = window.orientation || 0; //depricated
 
-    
-
-    var CONTROLLER_STATE = {
-        AUTO: 0,
-        MANUAL_ROTATE: 1,
-        MANUAL_ZOOM: 2
-    };
-
-    var appState = CONTROLLER_STATE.AUTO;
-
-    var CONTROLLER_EVENT = {
-        CALIBRATE_COMPASS:  'compassneedscalibration',
-        SCREEN_ORIENTATION: 'orientationchange',
-        MANUAL_CONTROL:     'userinteraction', // userinteractionstart, userinteractionend
-        ZOOM_CONTROL:       'zoom',            // zoomstart, zoomend
-        ROTATE_CONTROL:     'rotate',          // rotatestart, rotateend
-    };
 
     // Consistent Object Field-Of-View fix components
     var startClientHeight = window.innerHeight,
         startFOVFrustrumHeight = 2000 * Math.tan( THREE.Math.degToRad( ( this.object.fov || 75 ) / 2 ) ),
-        relativeFOVFrustrumHeight, relativeVerticalFOV;
+        relativeFOVFrustrumHeight, 
+        relativeVerticalFOV;
 
     var deviceQuat = new THREE.Quaternion();
 
