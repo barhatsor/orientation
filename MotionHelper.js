@@ -17,9 +17,6 @@ var State = -1;
 //Function initializes movement params
 function InitMovement() {
   
-  //LastDeviceGPS.lat = 0;
-  //LastDeviceGPS.lon = 0;
-
   //Update the world center position and setup params (default):
   CenterPos.lat = 32.159106367661465;
   CenterPos.lon = 34.80578701716976;
@@ -42,30 +39,23 @@ function nav_geo_success(pos) {
 
   if ((!isNaN(pos.coords.latitude)) && (!isNaN(pos.coords.longitude))) {
     
-    /*
-    data.crd_lat = pos.coords.latitude;
-    data.crd_lon = pos.coords.longitude;
-    data.crd_accuracy = pos.accuracy;
-    */
     
     positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
     positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
   
     let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
     
-    //if (data.crd_lat != 0 && data.crd_lon != 0 && State != 1) {
     if (positionGPS.lat != 0 && positionGPS.lat != 0 && State != 1) {
       
       SetInitPosPlayer(positionGPS, CenterPos);
       
       //Dispatch event that the GPS position is confirmed:
       State = 1;
-    }
-    
-    //UpdatePos();
-    
+    }    
   }
 }
+
+
 
 //Set initial position for the player in VR space:
 function SetInitPosPlayer(PosCoord, WorldCenterPos) {
@@ -83,6 +73,110 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
   window.dispatchEvent(new CustomEvent('gps-coord-set',
     {detail: {position: this.CenterPos}}));
 }
+
+
+
+
+//If fail in get current position:
+function nav_geo_error(err) {
+  
+  console.log('gps error: ',JSON.stringify(err));
+  
+}
+
+
+
+
+//Updates current position of player:
+function UpdateCameraPos()
+{
+  
+  //Get current position of camera wrapper:
+  let currentPosition = CameraWrapper.position;
+  
+  //Get distance to new position:
+  let res4 = GetDirection(CenterPos, positionGPS); //[km]
+  
+  //Update next position of camera (global variable)
+  let next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
+  
+  let v_res=null;
+  
+  if(newPos!=null) {
+    
+    if(!isNaN(CameraWrapper.position.x)) {
+      
+      let origin = new THREE.Vector3(CameraWrapper.position.x, 
+                    CameraWrapper.position.y, CameraWrapper.position.z);
+      
+      v_res = SmoothMotion(origin, newPos, 100);
+      
+    }else{
+      
+      v_res = newPos;
+      
+    }
+    
+    CameraWrapper.position.x = v_res.x;
+    CameraWrapper.position.y = v_res.y;
+    CameraWrapper.position.z = v_res.z;
+    
+  }
+}
+
+
+//Function interpulates position between vector v1 to vector v2 in n_step steps
+//Returns the next position - mid_position:
+//Usage:
+//In function animate:
+//Current position
+//let v1 = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
+//Target position
+//let v2 = new THREE.Vector3(res.x,res.y,res.z);
+//Number of steps to transition  - configuration
+//let num_steps = 100;//1% in frame render
+//SmoothMotion(v1, v2, 20)
+
+//Globals:
+var curr_step = 0; //is midposition between to points
+var last_vb = null;
+var last_mid_pos = null;
+
+function SmoothMotion(va,vb,num_steps) {
+  
+  //If in the middle of interpulation the destination moved,
+  //We will start from the finish and update the new destination position with same step
+  if (last_vb != null) {
+    
+    if (!last_vb.equals(vb)) {
+      
+      curr_step = 0;
+      last_vb = vb;
+      
+      return last_mid_pos;
+    }
+  }else{
+    
+    last_vb = vb;
+    
+  }
+  
+  //Update the alpha (percent/100 of final value)
+  let alpha = curr_step / num_steps;
+
+  //If we've reached the target:
+  if (alpha > 1) {
+    curr_step = 0;
+    last_mid_pos =vb;
+    return last_mid_pos;
+  } else { 
+    //not yet reached the target
+    curr_step++;
+    last_mid_pos =va.lerp(vb, alpha);
+    return last_mid_pos;
+  }
+}
+
 
 /*
 //Function estimates next position of camera
@@ -103,15 +197,6 @@ function estimateNextCameraPos()
   //let d_err_m = d_err2 * 1000 / Scale;//[meter]
 }
 */
-
-
-//If fail in get current position:
-function nav_geo_error(err) {
-  
-  console.log('gps error: ',JSON.stringify(err));
-  
-}
-
 
 
 /*
@@ -164,89 +249,3 @@ function UpdatePos() {
   }
 }*/
 
-
-
-
-
-
-
-
-//Updates current position of player:
-function UpdateCameraPos()
-{
-  
-  //Get current position of camera wrapper:
-  let currentPosition = CameraWrapper.position;
-  
-  //Get distance to new position:
-  let res4 = GetDirection(CenterPos, positionGPS); //[km]
-  
-  //Update next position of camera (global variable)
-  let next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
-  
-  let v_res=null;
-  
-  if(newPos!=null) {
-    
-    if(!isNaN(CameraWrapper.position.x)) {
-      
-      let origin = new THREE.Vector3(CameraWrapper.position.x, 
-                    CameraWrapper.position.y, CameraWrapper.position.z);
-      
-      v_res = SmoothMotion(origin, newPos, 100);
-      
-    }else{
-      
-      v_res = newPos;
-      
-    }
-    
-    CameraWrapper.position.x = v_res.x;
-    CameraWrapper.position.y = v_res.y;
-    CameraWrapper.position.z = v_res.z;
-  }
-}
-
-
-//Function interpulates position between vector v1 to vector v2 in n_step steps
-//Returns the next position - mid_position:
-//Usage:
-//In function animate:
-//Current position
-//let v1 = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
-//Target position
-//let v2 = new THREE.Vector3(res.x,res.y,res.z);
-//Number of steps to transition  - configuration
-//let num_steps = 100;//1% in frame render
-//SmoothMotion(v1, v2, 20)
-//Globals:
-var curr_step = 0; //is midposition between to points
-var last_vb = null;
-var last_mid_pos = null;
-
-function SmoothMotion(va,vb,num_steps) {
-  //If in the middle of interpulation the destination moved,
-  //We will start from the finish and update the new destination position with same step
-  if (last_vb != null) {
-    if (!last_vb.equals(vb)) {
-      curr_step = 0;
-      last_vb = vb;
-      return last_mid_pos;
-    }
-  }else{
-    last_vb = vb;
-  }
-  //Update the alpha (percent/100 of final value)
-  let alpha = curr_step / num_steps;
-
-  //If we've reached the target:
-  if (alpha > 1) {
-    curr_step = 0;
-    last_mid_pos =vb;
-    return last_mid_pos;
-  } else { //not yet reached the target
-    curr_step++;
-    last_mid_pos =va.lerp(vb, alpha);
-    return last_mid_pos;
-  }
-}
