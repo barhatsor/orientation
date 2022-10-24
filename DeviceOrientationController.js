@@ -65,18 +65,14 @@ var DeviceOrientationController = function ( object, domElement ) {
     this.onScreenOrientationChange = function () {
         
         this.screenOrientation = window.orientation || 0;
-
-        //fireEvent( CONTROLLER_EVENT.SCREEN_ORIENTATION );
+        
     }.bind( this );
 
 
 
-    this.onCompassNeedsCalibration = function ( event ) {
+    /*this.onCompassNeedsCalibration = function ( event ) {
       
-        //event.preventDefault();
-
-        //fireEvent( CONTROLLER_EVENT.CALIBRATE_COMPASS );
-    }.bind( this );
+    }.bind( this );*/
 
     
 
