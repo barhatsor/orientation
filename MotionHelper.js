@@ -183,15 +183,14 @@ function UpdateCameraPos()
   //Update next position of camera (global variable)
   let next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
   
-  
-  
   let v_res=null;
   
   if(newPos!=null) {
     
     if(!isNaN(CameraWrapper.position.x)) {
       
-      let origin = new THREE.Vector3(CameraWrapper.position.x, CameraWrapper.position.y, CameraWrapper.position.z);
+      let origin = new THREE.Vector3(CameraWrapper.position.x, 
+                    CameraWrapper.position.y, CameraWrapper.position.z);
       
       v_res = SmoothMotion(origin, newPos, 100);
       
