@@ -246,8 +246,8 @@ window.addEventListener("deviceorientation", function (event) {
             event.beta, event.gamma);
         
         //gamma is pitch.
-        //alpha is azimuth
-        //beta is roll
+        //alpha is azimuth [left to right]
+        //beta is roll 
         //hide the orientation button:
         OrientationGrantedFlag=true;
         
@@ -264,15 +264,10 @@ window.addEventListener("deviceorientationabsolute", function (event) {
 
     function handleOrientationEvent(event) {
       
-        // alpha: rotation around z-axis (azimuth)
+        // alpha: rotation around z-axis (azimuth) 
         let rotateDegrees = event.alpha;
         let rotateDegreesIOS = event.absolute;
         
-        // gamma: left to right (pitch)
-        let leftToRight = event.gamma;
-        // beta: front back motion (roll)
-        let frontToBack = event.beta;
-
         let compass_heading = GetCompassHeading(event.alpha, event.beta, event.gamma);
         
         if(!isNaN(compass_heading) && compass_heading!=null) {
