@@ -23,7 +23,8 @@ function InitMovement() {
   CenterPos.lat = 32.159106367661465;
   CenterPos.lon = 34.80578701716976;
     
-  id_watch = navigator.geolocation.watchPosition(nav_geo_success, nav_geo_error, this.options);
+  id_watch = navigator.geolocation.watchPosition(nav_geo_success, 
+                                    nav_geo_error, this.options);
 
   window.addEventListener('gps-coord-set', () => {
     console.log('Location initialized and stable')
