@@ -263,11 +263,7 @@ window.addEventListener("deviceorientation", function (event) {
 window.addEventListener("deviceorientationabsolute", function (event) {
 
     function handleOrientationEvent(event) {
-      
-        // alpha: rotation around z-axis (azimuth) 
-        let rotateDegrees = event.alpha;
-        let rotateDegreesIOS = event.absolute;
-        
+              
         let compass_heading = GetCompassHeading(event.alpha, event.beta, event.gamma);
         
         if(!isNaN(compass_heading) && compass_heading!=null) {
