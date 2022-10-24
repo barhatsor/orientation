@@ -51,13 +51,6 @@ var DeviceOrientationController = function ( object, domElement ) {
 
 
 
-    this.onScreenOrientationChange = function () {
-        
-        this.screenOrientation = window.orientation || 0;
-        
-    }.bind( this );
-
-
     //Function which creates a new quanterion based on on rotation readings from device:
     var createQuaternion = function () {
 
