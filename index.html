@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+
+html, body {
+  font-family: system-ui;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  margin: 0;
+}
+
+
+.log2 {
+  margin-bottom: -20px;
+  margin-top: 20px;
+}
+
+
+canvas {
+  pointer-events: none;
+}
+
+
+</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover,shrink-to-fit=no">
+</head>
+
+<body ontouchstart>
+
+<div class="init">Allow access to try orientation.<br></div>
+
+<div class="log2"></div>
+
+<div class="console"></div>
+
+
+<script>
+
+
+
+//Set logs on screen:
+const consoleEl = document.querySelector('.console');
+
+function onLog(args) {
+  
+  if (consoleEl.innerHTML.split('<br>').length > 10) {
+    
+    consoleEl.innerHTML = '';
+    
+  }
+  
+  consoleEl.innerHTML += '<br>' + args;
+  
+}
+
+//to flush logs to screen
+//console.log = onLog;
+//window.onerror = onLog;
+
+
+
+</script>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
+<script src="GenericFuncs.js"></script>
+<script src="css3d.js"></script>
+<script src="RotationHelper.js"></script>
+<script src="DeviceOrientationController.js"></script>
+<script src="MotionHelper.js"></script>
+<script src="main.js"></script>
+<script src="estimation.js"></script>
+
+
+
+
+
+<script>
+initEl = document.querySelector('.init');
+initEl.addEventListener('click', async () => {
+//document.documentElement.addEventListener('click', async () => {
+  
+  //logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
+
+  let motionPermission;
+  
+  try {
+    
+    motionPermission = await DeviceMotionEvent.requestPermission();
+    
+  } catch (err) {
+    
+    console.log('No orientation access');
+    
+  }
+  
+  if (motionPermission !== 'granted') {
+    
+    console.log('No orientation access');
+    
+  }
+
+
+  window.addEventListener('deviceorientation', onDeviceOrientation);
+    
+    
+});
+
+
+
+const log2 = document.querySelector('.log2');
+
+function onDeviceOrientation(e) {
+  
+  initEl.style.display = 'none'; //TBD@@
+  
+  const parkPos = {
+    lat: 31.335425, 
+    lon: 34.896735
+  };
+  
+  const park2 = 
+  { 
+    "lat": 31.335429199489425,
+    "lon": 34.896722581147
+  };
+  
+  const east = //at roasters
+  {
+    "lat": 31.25424181454119,
+    "lon": 34.79839706684197
+  };
+  
+  
+  const resp = estimation(east,positionGPS);
+  
+  if(Math.abs(resp.aspect.z) > 165)
+  {
+    arrowEl.innerHTML = '<div style="font-size: 50px;rotate: 1deg">&#128532</div>';
+    log2.textContent = 'Behind you!';
+    
+  }else{
+    arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>'
+    arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg'//-resp.aspect.dy + 'deg';
+    
+    log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
+  }
+
+}
+
+
+
+</script>
+
+</body>
+</html>
