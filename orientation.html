@@ -36,6 +36,11 @@ canvas {
 
 <script>
 
+//Set up the arrow:
+const arrowEl = document.querySelector('.arrow');
+arrowEl.innerHTML = '<div style="font-size: 90px;rotate: -90deg">➤</div>';
+
+
 //Set logs on screen:
 const consoleEl = document.querySelector('.console');
 
@@ -77,8 +82,8 @@ window.onerror = onLog;
 
 
 <script>
-
-document.documentElement.addEventListener('click', async () => {
+arrowEl.addEventListener('click', async () => {
+//document.documentElement.addEventListener('click', async () => {
   
   //logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
 
