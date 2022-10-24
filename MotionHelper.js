@@ -145,7 +145,7 @@ function UpdateCameraPos(newPos)
       
       let origin = new THREE.Vector3(CameraWrapper.position.x,CameraWrapper.position.y,CameraWrapper.position.z);
       
-      v_res = SmoothMotion(origin, newPos,100);
+      v_res = SmoothMotion(origin, newPos, 100);
       
     }else{
       
