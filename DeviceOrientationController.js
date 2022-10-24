@@ -245,11 +245,11 @@ window.addEventListener("deviceorientation", function (event) {
         let compass_ = GetCompassHeading(event.webkitCompassHeading,
             event.beta, event.gamma);
         
-        //gamma is pitch.
-        //alpha is azimuth [left to right]
-        //beta is roll 
-        //hide the orientation button:
-        OrientationGrantedFlag=true;
+       /* Meaning:
+        * gamma is pitch.
+        * alpha is azimuth [left to right]
+        * beta is roll
+        */ 
         
         if(!isNaN(compass_) && compass_!=null) {
             window.dispatchEvent(new CustomEvent('rotation-is-set',
