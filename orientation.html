@@ -156,7 +156,7 @@ function onDeviceOrientation(e) {
     "lon": 34.895844301680484
 }
   
-  const resp = estimation(hagar,positionGPS);
+  const resp = estimation(exitToForest,positionGPS);
   
   if(Math.abs(resp.aspect.z) > 165)
   {
