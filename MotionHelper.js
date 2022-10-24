@@ -88,15 +88,12 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
 
 
 
-
 //If fail in get current position:
 function nav_geo_error(err) {
   
   console.log('gps error: ',JSON.stringify(err));
   
 }
-
-
 
 
 //Updates current position of player:
