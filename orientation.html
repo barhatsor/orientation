@@ -135,7 +135,13 @@ function onDeviceOrientation(e) {
     "lon": 34.896722581147
   };
   
-  const resp = estimation(park2,positionGPS);
+  const east = //at roasters
+  {
+    "lat": 31.25424181454119,
+    "lon": 34.79839706684197
+  }
+  
+  const resp = estimation(east,positionGPS);
   
   //logEl.innerHTML = resp.aspect.dy + 'deg, ' + resp.walkDist + 'min';
   
