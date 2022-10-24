@@ -45,7 +45,7 @@ function SetInitRotation(e)
         //Compass tends to be icorrect in the beginning, so we take 5 takes of it:
         if(CmpssEventCounter > 5) 
         {
-            window.removeEventListener('rotation-is-set', SetInitRotation);
+            window.removeEventListener('compass-is-set', SetInitRotation);
             
             console.log('Rotation module is loaded and ready');
             
