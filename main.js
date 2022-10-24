@@ -31,9 +31,6 @@ document.body.appendChild(arrowEl);
 
 
 
-
-
-
 //Create device binded controls:
 var DevControls = new DeviceOrientationController( camera, null );
 DevControls.connect();
