@@ -8,9 +8,9 @@ var positionXYZ = null;//is Vector3 represents position we got from gps in [km*S
 
 var CenterPos = {lat: 0, lon: 0}; //Center of the world new Location(31.3365254f, 34.8968868f)
 //var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
-var next_pos = null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
-var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
-var State = -1;
+//var next_pos = null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
+//var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
+var worldIsSet = false;
 
 
 
@@ -41,28 +41,27 @@ function nav_geo_success(pos) {
 
   if ((!isNaN(pos.coords.latitude)) && (!isNaN(pos.coords.longitude))) {
     
-    
+    //Update current position:
     positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
     positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
     
+    //Calculate the position in XYZ world of the camera:
     //Get current position of camera wrapper:
     let currentPosition = CameraWrapper.position;
   
-    //Convert from lat,lon -> x,y to next position of the camera(positionGPS):
+    //Convert from lat,lon -> x,y to next position of the camera:
     let res4 = GetDirection(CenterPos, positionGPS); //[km]
   
-    //Store the next camera position int vector form:
+    //Store the next camera position int vector form (global):
     let positionXYZ = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
   
     let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
     
-    if (positionGPS.lat != 0 && positionGPS.lat != 0 && State != 1) {
+    //Take the first good GPS reaqing and set the world center to be it:
+    if ( positionGPS.lat != 0 && positionGPS.lat != 0 && !worldIsSet ) {
       
-      SetInitPosPlayer(positionGPS, CenterPos);
-      
-      //Dispatch event that the GPS position is confirmed:
-      State = 1;
-      
+      InitWorldCenter(positionGPS, CenterPos);
+      worldIsSet = true;
     }    
   }
 }
@@ -70,7 +69,7 @@ function nav_geo_success(pos) {
 
 
 //Set initial position for the player in VR space:
-function SetInitPosPlayer(PosCoord, WorldCenterPos) {
+function InitWorldCenter(PosCoord, WorldCenterPos) {
 
   CenterPos.lon = PosCoord.lon;
   CenterPos.lat = PosCoord.lat;
