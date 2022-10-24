@@ -1,9 +1,6 @@
-//Globals:
+//General perpose functions:
 
-//var GlobMarkers=[];
-//var GlobDebugFlag=false;
 
-//const DEBUG_LEVEL=0;
 
 //Calculate compass heading from orientation event data:
 //returns true north:
