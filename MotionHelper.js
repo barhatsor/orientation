@@ -30,6 +30,7 @@ function InitMovement() {
   window.addEventListener('gps-coord-set', () => {
     console.log('Location initialized and stable')
   });
+  
 }
 
 
