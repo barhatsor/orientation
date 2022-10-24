@@ -43,7 +43,9 @@ const animate = function () {
   //Update player position to next_pos - is updated from GPS
   UpdateCameraPos();
 
+  //Get updated rotation sensor readings:
   DevControls.update();
+  
   requestAnimationFrame(animate);
   
 };
