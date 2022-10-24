@@ -19,7 +19,6 @@ function InitRot()
 }
 
 
-
 //Function sets initial rotation
 function SetInitRotation(e)
 {
@@ -28,13 +27,14 @@ function SetInitRotation(e)
     if( (e.detail.compass_reading!=0) && !(isNaN(e.detail.compass_reading))) {        
 
         let cmpss360 = e.detail.compass_reading;
+        
         let cmpss180 = (cmpss360-180)%180;//to range [-180,180]
 
         let rot_y_ = RotTransform(cmpss180);
-        if(isNaN(rot_y_))rot_y_=0;//ERROR
         
-        console.log('Got actual rotation',rot_y_+'[deg]')
-
+        if(isNaN(rot_y_))
+          rot_y_=0;//ERROR
+        
         let rot_y = rot_y_*Math.PI/180;
 
         //Set player rotation:
