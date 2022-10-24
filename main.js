@@ -45,6 +45,7 @@ document.body.appendChild( renderer.domElement);
 
 //var TargetObjectGlob=null;
 
+
 //Create device binded controls:
 //var DevControls = new DeviceOrientationController( camera, renderer.domElement );
 var DevControls = new DeviceOrientationController( camera, null );
