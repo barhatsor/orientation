@@ -474,38 +474,6 @@ DeviceOrientationController.prototype = Object.create( THREE.EventDispatcher.pro
 
 //Call back for Rotation request:
 var OrientationGrantedFlag=false;
-/*
-function onClick() {
-    // feature detect
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        DeviceOrientationEvent.requestPermission()
-            .then(permissionState => {
-                if (permissionState === 'granted') {
-                    OrientationGrantedFlag = true;
-                    window.addEventListener('deviceorientation', () => {});
-                }
-            })
-            .catch(console.error);
-    } else {
-        // handle regular non iOS 13+ devices
-    }
-}*/
-
-
-
-// Error. Params: message (required), source (optional)
-function error(message, source) {
-    document.querySelector('.title').classList.add('error');
-    document.querySelector('.title a').innerHTML = message;
-    if (source) {
-        document.querySelector('.title a').innerHTML +=
-            '<br><span style="opacity:0.5">' +
-            source +
-            '</span>';
-    }
-}
-
-
 
 
 //For IOS devices:
@@ -513,27 +481,13 @@ window.addEventListener("deviceorientation", function (event) {
     {
         let compass_ = GetCompassHeading(event.webkitCompassHeading,
             event.beta, event.gamma);
-        if(compass_!=null && event!=null && event.alpha!=null && event.beta!=null && event.gamma!=null) {
-          
-          /*if(DEBUG_LEVEL>0)
-          {
-            document.querySelect("log").innerHTML =
-            `orientation event fired, webkit cmpss=${compass_.toFixed(1)}}
-            alpha=${event.alpha.toFixed(1)}
-            beta=${event.beta.toFixed(1)}
-            gamma=${event.gamma.toFixed(1)}
-            `;
-          }*/
-        }
+        
         //gamma is pitch.
         //alpha is azimuth
         //beta is roll
         //hide the orientation button:
         OrientationGrantedFlag=true;
-        /*if(OrientationGrantedFlag)
-        {
-          document.querySelector('.permission-prompt').style.display = 'none';
-        }*/
+        
         if(!isNaN(compass_) && compass_!=null) {
             window.dispatchEvent(new CustomEvent('rotation-is-set',
                 {detail: {compass_reading: compass_}}));
@@ -543,9 +497,6 @@ window.addEventListener("deviceorientation", function (event) {
 
 //For android devices:
 window.addEventListener("deviceorientationabsolute", function (event) {
-  
-    //console.log('got device orientation absolute event')
-    //works for chrome on Macos:
 
     function handleOrientationEvent(event) {
         // alpha: rotation around z-axis
