@@ -5,7 +5,7 @@
 const Scale = 1000;//scale km to pixel
 var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};
 var CenterPos = {lat: 0, lon: 0}; //new Location(31.3365254f, 34.8968868f)
-var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
+//var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
 var next_pos = null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
 var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
 var State = -1;
@@ -17,8 +17,8 @@ var State = -1;
 //Function initializes movement params
 function InitMovement() {
   
-  LastDeviceGPS.lat = 0;
-  LastDeviceGPS.lon = 0;
+  //LastDeviceGPS.lat = 0;
+  //LastDeviceGPS.lon = 0;
 
   //Update the world center position and setup params (default):
   CenterPos.lat = 32.159106367661465;
@@ -92,14 +92,15 @@ function UpdatePos() {
 function GetGPSLoc() {
   
   //If real GPS signal is available:
-  LastDeviceGPS.lat = data.crd_lat;
-  LastDeviceGPS.lon = data.crd_lon;
-  LastDeviceGPS.accuracy = (data.crd_accuracy < 3) ? 3 : data.crd_accuracy;
+  //LastDeviceGPS.lat = data.crd_lat;
+  //LastDeviceGPS.lon = data.crd_lon;
+  //LastDeviceGPS.accuracy = (data.crd_accuracy < 3) ? 3 : data.crd_accuracy;
   
-  positionGPS.lat = LastDeviceGPS.lat;
-  positionGPS.lon = LastDeviceGPS.lon;
+  positionGPS.lat = data.crd_lat; //LastDeviceGPS.lat;
+  positionGPS.lon = data.crd_lon; //LastDeviceGPS.lon;
 
-  if (data.crd_lat != 0 && data.crd_lon != 0 && State != 1) {
+  //if (data.crd_lat != 0 && data.crd_lon != 0 && State != 1) {
+  if (positionGPS.lat != 0 && positionGPS.lat != 0 && State != 1) {
     
     SetInitPosPlayer(positionGPS, CenterPos);
     
