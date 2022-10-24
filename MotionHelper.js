@@ -88,9 +88,6 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
 
 
 
-
-
-
 //Updates current position of player:
 function UpdateCameraPos()
 {
