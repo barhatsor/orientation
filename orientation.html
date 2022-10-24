@@ -119,7 +119,7 @@ function onDeviceOrientation(e) {
   
   initEl.style.display = 'none'; //TBD@@
   
-  const parkPos = {
+  const park1= {
     lat: 31.335425, 
     lon: 34.896735
   };
@@ -159,9 +159,9 @@ const meitar=
 }
 
   
-  const resp = estimation(park2,positionGPS);
+  const resp = estimation(park1,positionGPS);
   
-  if(Math.abs(resp.aspect.z) > 150) //165
+  if(Math.abs(resp.aspect.z) > 100)
   {
     arrowEl.innerHTML = '<div style="font-size: 50px;">&#128532</div>';
     log2.textContent = 'Behind you';
