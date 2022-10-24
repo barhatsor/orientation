@@ -69,13 +69,7 @@ var DeviceOrientationController = function ( object, domElement ) {
     }.bind( this );
 
 
-
-    /*this.onCompassNeedsCalibration = function ( event ) {
-      
-    }.bind( this );*/
-
-    
-
+    //Function which creates a new quanterion based on on rotation readings from device:
     var createQuaternion = function () {
 
         var finalQuaternion = new THREE.Quaternion();
@@ -108,6 +102,7 @@ var DeviceOrientationController = function ( object, domElement ) {
 
     }();
 
+    //Function creates rotation matrix:
     var createRotationMatrix = function () {
 
         var finalMatrix = new THREE.Matrix4();
