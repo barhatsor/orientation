@@ -12,7 +12,7 @@
 var DeviceOrientationController = function ( object, domElement ) {
 
     
-    this.object = object; // object is a camera give as an argument
+    this.object = object; // object is a camera give as an argument, the controller binds with camera
     
     this.element = domElement || document; //if null points to the document
 
