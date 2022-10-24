@@ -12,7 +12,8 @@
 var DeviceOrientationController = function ( object, domElement ) {
 
     
-    this.object = object; // object is a camera give as an argument, the controller binds with camera
+    this.object = object; // object is a camera give as an argument, 
+                          //the controller will copy the updated rotation to camera
     
     this.element = domElement || document; //if null points to the document
 
