@@ -36,16 +36,16 @@ function InitMovement() {
 
 
 
-//If success in getCurrent position:
+//Event handler for GPS event:
 function nav_geo_success(pos) {
   
-  //var crd_ = pos.coords;
-
+  //If GPS data from browser is valid:
   if ((!isNaN(pos.coords.latitude)) && (!isNaN(pos.coords.longitude))) {
     
     //Update current position:
     positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
     positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
+    
     
     //Calculate the position in XYZ world of the camera:
     //Get current position of camera wrapper:
@@ -90,7 +90,7 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
 
 
 
-//If fail in get current position:
+//Error handler for GPS event:
 function nav_geo_error(err) {
   
   console.log('gps error: ',JSON.stringify(err));
