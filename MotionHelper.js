@@ -22,9 +22,7 @@ function InitMovement() {
   //Update the world center position and setup params:
   CenterPos.lat = 32.159106367661465;
   CenterPos.lon = 34.80578701716976;
-  
-  //GPS_sim.IsOn = false;
-  
+    
   id_watch = navigator.geolocation.watchPosition(nav_geo_success, nav_geo_error, this.options);
 
   window.addEventListener('gps-coord-set', () => {
