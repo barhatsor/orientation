@@ -52,7 +52,6 @@ function nav_geo_success(pos) {
 //If fail in get current position:
 function nav_geo_error(err) {
   console.log('gps error: ',JSON.stringify(err))
-  //document.querySelector('.alert').classList.add('gps');
 }
 
 
@@ -65,6 +64,7 @@ function GetGPSLoc() {
   LastDeviceGPS.lat = data.crd_lat;
   LastDeviceGPS.lon = data.crd_lon;
   LastDeviceGPS.accuracy = (data.crd_accuracy < 3) ? 3 : data.crd_accuracy;
+  
   positionGPS.lat = LastDeviceGPS.lat;
   positionGPS.lon = LastDeviceGPS.lon;
 
