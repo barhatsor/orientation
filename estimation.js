@@ -41,7 +41,6 @@ function getAspect(vrpos) {
   
   //Create laser to the object to measure the delta angle:
   laser.lookAt(pos);
-  //arrow.lookAt(pos);
   
   let laser_rot = new THREE.Vector3(laser.rotation.x, laser.rotation.y, laser.rotation.z);
 
