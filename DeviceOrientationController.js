@@ -225,7 +225,7 @@ window.addEventListener("deviceorientation", function (event) {
         */ 
         
         if(!isNaN(compass_) && compass_!=null) {
-            window.dispatchEvent(new CustomEvent('rotation-is-set',
+            window.dispatchEvent(new CustomEvent('compass-is-set',
                                 {detail: {compass_reading: compass_}}));
         }
     }
@@ -242,7 +242,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
         if(!isNaN(compass_heading) && compass_heading!=null) {
                       
             //Set the event for compass reading is ready and reliable:
-            window.dispatchEvent(new CustomEvent('rotation-is-set',
+            window.dispatchEvent(new CustomEvent('compass-is-set',
                                 {detail: {compass_reading: compass_heading}}));
           }
         }
