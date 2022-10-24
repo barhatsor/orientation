@@ -15,13 +15,13 @@ function GetDirection(Location_source, Location_target) {
 
 
     let R = 6371; // [km]
-    let phi1 = THREE.Math.degToRad(lat1);// * THREE.Math.Deg2Rad;
-    let phi2 = THREE.Math.degToRad(lat2);// * THREE.Math.Deg2Rad;
-    let lambda1 = THREE.Math.degToRad(lon1);// * THREE.Math.Deg2Rad;
-    let lambda2 = THREE.Math.degToRad(lon2);// * THREE.Math.Deg2Rad;
+    let phi1 = THREE.Math.degToRad(lat1);
+    let phi2 = THREE.Math.degToRad(lat2);
+    let lambda1 = THREE.Math.degToRad(lon1);
+    let lambda2 = THREE.Math.degToRad(lon2);
 
-    let delta_phi = THREE.Math.degToRad(lat2 - lat1);// * THREE.Math.Deg2Rad;
-    let delta_lambda = THREE.Math.degToRad(lon2 - lon1);// * THREE.Math.Deg2Rad;
+    let delta_phi = THREE.Math.degToRad(lat2 - lat1);
+    let delta_lambda = THREE.Math.degToRad(lon2 - lon1);
 
     let a = Math.sin(delta_phi / 2) * Math.sin(delta_phi / 2) +
         Math.cos(phi1) * Math.cos(phi2) *
