@@ -16,6 +16,7 @@ var State = -1;
 
 //Function initializes movement params
 function InitMovement() {
+  
   LastDeviceGPS.lat = 0;
   LastDeviceGPS.lon = 0;
 
@@ -48,20 +49,10 @@ function nav_geo_success(pos) {
 
 
 
-//Alert for low GPS signal
-function toggleAlert(boolean) {
-  if (boolean) {
-    document.querySelector('.alert').classList.add('visible');
-  } else {
-    document.querySelector('.alert').classList.remove('visible');
-  }
-}
-
 //If fail in get current position:
 function nav_geo_error(err) {
-
-  toggleAlert(true);
-  document.querySelector('.alert').classList.add('gps');
+  console.log('gps error: ',JSON.stringify(err))
+  //document.querySelector('.alert').classList.add('gps');
 }
 
 
