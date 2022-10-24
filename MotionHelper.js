@@ -61,7 +61,8 @@ function nav_geo_success(pos) {
       //Dispatch event that the GPS position is confirmed:
       State = 1;
     }
-    UpdatePos();
+    
+    //UpdatePos();
     
   }
 }
