@@ -473,8 +473,6 @@ DeviceOrientationController.prototype = Object.create( THREE.EventDispatcher.pro
 
 
 //Call back for Rotation request:
-var OrientationGrantedFlag=false;
-
 
 //For IOS devices:
 window.addEventListener("deviceorientation", function (event) {
@@ -510,13 +508,7 @@ window.addEventListener("deviceorientationabsolute", function (event) {
         let compass_heading = GetCompassHeading(event.alpha, event.beta, event.gamma);
         
         if(!isNaN(compass_heading) && compass_heading!=null) {
-          
-            OrientationGrantedFlag = true;//Set global flag to on
-            //If orientation is enabled hide the rotation permition button:
-            /*if(OrientationGrantedFlag)
-            {
-              document.querySelector('.permission-prompt').style.display = 'none';
-            }*/
+                      
             //Set the event for compass reading is ready and reliable:
             window.dispatchEvent(new CustomEvent('rotation-is-set',
             {detail: {compass_reading: compass_heading}}));
@@ -528,43 +520,3 @@ window.addEventListener("deviceorientationabsolute", function (event) {
 });
 
 
-
-
-
-
-/* Usage:
-//Bind the initial rotation event:
-window.addEventListener('rotation-is-set', this.SetInitRotation);
-//};
-document.getElementById("AndroidEvent").innerHTML = "No orientation event";
-console.log('Rotation module is loaded and ready');
-*/
-
-
-
-/*
-//Device access promissions for ios13:
-DeviceMotionEvent.requestPermission()
-    .then(response => {
-        if (response == 'granted') {
-            window.addEventListener('devicemotion', (e) => {
-                // do something with e
-            })
-        }
-    })
-    .catch(console.error)
-
-DeviceOrientationEvent.requestPermission()
-    .then(response => {
-        if (response == 'granted') {
-            window.addEventListener('deviceorientation', (e) => {
-                // do something with e
-                document.getElementById("Log").innerHTML = "Got orientation event";
-            })
-        }
-    })
-    .catch(console.error)
-
-*/
-
-//document.getElementById("myBtn").addEventListener("click", onClick);
