@@ -28,12 +28,6 @@ camera.add(laser);
 const arrowEl = document.createElement( 'div' );
 arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>';
 
-//const arrowEl = document.querySelector('.log');
-let arrow = new COOLObject( arrowEl );
-arrow.x= CameraWrapper.position.x;
-arrow.y= CameraWrapper.position.y;
-arrow.z = CameraWrapper.position.z;
-laser.add(arrow);
 
 
 
