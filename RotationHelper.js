@@ -14,7 +14,7 @@ Initial_cmpss_val=0; //for debug only
 //Function initializes the rotation module
 function InitRot()
 {
-    //Bind the initial rotation event:
+    //Set listener to compass-is-set: 
     window.addEventListener('compass-is-set', SetInitRotation);
     
 }
