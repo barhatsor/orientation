@@ -161,7 +161,7 @@ const meitar=
   
   const resp = estimation(park2,positionGPS);
   
-  if(Math.abs(resp.aspect.z) > 165)
+  if(Math.abs(resp.aspect.z) > 150) //165
   {
     arrowEl.innerHTML = '<div style="font-size: 50px;">&#128532</div>';
     log2.textContent = 'Behind you';
