@@ -85,7 +85,10 @@ function onLog(args) {
 
 <script>
 initEl = document.querySelector('.init');
-initEl.addEventListener('click', async () => {  
+initEl.addEventListener('click', async () => {
+//document.documentElement.addEventListener('click', async () => {
+  
+  //logEl.innerHTML = '<a style="font-size: 90px">➤</a>';
 
   let motionPermission;
   
@@ -159,7 +162,7 @@ const meitar=
 }
 
   
-  const resp = estimation(east,positionGPS);
+  const resp = estimation(exitToForest,positionGPS);
   
   if(Math.abs(resp.aspect.z) > 165)
   {
