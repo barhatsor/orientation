@@ -1,5 +1,8 @@
-//Estimate time to target in minutes: (assuming walking spped is WALK_SPEED km/h)
+
+//Estimate time to target in minutes: 
+//(assuming walking spped is WALK_SPEED km/h)
 function estimation(coord, currPos) {
+  
   //If the globcenter is not initialized:
   if (coord.lat == 0 && coord.lon == 0)
     return;
@@ -37,12 +40,13 @@ function getAspect(vrpos) {
 
   pos.x = -vrpos.x * Scale;
   pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random()));
-  //pos.z = vrpos.y * Scale;
   pos.z = vrpos.y * Scale;
+  
   //Create laser to the object to measure the delta angle:
   laser.lookAt(pos);
   
-  let laser_rot = new THREE.Vector3(laser.rotation.x, laser.rotation.y, laser.rotation.z);
+  let laser_rot = new THREE.Vector3(laser.rotation.x, 
+                                    laser.rotation.y, laser.rotation.z);
 
   let ly = laser_rot.y * 180 / 3.14;
   let lx = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
