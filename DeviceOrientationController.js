@@ -164,9 +164,11 @@ var DeviceOrientationController = function ( object, domElement ) {
                     deviceQuat.setFromRotationMatrix( deviceMatrix );
 
                 }
-
+                
+                //If event listeners are removed do nothing:
                 if ( this.freeze ) 
                   return;
+                  
                 //Copy the rotation to the camera (as quanterion):
                 this.object.quaternion.copy( deviceQuat );
                 //this.object.quaternion.slerp( deviceQuat, 0.07 ); // smoothing
