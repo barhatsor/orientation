@@ -44,6 +44,7 @@ function GetCompassHeading(alpha, beta, gamma) {
 
 
 //Utility function for navigator.geolocation.getCurrentPosition
+/*
 function showPosition(position)
 {
   if(DEBUG_LEVEL>0)
@@ -53,7 +54,7 @@ function showPosition(position)
     "<br>Longitude: " + position.coords.longitude;
     console.warn(`LST COORD(${position.coords.latitude}), ${position.coords.longitude}`);
   }
-}
+}*/
 
 //Get direction from pt. of origin to target :
 //distance[km],[x,y]-in [km] and bearing[deg from north]
@@ -127,93 +128,3 @@ function Convert360to180(deg)
 }
 
 
-
-
-
-
-//------Optional functions:
-
-
-
-//Check if object in your FOV: and returns if it's on the
-//Returns direction of arrow one of the following [right, left, up] and position on screen [0,2] left to right
-//left(-1) on the right (+1) or inside POV
-function CheckInFOV(camera,object,el) {
-
-    //Check if object exist
-    if(object==null) return 0;
-
-    camera.updateMatrix();
-    camera.updateMatrixWorld();
-    //Create POV frustum:
-    var frustum = new THREE.Frustum();
-    frustum.setFromMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
-
-    // 3D point to check
-    var pos = new THREE.Vector3(object.position.x, object.position.y, object.position.z);
-
-    //Create laser to the object to measure the delta angle:
-    laser.lookAt(pos);
-    let laser_rot = new THREE.Vector3(laser.rotation.x,laser.rotation.y,laser.rotation.z);
-
-    let dangle_y = laser_rot.y*180/3.14;
-    let dangle_x = laser_rot.x*180/3.14;//pitch: [-90,..,-180,180,..,90]
-    let dangle_z = laser_rot.z*180/3.14;
-    laser.rotation.x=0;
-    laser.rotation.y=0;
-    laser.rotation.z=0;
-
-    const FOVcamera = 75;//is defined in perspecive camera at index.html
-    
-    //Check if outside of frustum:
-    if (!frustum.containsPoint(pos)) {
-
-      //If screen is loock downwards:
-      if(Math.sign(dangle_x) == -1){
-        if((dangle_x > (-180 + FOVcamera/2)) && (dangle_x< -95 )){
-          let pos_ = dangle_y/(FOVcamera/2)+1;//dangle_y is [-FOVcamera/2,FOVcamera/2]
-          
-          return {direction: 'up', position:pos_ };//put arrow up, position is [0,2] where 0 is most left and 2 most right
-        }
-      }
-      
-      //If the marker is not higher than frustum,check if on his left or right:
-      if(Math.sign(dangle_y) == -1) return {direction: 'right',position: 0};//object is on the right put arrow right
-      if(Math.sign(dangle_y) == 1) return {direction: 'left',position: 2};//object is on the left, put arrow left
-
-    }else{      
-      return {direction: 'inside',position:0};
-    }
-  }
-  
-  
-
-  
-
-
-
-//Function returns delta bearing between two bearings in a range of [-pi,pi]
-/*function relativeBearing(b1Rad, b2Rad)
-{
-    let b1y = Math.cos(b1Rad);
-    let b1x = Math.sin(b1Rad);
-    let b2y = Math.cos(b2Rad);
-    let b2x = Math.sin(b2Rad);
-    let crossp = b1y * b2x - b2y * b1x;
-    let dotp = b1x * b2x + b1y * b2y;
-    if(crossp > 0.)
-        return Math.acos(dotp);
-    return -Math.acos(dotp);
-}*/
-
-/*
-//Calculates difference between angle1 to angle2:
-function delta_angle(angle1,angle2)
-{
-    let angle1q = new THREE.Quaternion();
-    let angle2q = new THREE.Quaternion();
-    //this.cam_ptr.object3D.getWorldQuaternion(cam_rotq);
-    angle1q.setFromEuler(new THREE.Euler(0, angle1, 0));
-    angle2q.setFromEuler(new THREE.Euler(0, angle2, 0));
-    return angle1q.angleTo(angle2q);
-}*/
