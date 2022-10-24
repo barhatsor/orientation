@@ -28,6 +28,8 @@ camera.add(laser);
 let arrow = new COOLObject( arrowEl );
 laser.add(arrow);
 
+
+
 //Create Renderer:
 const renderer = new THREE.WebGLRenderer( { alpha: true } );
 renderer.setSize( window.innerWidth, window.innerHeight );
