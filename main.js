@@ -37,10 +37,6 @@ laser.add(arrow);
 
 
 
-
-
-
-
 //Create css scene:
 const scene2 = new THREE.Scene();
 scene2.add(CameraWrapper);
