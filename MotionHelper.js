@@ -109,8 +109,8 @@ function SetInitPosPlayer(PosCoord, WorldCenterPos) {
   CenterPos.lat = PosCoord.lat;
 
   //Update the global center position:
-  GlobCenter.lat = PosCoord.lat; //TBD refactoring - make it the same one
-  GlobCenter.lon = PosCoord.lon;
+  //GlobCenter.lat = PosCoord.lat; //TBD refactoring - make it the same one
+  //GlobCenter.lon = PosCoord.lon;
 
   const z = 1;
   
