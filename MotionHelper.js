@@ -75,7 +75,7 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
   CenterPos.lon = PosCoord.lon;
   CenterPos.lat = PosCoord.lat;
 
-  const z = 1; //TBD@@
+  const z = 1;
   
   CameraWrapper.position.x = 0;
   CameraWrapper.position.y = z;
