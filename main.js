@@ -25,13 +25,31 @@ let laser = new THREE.Object3D();
 camera.add(laser);
 
 //Set up the arrow:
-
 const arrowEl = document.createElement( 'div' );
 arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>';
 
 //const arrowEl = document.querySelector('.log');
 let arrow = new COOLObject( arrowEl );
 laser.add(arrow);
+
+
+
+//Create css scene:
+const scene2 = new THREE.Scene();
+scene2.add(CameraWrapper);
+
+//The current target object, arrows points it's direction
+var TargetObjectGlob=null;
+
+//Create COOL renderer:
+var cssRenderer = new COOLRenderer();
+cssRenderer.setSize( window.innerWidth, window.innerHeight );
+cssRenderer.domElement.style.position = 'absolute';
+cssRenderer.domElement.style.top = 0;
+document.body.appendChild( cssRenderer.domElement );
+
+
+
 
 
 
