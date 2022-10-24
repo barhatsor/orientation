@@ -37,8 +37,9 @@ function getAspect(vrpos) {
 
   pos.x = vrpos.x * Scale;
   pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random()));
-  pos.z = vrpos.y * Scale;
+  //pos.z = vrpos.y * Scale;
   
+  pos.z = vrpos.z * Scale;
   //Create laser to the object to measure the delta angle:
   laser.lookAt(pos);
   
