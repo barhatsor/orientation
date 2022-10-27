@@ -1,14 +1,11 @@
 
-//Estimate time to target in minutes: (assuming walking spped is WALK_SPEED km/h)
+//Estimate time to target in minutes: 
+//(assuming walking spped is WALK_SPEED km/h)
 function estimation(coord, currPos) {
   
-  currPos = positionGPS; // @@ test
-  coord.lon = coord.lng;
-  
   //If the globcenter is not initialized:
-  if (coord.lat == 0 && coord.lon == 0) {
+  if (coord.lat == 0 && coord.lon == 0)
     return;
-  }
 
   const WALK_SPEED = 3; //km/h
 
@@ -21,34 +18,45 @@ function estimation(coord, currPos) {
   
   let dist = CameraWrapper.position.distanceTo(vrpos); //[km*Scale]
 
-  let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(0); //in[minutes]
+  let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(1); //in[minutes]
 
   return { walkDist: walkingTime, aspect: getAspect(vrpos) };
 
 }
 
 
+
 //Retrieves relative angle to camera view 
 //given relative position in 3D space vrpos:
 function getAspect(vrpos) {
 
-  //"camera" is global variable which defines the current point view of the player
-
+  //"camera" is global variable 
+  //which defines the current point view of the player
   camera.updateMatrix();
+  
   camera.updateMatrixWorld();
   
   // 3D point to check
   var pos = new THREE.Vector3(vrpos.x, vrpos.y, vrpos.z);
+  
 
+  pos.x = -vrpos.x * Scale;
+  
+  pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random())); //height of the point relative to plane xz
+  
+  pos.z = vrpos.y * Scale;
+  
   //Create laser to the object to measure the delta angle:
   laser.lookAt(pos);
-  let laser_rot = new THREE.Vector3(laser.rotation.x, laser.rotation.y, laser.rotation.z);
+  
+  let laser_rot = new THREE.Vector3(laser.rotation.x, 
+                                    laser.rotation.y, laser.rotation.z);
 
-  let dangle_y = laser_rot.y * 180 / 3.14;
-  let dangle_x = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
-  let dangle_z = laser_rot.z * 180 / 3.14;
+  let ly = laser_rot.y * 180 / 3.14;
+  let lx = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
+  let lz = laser_rot.z * 180 / 3.14;
 
-  return { dy:dangle_y, dx:dangle_x, dz:dangle_z };//in degrees;
+  return {y:ly,x:lx,z:lz};//in degrees;
   
 }
 
@@ -74,9 +82,28 @@ function testVitals() {
     "lon": 34.81265196913165
   }; //some other place in Beer-Sheva
 
+  const parkPos = {
+    lat: 31.335425, 
+    lon: 34.896735
+  };
+  
+  
+  
+  //kosta
+  const park2 = 
+  { 
+    "lat": 31.335429199489425,
+    "lon": 34.896722581147
+  };
+  
+  const testCurrPos = {
+    "lat": 31.3363433,
+    "lon": 34.8966079
+  };
+  
   //Test function
-  let res = estimation(testCoord1, testCoord2);
+  //let res = estimation(testCoord1, testCoord2);
+  let res = estimation(park2, testCurrPos);
   console.log('Testing estimation: walk distance in minutes' + res.walkDist + ', aspect[deg]:'+JSON.stringify(res.aspect) );
 
 }
-
