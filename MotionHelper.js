@@ -1,191 +1,236 @@
-//GPS motion helper module:
+
+// GPS motion helper
 
 
-//Globals:
-const Scale = 1000;//scale km to pixel
-var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};
-var CenterPos = {lat: 0, lon: 0}; //new Location(31.3365254f, 34.8968868f)
-var LastDeviceGPS = {lat: 0, lon: 0, accuracy: 0};
-var next_pos=null;//ist Vector3 represents next position we got from gps in [km*Scale] metrics
-var data = {crd_lat: 0, crd_lon: 0, crd_accuracy: 0}; //TBD refactoring
-var State = -1;
+// globals
+const Scale = 1000; // km to pixel scale
+
+let positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0}; // player GPS position
+let positionXYZ; // virtual camera position in Vector3 format (km * Scale)
+
+let CenterPos = {lat: 0, lon: 0}; // center of virtual world
+let GPSisReady = false; // GPS is ready
 
 
 
-
-
-//Function initializes movement params
+// initialize movement params
 function InitMovement() {
-  LastDeviceGPS.lat = 0;
-  LastDeviceGPS.lon = 0;
+   
+  // add GPS event listener
+  navigator.geolocation.watchPosition(onGPSsuccess, 
+                                      onGPSerror, this.options);
 
-  //Update the world center position and setup params:
-  CenterPos.lat = 32.159106367661465;
-  CenterPos.lon = 34.80578701716976;
-  
-  //GPS_sim.IsOn = false;
-  
-  id_watch = navigator.geolocation.watchPosition(nav_geo_success, nav_geo_error, this.options);
-
+  // wait for GPS calibration
   window.addEventListener('gps-coord-set', () => {
-    console.log('Location initialized and stable')
+    console.log('[MotionHelper] Location initialized and stable');
   });
-}
-
-
-
-//If success in getCurrent position:
-function nav_geo_success(pos) {
-  var crd_ = pos.coords;
-
-  if ((!isNaN(crd_.latitude)) && (!isNaN(crd_.longitude))) {
-    data.crd_lat = pos.coords.latitude;
-    data.crd_lon = pos.coords.longitude;
-    data.crd_accuracy = pos.accuracy;
-    
-    UpdatePos();
-  }
-}
-
-
-
-//Alert for low GPS signal
-function toggleAlert(boolean) {
-  if (boolean) {
-    console.log('Low GPS!');
-  } else {
-    console.log('GPS ok.');
-  }
-}
-
-//If fail in get current position:
-function nav_geo_error(err) {
-  console.log('No GPS!');
-}
-
-
-
-
-//Get GPS position location:
-function GetGPSLoc() {
   
-  //If real GPS signal is available:
-  LastDeviceGPS.lat = data.crd_lat;
-  LastDeviceGPS.lon = data.crd_lon;
-  LastDeviceGPS.accuracy = (data.crd_accuracy < 3) ? 3 : data.crd_accuracy;
-  positionGPS.lat = LastDeviceGPS.lat;
-  positionGPS.lon = LastDeviceGPS.lon;
-
-  if (data.crd_lat != 0 && data.crd_lon != 0 && State != 1) {
-    SetInitPosPlayer(positionGPS, CenterPos);
-    //Dispatch event that the GPS position is confirmed:
-    State = 1;
-  }
 }
 
 
-//Set initial position for the player in VR space:
-function SetInitPosPlayer(PosCoord, WorldCenterPos) {
+
+// GPS event handler
+function onGPSsuccess(pos) {
+  
+  // if GPS data is valid
+  if ((!isNaN(pos.coords.latitude)) && (!isNaN(pos.coords.longitude))) {
+    
+    // update current position
+    positionGPS.lat = pos.coords.latitude;
+    positionGPS.lon = pos.coords.longitude;
+    
+    
+    // convert from GPS [lat, lon] to [x, y]
+    // to move camera in virtual world
+    const cameraPos = GetDirection(CenterPos, positionGPS); // [km]
+    
+    // move camera
+    positionXYZ = new THREE.Vector3(cameraPos.x * Scale, CameraWrapper.position.y, cameraPos.y * Scale);
+    
+    
+    // if reading is the first stable GPS reading
+    if (positionGPS.lat != 0 && positionGPS.lat != 0 && !GPSisReady) {
+      
+      // set world center to reading
+      InitWorldCenter(positionGPS, CenterPos);
+      GPSisReady = true;
+      
+    }
+    
+  }
+  
+}
+
+
+// error handler for GPS event
+function onGPSerror(err) {
+  
+  console.log('[MotionHelper] GPS error: ', JSON.stringify(err));
+  
+}
+
+
+
+// set virtual world center
+function InitWorldCenter(PosCoord, WorldCenterPos) {
 
   CenterPos.lon = PosCoord.lon;
   CenterPos.lat = PosCoord.lat;
 
-  //Update the global center position:
-  GlobCenter.lat = PosCoord.lat; //TBD refactoring - make it the same one
-  GlobCenter.lon = PosCoord.lon;
-
-  const z = 1;
+  const z = 1; // height of the camera relative to XZ plane in virtual world
   
   CameraWrapper.position.x = 0;
   CameraWrapper.position.y = z;
   CameraWrapper.position.z = 0;
 
-  //Signal that there is gps:
+  // signal GPS is available
   window.dispatchEvent(new CustomEvent('gps-coord-set',
-    {detail: {position: this.CenterPos}}));
+    { detail: {
+      position: CenterPos
+    }}
+  ));
+  
 }
 
 
-//Update player position and bearing:
-function UpdatePos() {
 
-  //Get GPS position:
-  GetGPSLoc();
-
-  //If it's in init state, don't update the position and bearing
-  if (State == -1) return;
-
-  //Get current position of camera wrapper:
-  let currentPosition = CameraWrapper.position;
-  //Get distance to new position:
-  let res4 = GetDirection(CenterPos, positionGPS); //[km]
-  //Update next position of camera (global variable)
-  next_pos = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
-  let d_err2 = next_pos.distanceTo(currentPosition);
-
-  let d_err_m = d_err2 * 1000 / Scale;//[meter]
-  let LMT = 1;//[meter]
-
-}
-
-
-//Updates current position of player:
-function UpdateCameraPos(newPos)
-{
-  let v_res=null;
-  if(newPos!=null) {
-    if(!isNaN(CameraWrapper.position.x)) {
-      let origin = new THREE.Vector3(CameraWrapper.position.x,CameraWrapper.position.y,CameraWrapper.position.z);
-      v_res = SmoothMotion(origin, newPos,100);
-    }else{
-      v_res = newPos;
+// update camera position
+function UpdateCameraPos() {
+  
+  // if GPS is loaded
+  if (GPSisReady) {
+    
+    let newCameraPosition = positionXYZ;
+    
+    // if previous camera X position exists
+    if (!isNaN(CameraWrapper.position.x)) {
+      
+      const prevPos = new THREE.Vector3(CameraWrapper.position.x, 
+                      CameraWrapper.position.y, CameraWrapper.position.z);
+      
+      // animate the camera from prev pos to new pos
+      newCameraPosition = animatePos(prevPos, positionXYZ, 100);
+      
     }
-    CameraWrapper.position.x = v_res.x;
-    CameraWrapper.position.y = v_res.y;
-    CameraWrapper.position.z = v_res.z;
+    
+    // update camera position
+    CameraWrapper.position = newCameraPosition;
+    
   }
+  
 }
 
 
-//Function interpulates position between vector v1 to vector v2 in n_step steps
-//Returns the next position - mid_position:
-//Usage:
-//In function animate:
-//Current position
-//let v1 = new THREE.Vector3(obj.position.x,obj.position.y,obj.position.z);
-//Target position
-//let v2 = new THREE.Vector3(res.x,res.y,res.z);
-//Number of steps to transition  - configuration
-//let num_steps = 100;//1% in frame render
-//SmoothMotion(v1, v2, 20)
-//Globals:
-var curr_step = 0; //is midposition between to points
-var last_vb = null;
-var last_mid_pos = null;
 
-function SmoothMotion(va,vb,num_steps) {
-  //If in the middle of interpulation the destination moved,
-  //We will start from the finish and update the new destination position with same step
-  if (last_vb != null) {
-    if (!last_vb.equals(vb)) {
-      curr_step = 0;
-      last_vb = vb;
-      return last_mid_pos;
+// interpolate position between THREE.js vector [vecA] to THREE.js vector [vecB] in [numSteps] steps
+// function returns the next position - lastMidPos
+
+// function globals
+let currStep = 0; // progress of animation (index)
+let lastVecB;
+let lastMidPos;
+
+function animatePos(vecA, vecB, numSteps) {
+  
+  // if while animating the end vector (vecB) changed,
+  // stop and jump to end of animation
+  if (lastVecB) {
+    
+    if (!lastVecB.equals(vecB)) {
+      
+      currStep = 0;
+      lastVecB = vecB;
+      
+      return lastMidPos;
+      
     }
-  }else{
-    last_vb = vb;
+    
+  } else {
+    
+    lastVecB = vecB;
+    
   }
-  //Update the alpha (percent/100 of final value)
-  let alpha = curr_step / num_steps;
+  
+  // update alpha (percent / 100 of final value)
+  const alpha = currStep / numSteps;
 
-  //If we've reached the target:
+  // if reached end of animation, return end vector (vecB)
   if (alpha > 1) {
-    curr_step = 0;
-    last_mid_pos =vb;
-    return last_mid_pos;
-  } else { //not yet reached the target
-    curr_step++;
-    last_mid_pos =va.lerp(vb, alpha);
-    return last_mid_pos;
+    
+    currStep = 0;
+    lastMidPos = vecB;
+    return lastMidPos;
+    
+  } else { // if still animating, return next step
+    
+    currStep++;
+    lastMidPos = vecA.lerp(vecB, alpha);
+    return lastMidPos;
+    
   }
+  
+}
+
+
+
+// get direction and distance from origin { lat, lon } to target { lat, lon }
+// returns bearing (deg from north), distance in [km] and X, Y in [km]
+function GetDirection(origin, target) { // @@ uses this in two places: here, and in estimation.js first function
+
+  const [lat1, lon1] = [origin.lat, origin.lon];
+  const [lat2, lon2] = [target.lat, target.lon];
+
+  const R = 6371; // radius of the earth in [km]
+
+
+  // convert to radians
+  const phi1 = THREE.Math.degToRad(lat1);
+  const phi2 = THREE.Math.degToRad(lat2);
+  const lambda1 = THREE.Math.degToRad(lon1);
+  const lambda2 = THREE.Math.degToRad(lon2);
+
+
+  // calculate distance
+
+  const phiDelta = THREE.Math.degToRad(lat2 - lat1);
+  const lambdaDelta = THREE.Math.degToRad(lon2 - lon1);
+
+  const a = Math.sin(phiDelta / 2) * Math.sin(phiDelta / 2) +
+            Math.cos(phi1) * Math.cos(phi2) *
+            Math.sin(lambdaDelta / 2) * Math.sin(lambdaDelta / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+
+  const distance = d; // distance in [km]
+
+
+  // calculate bearing,
+  // where [phi1, lambda1] is the start point and [phi2, lambda2] is the end point
+
+  const y = Math.sin(lambda2 - lambda1) * Math.cos(phi2);
+
+  const x = Math.cos(phi1) * Math.sin(phi2) -
+            Math.sin(phi1) * Math.cos(phi2) * Math.cos(lambda2 - lambda1);
+
+  let bearing = THREE.Math.radToDeg(Math.atan2(y, x)); // bearing in [deg]
+
+  // fix non-relevant degrees
+  bearing = (bearing + 360) % 360;
+
+
+  // calculate x, y
+
+  let resX = distance * Math.cos(THREE.Math.degToRad(bearing)); // X in [km]
+  let resY = distance * Math.sin(THREE.Math.degToRad(bearing)); // Y in [km]
+
+
+  const result = {
+    distance_: distance, // ?? @@
+    bearing_: bearing, // ?? @@
+    x: resX,
+    y: resY
+  };
+
+  return result;
+
 }
