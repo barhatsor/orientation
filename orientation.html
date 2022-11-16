@@ -41,38 +41,9 @@ canvas {
 <div class="console"></div>
 
 
-<script>
 
 
-
-//Set logs on screen:
-const consoleEl = document.querySelector('.console');
-
-function onLog(args) {
-  
-  if (consoleEl.innerHTML.split('<br>').length > 10) {
-    
-    consoleEl.innerHTML = '';
-    
-  }
-  
-  consoleEl.innerHTML += '<br>' + args;
-  
-}
-
-//to flush logs to screen
-/*console.log = onLog;
-window.onerror = onLog;
-*/
-
-
-
-</script>
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/101/three.min.js"></script>
+<script src="three.min.js"></script>
 <script src="RotationHelper.js"></script>
 <script src="DeviceOrientationController.js"></script>
 <script src="MotionHelper.js"></script>
