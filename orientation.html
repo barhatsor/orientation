@@ -16,7 +16,7 @@ html, body {
 }
 
 
-.log2 {
+.eta {
   margin-bottom: -20px;
   margin-top: 20px;
 }
@@ -35,12 +35,10 @@ canvas {
 
 <div class="init">Allow access to try orientation.<br></div>
 <br>
-<div class="log2"></div>
+<div class="eta"></div>
 <br>
 
-<div class="console"></div>
-
-
+<div class="arrow-wrapper"><div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div></div>
 
 
 <script src="three.min.js"></script>
@@ -51,11 +49,14 @@ canvas {
 <script src="estimation.js"></script>
 
 
-
-
-
 <script>
-initEl = document.querySelector('.init');
+
+const arrowEl = document.querySelector('.arrow-wrapper');
+
+const initEl = document.querySelector('.init');
+const eta = document.querySelector('.eta');
+
+
 document.documentElement.addEventListener('click', async () => {
 
   let motionPermission;
@@ -66,78 +67,71 @@ document.documentElement.addEventListener('click', async () => {
     
   } catch (err) {
     
-    console.log('No orientation access');
+    initEl.innerText = 'No orientation access';
     
   }
   
   if (motionPermission !== 'granted') {
     
-    console.log('No orientation access');
+    initEl.innerText = 'No orientation access';
     
   }
 
 });
 
-window.addEventListener('deviceorientation', onDeviceOrientation);
-    
 
-const log2 = document.querySelector('.log2');
+window.addEventListener('deviceorientation', onDeviceOrientation);
+
 
 function onDeviceOrientation(e) {
   
-  arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>'
-    
-  initEl.style.display = 'none'; //TBD@@
+  initEl.style.display = 'none';
   
-  const park1= {
-    lat: 31.335425, 
+  
+  const park1 = {
+    lat: 31.335425,
     lon: 34.896735
   };
-  
-  const park2 = 
-  { 
+
+  const park2 = {
     "lat": 31.335429199489425,
     "lon": 34.896722581147
   };
-  
-  const east = //at roasters
-  {
+
+  const roastersCafe = {
     "lat": 31.25424181454119,
     "lon": 34.79839706684197
   };
-  
-  const givtonTzomet = 
-  {
+
+  const givtonJunction = {
     "lat": 31.336824695045394,
     "lon": 34.89647001347589
- }
+  };
 
-  const hagar = 
-  {
+  const hagar = {
     "lat": 31.335863941913445,
     "lon": 34.89715622159005
-}
-  const exitToForest=
-  {
+  };
+  
+  const exitToForest = {
     "lat": 31.337429518562743,
     "lon": 34.895844301680484
-}
-const meitar=
-{
+  };
+  
+  const meitar = {
     "lat": 31.327718516938347,
     "lon": 34.9379609847652
-}
-
+  };
   
-  const resp = estimation(park1,positionGPS);
   
-  if(Math.abs(resp.aspect.z) > 100)
-  {
-    //arrowEl.innerHTML = '<div style="font-size: 50px;">&#128532</div>';
-    //log2.textContent = 'Behind you';
-    //log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
-
-  }else{
+  const resp = estimation(park1, positionGPS);
+  
+  if (Math.abs(resp.aspect.z) > 100) {
+    
+    // the location's behind us
+    
+  } else {
+    
     arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg';
     
     let time = Number(resp.walkDist).toFixed(0);
@@ -160,15 +154,11 @@ const meitar=
       
     }
     
-   // log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
-    //log2.textContent = Number(resp.walkDist).toFixed(0) + ' min';
-    log2.textContent = time;
+    eta.textContent = time;
   
   }
 
 }
-
-
 
 </script>
 
