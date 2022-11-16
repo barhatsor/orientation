@@ -182,6 +182,11 @@ const meitar=
       
       time = hours + ' hr' + min;
       
+    } else {
+      
+      if (time > 0) time = time + ' min';
+      else time = 'You\'re here!';
+      
     }
     
    // log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
