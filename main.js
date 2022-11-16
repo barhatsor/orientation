@@ -5,33 +5,26 @@
 // check the @@
 
 
-//Create texture loader and scene:
+// create scene
 const scene = new THREE.Scene();
 
-//Create the camera wrapper - he will be aligned  to north and moved by GPS:
+// create camera wrapper (which will be aligned to north and moved by GPS)
 const CameraWrapper = new THREE.Object3D();
-CameraWrapper.position.set(0, 0, 0.01 );
+CameraWrapper.position.set(0, 0, 0.01);
 
-//Define perspective camera:
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 100000 );
-camera.position.set(0, 0, 0 );
+// create perspective camera
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
+camera.position.set(0, 0, 0);
 
-//Set camera as camera wrapper child:
+// append camera to camera wrapper
 CameraWrapper.add(camera);
 scene.add(CameraWrapper);
 
-//Add laser for pointing to objects
+// create laser (for pointing to objects)
 let laser = new THREE.Object3D();
 camera.add(laser);
 
-//Set up the arrow and add it to the document:
-const arrowEl = document.createElement( 'div' );
-arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>';
-document.body.appendChild(arrowEl);
-
-
-
-//Create device binded controls:
+// create device binded controls
 var DevControls = new DeviceOrientationController( camera, null );
 DevControls.connect();
 
