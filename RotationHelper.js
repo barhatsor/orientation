@@ -61,7 +61,7 @@ function SetInitRotation(e) {
 }
 
 
-// input compass in [-180, 180] and returns rot.y for the platform
+// input compass in [-180, 180] and returns rot.y for platform
 function RotTransform(compass) {
   
   if (compass >= -180 && compass < -90)
