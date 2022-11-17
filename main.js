@@ -1,8 +1,6 @@
 
 
-// Main file for engine
-
-// check the @@
+// main engine file
 
 
 // create scene
