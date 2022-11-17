@@ -42,7 +42,7 @@ function onGPSsuccess(pos) {
     
     // convert from GPS [lat, lon] to [x, y]
     // to move camera in virtual world
-    const cameraPos = GetDirection(CenterPos, positionGPS); // [km]
+    const cameraPos = getDirection(CenterPos, positionGPS); // [km]
     
     // move camera
     positionXYZ = new THREE.Vector3(cameraPos.x * Scale, CameraWrapper.position.y, cameraPos.y * Scale);
@@ -175,8 +175,8 @@ function animatePos(vecA, vecB, numSteps) {
 
 // get direction and distance from origin { lat, lon } to target { lat, lon }
 // returns bearing [deg from north], distance in [km] and X, Y in [km]
-function GetDirection(origin, target) { // @@ uses this in two places: here, and in estimation.js first function
- 
+function getDirection(origin, target) { // @@ uses this in two places: here, and in estimation.js first function
+  
   const [lat1, lon1] = [origin.lat, origin.lon];
   const [lat2, lon2] = [target.lat, target.lon];
 
