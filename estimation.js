@@ -98,7 +98,7 @@ function testEstimation() {
   }; // current position
   
   
-  // test
+  // test estimation
   
   const res = estimation(testCoord4, testCoord5);
   
