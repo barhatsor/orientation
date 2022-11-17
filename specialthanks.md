@@ -1,1 +1,1 @@
-mrdoob, Rich Tibbett
+three.js contributors, Rich Tibbett
