@@ -8,10 +8,10 @@
 var compassClbCounter = 0;
 
 
-//Function initializes the rotation module
+// init rotation module
 function InitRot() {
 
-  //Set listener to compass-event: 
+  // set compass event listener
   window.addEventListener('compass-event', SetInitRotation);
 
 }
