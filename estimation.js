@@ -62,7 +62,7 @@ function getAspect(vrpos) {
 
 
 
-// development test function @@
+// development test function
 /*
 function testVitals() {
   
