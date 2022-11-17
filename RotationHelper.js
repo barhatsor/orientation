@@ -1,14 +1,11 @@
-//Rotation helper supports rotation of the player and his alignment to true north
+
+// rotation helper is related to the rotation of the player
+// and their alignment to true north
 
 
-//Counter for init reading:
-var CmpssEventCounter = 0;
-
-//Hold compass heading :
-var CompassHeading = 0;
-
-Initial_cmpss_val=0; //for debug only
-
+// counts how many compass events have fired
+// until compass is calibrated
+var compassClbCounter = 0;
 
 
 //Function initializes the rotation module
@@ -20,48 +17,48 @@ function InitRot() {
 }
 
 
-//Function sets initial rotation
+// sets initial rotation
 function SetInitRotation(e) {
 
   if ((e.detail.compass_reading != 0) && !(isNaN(e.detail.compass_reading))) {
 
     let cmpss360 = e.detail.compass_reading;
 
-    let cmpss180 = (cmpss360 - 180) % 180; //to range [-180,180]
+    let cmpss180 = (cmpss360 - 180) % 180; // to range [-180, 180]
 
     let rot_y_ = RotTransform(cmpss180);
 
     if (isNaN(rot_y_))
-      rot_y_ = 0; //ERROR
+      rot_y_ = 0; // error
 
     let rot_y = rot_y_ * Math.PI / 180;
 
-    //Set player rotation:
+    // set player rotation
     CameraWrapper.rotation.x = 0;
-    CameraWrapper.rotation.y = rot_y; //[-pi..pi]
+    CameraWrapper.rotation.y = rot_y; // [-pi, pi]
     CameraWrapper.rotation.z = 0;
 
-    //Compass tends to be icorrect in the beginning, so we take 5 takes of it:
-    if (CmpssEventCounter > 5) {
+    // compass tends return invalid values on initial calibration,
+    // so sample it 5 times
+    if (compassClbCounter > 5) {
+      
       window.removeEventListener('compass-event', SetInitRotation);
 
       console.log('Rotation module is loaded and ready');
 
-      Initial_cmpss_val = cmpss180;
-
-      CmpssEventCounter = 0;
+      compassClbCounter = 0;
 
     } else {
 
-      CmpssEventCounter++;
+      compassClbCounter++;
+      
     }
-
-    CompassHeading = e.detail.compass_reading;
+    
   }
 }
 
 
-// input compass in [-180, 180] and returns rot.y for platform
+// converts compass in [-180, 180] to Y rotation
 function RotTransform(compass) {
   
   if (compass >= -180 && compass < -90)
