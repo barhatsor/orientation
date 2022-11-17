@@ -1,6 +1,6 @@
 
-// rotation helper is related to the rotation of the player
-// and their alignment to true north
+// sets the rotation of the player
+// relative to true north
 
 
 // counts how many compass events have fired
