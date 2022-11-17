@@ -88,42 +88,6 @@ function onDeviceOrientation(e) {
   initEl.style.display = 'none';
   
   
-  const park1 = {
-    lat: 31.335425,
-    lon: 34.896735
-  };
-
-  const park2 = {
-    "lat": 31.335429199489425,
-    "lon": 34.896722581147
-  };
-
-  const roastersCafe = {
-    "lat": 31.25424181454119,
-    "lon": 34.79839706684197
-  };
-
-  const givtonJunction = {
-    "lat": 31.336824695045394,
-    "lon": 34.89647001347589
-  };
-
-  const hagar = {
-    "lat": 31.335863941913445,
-    "lon": 34.89715622159005
-  };
-  
-  const exitToForest = {
-    "lat": 31.337429518562743,
-    "lon": 34.895844301680484
-  };
-  
-  const meitar = {
-    "lat": 31.327718516938347,
-    "lon": 34.9379609847652
-  };
-  
-  
   const resp = estimation(park1, positionGPS);
   
   if (Math.abs(resp.aspect.z) > 100) {
