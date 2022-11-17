@@ -42,7 +42,7 @@ function getAspect(vrpos) {
   
   pos.x = -vrpos.x * Scale;
   
-  pos.y = CameraWrapper.position.y; /*+ Math.floor(5*(Math.random()))*/ // height of the point relative to plane xz
+  pos.y = CameraWrapper.position.y; // height of the point relative to plane xz
   
   pos.z = vrpos.y * Scale;
   
