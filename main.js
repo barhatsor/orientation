@@ -30,26 +30,26 @@ DevControls.connect();
 
 
 
-//Animate function for rendering:
-function gameLoop() {
+// render function - runs every frame
+function render() {
   
-  //Update player position to next_pos - is updated from GPS
+  // update player position to next_pos from GPS
   UpdateCameraPos();
 
-  //Get updated rotation sensor readings:
+  // get updated rotation sensor readings
   DevControls.update();
   
   requestAnimationFrame(gameLoop);
   
 }
 
-//Call animate recurring function:
-gameLoop();
+// call render function
+render();
 
 
-//Start Sequence of initialization:
-//Initialize location module
+// init location module
 InitMovement();
 
-//Init the rotation module:
+// init rotation module
 InitRot();
+
