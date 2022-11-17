@@ -155,12 +155,11 @@ var DeviceOrientationController = (camera) => {
         }
 
         // if event listeners are removed, return
-        if (this.freeze)
-          return;
+        if (this.freeze) return;
 
         // copy rotation to camera (as quanterion)
         this.object.quaternion.copy(deviceQuat);
-        //this.object.quaternion.slerp( deviceQuat, 0.07 ); // smoothing
+        // this.object.quaternion.slerp( deviceQuat, 0.07 ); // smoothing
       }
 
     };
@@ -169,7 +168,9 @@ var DeviceOrientationController = (camera) => {
 
   // updates rotation values
   this.update = function() {
+    
     this.updateDeviceMove();
+    
   };
 
 
@@ -180,6 +181,7 @@ var DeviceOrientationController = (camera) => {
     window.addEventListener('deviceorientation', this.onDeviceOrientationChange, false);
 
     this.freeze = false;
+    
   };
 
 
@@ -273,3 +275,4 @@ function getCompassHeading(alpha, beta, gamma) {
   return compassHeading;
 
 }
+
