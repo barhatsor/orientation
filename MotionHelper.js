@@ -224,14 +224,10 @@ function getDirection(origin, target) { // @@ uses this in two places: here, and
   let resY = distance * Math.sin(THREE.Math.degToRad(bearing)); // Y in [km]
 
 
-  const result = {
-    distance_: distance, // ?? @@
-    bearing_: bearing, // ?? @@
+  return {
     x: resX,
     y: resY
   };
-
-  return result;
 
 }
 
