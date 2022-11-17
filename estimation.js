@@ -12,7 +12,7 @@ function estimation(coord, currPos) {
   const z = -8; // set z pos of player (which is z = 4 in motionHelper module)
 
   // convert lat, lng to point in 3d space (relative position to world center)
-  let result = GetDirection(currPos, coord); // in [km]
+  let result = getDirection(currPos, coord); // in [km]
 
   let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Scale);
   
