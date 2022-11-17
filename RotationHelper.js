@@ -44,7 +44,7 @@ function SetInitRotation(e) {
       
       window.removeEventListener('compass-event', SetInitRotation);
 
-      console.log('Rotation module is loaded and ready');
+      console.log('[RotationHelper] Rotation module is loaded and ready');
 
       compassClbCounter = 0;
 
