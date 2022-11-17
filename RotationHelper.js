@@ -90,3 +90,4 @@ function Convert180to360(deg) {
 function Convert360to180(deg) {
   return (deg - 180) % 180;
 }
+
