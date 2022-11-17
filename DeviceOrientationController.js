@@ -258,7 +258,7 @@ function getCompassHeading(alpha, beta, gamma) {
 
   // calculate compass heading
   let compassHeading = Math.atan(rA / rB);
-
+ 
   // convert half unit circle to whole unit circle
   if (rB < 0) {
     compassHeading += Math.PI;
