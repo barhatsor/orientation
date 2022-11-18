@@ -3,7 +3,7 @@
  * And compass readings for Android and iOS
  */
 
-var DeviceOrientationController = (camera) => {
+var DeviceOrientationController = function (camera) {
 
   this.object = camera; // the controller will copy the updated rotation to camera
 
