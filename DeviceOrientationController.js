@@ -201,7 +201,7 @@ DeviceOrientationController.prototype = Object.create(THREE.EventDispatcher.prot
 // get compass readings (iOS)
 window.addEventListener('deviceorientation', (e) => {
 
-  logEl.children[1].innerHTML = 'deviceorientation event: <br> alpha: ' + e.alpha + ', beta: ' + e.beta + ', gamma: ' + e.gamma + ', webkitCompassHeading: ' + e.webkitCompassHeading;
+  logEl.children[2].innerHTML = 'deviceorientation event: <br> alpha: ' + e.alpha + ', beta: ' + e.beta + ', gamma: ' + e.gamma + ', webkitCompassHeading: ' + e.webkitCompassHeading;
 
   handleOrientationEvent(e.webkitCompassHeading, e.beta, e.gamma);
 
