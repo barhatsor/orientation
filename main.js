@@ -27,8 +27,8 @@ DevControls.connect();
 
 
 
-// render function - runs every frame
-function render() {
+// update function - runs every frame
+function updateOrientation() {
   
   // update player position to next_pos from GPS
   UpdateCameraPos();
@@ -36,12 +36,12 @@ function render() {
   // get updated rotation sensor readings
   DevControls.update();
   
-  requestAnimationFrame(gameLoop);
+  requestAnimationFrame(updateOrientation);
   
 }
 
-// call render function
-render();
+// call update function
+updateOrientation();
 
 
 // init location module
