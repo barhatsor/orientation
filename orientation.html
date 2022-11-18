@@ -58,10 +58,8 @@ const eta = document.querySelector('.eta');
 
 
 const testCrds = {
-  hagar: {
-    lat: 31.335863941913445,
-    lon: 34.89715622159005
-  }
+  lat: 31.335863941913445,
+  lon: 34.89715622159005
 };
 
 document.documentElement.addEventListener('click', async () => {
@@ -95,7 +93,7 @@ function onDeviceOrientation(e) {
   initEl.style.display = 'none';
   
   
-  const resp = estimation(testCrds.hagar, positionGPS);
+  const resp = estimation(testCrds, positionGPS);
   
   if (Math.abs(resp.aspect.z) > 100) {
     
