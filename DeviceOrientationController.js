@@ -201,12 +201,16 @@ DeviceOrientationController.prototype = Object.create(THREE.EventDispatcher.prot
 // get compass readings (iOS)
 window.addEventListener('deviceorientation', (e) => {
 
+  logEl.innerHTML = 'deviceorientation event: <br> alpha: ' + e.alpha + ' beta: ' + e.beta + ' gamma: ' + e.gamma + ' webkitCompassHeading: ' + e.webkitCompassHeading;
+
   handleOrientationEvent(e.webkitCompassHeading, e.beta, e.gamma);
 
 });
 
 // get compass readings (Android)
 window.addEventListener('deviceorientationabsolute', (e) => {
+
+  logEl.innerHTML = 'deviceorientationabsolute event: <br> alpha: ' + e.alpha + ' beta: ' + e.beta + ' gamma: ' + e.gamma + ' webkitCompassHeading: ' + e.webkitCompassHeading;
 
   handleOrientationEvent(e.alpha, e.beta, e.gamma);
 
