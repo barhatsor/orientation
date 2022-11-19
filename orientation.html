@@ -72,28 +72,55 @@ const eta = document.querySelector('.eta');
 const logEl = document.querySelector('.log');
 
 
-const testCrds = {
+let destCrds = {
   lat: 31.335863941913445,
   lon: 34.89715622159005
 };
 
+
+let motionPermissionGranted;
+
 document.documentElement.addEventListener('click', async () => {
 
-  let motionPermission;
+  if (!motionPermissionGranted) {
+    
+    let motionPermission;
+    
+    motionPermissionGranted = true;
   
-  try {
+    try {
     
-    motionPermission = await DeviceMotionEvent.requestPermission();
+      motionPermission = await DeviceMotionEvent.requestPermission();
     
-  } catch (err) {
+    } catch (err) {
     
-    initEl.innerText = 'No orientation access';
+      initEl.innerText = 'No orientation access';
     
-  }
+      motionPermissionGranted = false;
+    
+    }
   
-  if (motionPermission !== 'granted') {
+    if (motionPermission !== 'granted') {
     
-    initEl.innerText = 'No orientation access';
+      initEl.innerText = 'No orientation access';
+    
+      motionPermissionGranted = false;
+    
+    }
+    
+  } else {
+    
+    const link = await readClipboard();
+    
+    if (link.startsWith('https://maps.app.goo.gl/')) {
+      
+      const linkId = link.split('https://maps.app.goo.gl/')[1].split('?')[0];
+    
+      const resp = await axios.get('https://doorstep.berryscript.com/api/resolve?type=gm&id=' + linkId);
+    
+      destCrds = resp.crds;
+      
+    }
     
   }
 
@@ -107,8 +134,10 @@ function onDeviceOrientation(e) {
   
   initEl.style.display = 'none';
   
+  motionPermissionGranted = true;
   
-  const resp = estimation(testCrds, positionGPS);
+  
+  const resp = estimation(destCrds, positionGPS);
   
   if (Math.abs(resp.aspect.z) > 100) {
     
@@ -143,6 +172,72 @@ function onDeviceOrientation(e) {
   }
 
 }
+
+
+// read clipboard
+let readClipboard = async () => {
+  
+  try {
+    
+    const text = await navigator.clipboard.readText();
+
+    return text;
+    
+  } catch(e) {
+    
+    return {
+      error: 'Permission declined'
+    };
+    
+  }
+
+}
+
+
+let axios = {
+  'get': (url, token, noParse) => {
+    return new Promise((resolve, reject) => {
+      try {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && String(this.status).startsWith('2')) {
+            try {
+              if (!noParse) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                resolve(this.responseText);
+              }
+            } catch(e) {
+              resolve();
+            }
+          } else if (this.responseText) {
+            try {
+              if (!noParse) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                resolve(this.responseText);
+              }
+            } catch(e) {}
+          }
+        };
+        xmlhttp.onerror = function () {
+          if (this.responseText) {
+            try {
+              if (!noParse) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                resolve(this.responseText);
+              }
+            } catch(e) {}
+          }
+        };
+
+        xmlhttp.open('GET', url, true);
+        xmlhttp.send();
+      } catch(e) { reject(e) }
+    });
+  }
+};
 
 </script>
 
