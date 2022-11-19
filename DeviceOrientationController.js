@@ -210,7 +210,7 @@ window.addEventListener('deviceorientation', (e) => {
 // get compass readings (Android)
 window.addEventListener('deviceorientationabsolute', (e) => {
 
-  logEl.children[0].innerHTML = 'deviceorientationabsolute event: <br> alpha: ' + e.alpha.toFixed(2) + ', webkitCompassHeading: ' + e.webkitCompassHeading.toFixed(2);
+  logEl.children[0].innerHTML = 'deviceorientationabsolute event: <br> alpha: ' + e.alpha.toFixed(2) + ',<br>webkitCompassHeading: ' + e.webkitCompassHeading.toFixed(2);
 
   handleOrientationEvent(e.alpha, e.beta, e.gamma);
 
