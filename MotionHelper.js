@@ -48,6 +48,20 @@ function onGPSsuccess(pos) {
     positionXYZ = new THREE.Vector3(cameraPos.x * Scale, CameraWrapper.position.y, cameraPos.y * Scale);
     
     
+    // if GPS isn't accurate
+    if (pos.coords.accuracy > 65) {
+      
+      // show message
+      showGPSAccuracyMessage();
+      
+    } else {
+      
+      // hide message
+      hideGPSAccuracyMessage();
+      
+    }
+    
+    
     // if reading is the first stable GPS reading
     if (positionGPS.lat != 0 && positionGPS.lat != 0 && !GPSisReady) {
       
@@ -69,6 +83,18 @@ function onGPSerror(err) {
   
 }
 
+
+function showGPSAccuracyMessage() {
+  
+  logEl.children[4].textContent = 'GPS not accurate';
+  
+}
+
+function hideGPSAccuracyMessage() {
+  
+  logEl.children[4].textContent = '';
+  
+}
 
 
 // set virtual world center
