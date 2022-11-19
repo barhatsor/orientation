@@ -118,6 +118,8 @@ document.documentElement.addEventListener('click', async () => {
     
       const resp = await axios.get('https://doorstep.berryscript.com/api/resolve?type=gm&id=' + linkId);
     
+      console.log(resp);
+    
       destCrds = resp.crds;
       
     }
