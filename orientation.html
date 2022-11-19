@@ -72,10 +72,10 @@ const eta = document.querySelector('.eta');
 const logEl = document.querySelector('.log');
 
 
-let destCrds = {
+let destCrds;/*= {
   lat: 31.335863941913445,
   lon: 34.89715622159005
-};
+};*/
 
 
 let motionPermissionGranted;
@@ -141,6 +141,7 @@ function onDeviceOrientation(e) {
   
   motionPermissionGranted = true;
   
+  if (!destCrds) return;
   
   const resp = estimation(destCrds, positionGPS);
   
