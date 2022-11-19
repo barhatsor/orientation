@@ -111,8 +111,8 @@ document.documentElement.addEventListener('click', async () => {
   } else {
     
     const url = await readClipboard();
-    console.log(url);
-    if (url.startsWith('https://maps.app.goo.gl/')) {
+    
+    if (typeof url === 'string' && url.includes('https://maps.app.goo.gl/')) {
       
       const linkId = url.split('https://maps.app.goo.gl/')[1].split('?')[0];
     
