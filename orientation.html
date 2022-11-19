@@ -118,7 +118,7 @@ document.documentElement.addEventListener('click', async () => {
     
       const resp = await axios.get('https://doorstep.berryscript.com/api/resolve?type=gm&id=' + linkId);
     
-      console.log(resp);
+      console.log(resp.crds);
     
       destCrds = {
         lat: resp.crds[0],
