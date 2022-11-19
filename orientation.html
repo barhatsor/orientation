@@ -110,11 +110,11 @@ document.documentElement.addEventListener('click', async () => {
     
   } else {
     
-    const link = await readClipboard();
+    const url = await readClipboard();
     
-    if (link.startsWith('https://maps.app.goo.gl/')) {
+    if (url.startsWith('https://maps.app.goo.gl/')) {
       
-      const linkId = link.split('https://maps.app.goo.gl/')[1].split('?')[0];
+      const linkId = url.split('https://maps.app.goo.gl/')[1].split('?')[0];
     
       const resp = await axios.get('https://doorstep.berryscript.com/api/resolve?type=gm&id=' + linkId);
     
