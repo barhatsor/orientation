@@ -95,7 +95,7 @@ document.documentElement.addEventListener('click', async () => {
   
   if (!motionGranted) {
     
-    initEl.innerText = 'Click to paste a place.';
+    initEl.innerText = 'Tap to paste a place.';
     
     let motionPermission;
     
@@ -156,7 +156,7 @@ function onDeviceOrientation(e) {
   
   motionGranted = true;
   
-  initEl.style.display = 'none'; //TBD@@
+  //initEl.style.display = 'none'; //TBD@@
   
   const park1 = {
     lat: 31.335425, 
@@ -199,6 +199,8 @@ const meitar =
 
   
   if (!destCrds) return;
+  
+  initEl.style.display = 'none';
   
   const resp = estimation(destCrds, Mhelper.positionGPS);
   
