@@ -104,7 +104,7 @@ function UpdateCameraPos()
                     CameraWrapper.position.y, CameraWrapper.position.z);
       
       //Interpulate the motion from origin to positionXYZ
-      v_res = SmoothMotion(origin, positionXYZ, 100);
+      v_res = SmoothMotion(origin, Mhelper.positionXYZ, 100);
       
     }else{
       
