@@ -115,9 +115,6 @@ document.documentElement.addEventListener('click', async () => {
       
     }
 
-
-    window.addEventListener('deviceorientation', onDeviceOrientation);
-    
   } else if (!pastedPlace) {
     
     pastedPlace = true;
@@ -151,6 +148,8 @@ document.documentElement.addEventListener('click', async () => {
 
 
 const log2 = document.querySelector('.log2');
+
+window.addEventListener('deviceorientation', onDeviceOrientation);
 
 function onDeviceOrientation(e) {
   
