@@ -85,29 +85,64 @@ window.onerror = onLog;
 
 <script>
 initEl = document.querySelector('.init');
+
+let motionGranted;
+let pastedPlace;
+
+let destCrds;
+
 initEl.addEventListener('click', async () => {
-
-  let motionPermission;
   
-  try {
+  if (!motionGranted) {
+      
+    let motionPermission;
     
-    motionPermission = await DeviceMotionEvent.requestPermission();
+    try {
+      
+      motionPermission = await DeviceMotionEvent.requestPermission();
+      
+    } catch (err) {
+      
+      console.log('No orientation access');
+      
+    }
     
-  } catch (err) {
+    if (motionPermission !== 'granted') {
+      
+      console.log('No orientation access');
+      
+    }
+
+
+    window.addEventListener('deviceorientation', onDeviceOrientation);
     
-    console.log('No orientation access');
+  } else if (!pastedPlace) {
+    
+    pastedPlace = true;
+    
+    window.setTimeout(() => {
+      
+      pastedPlace = false;
+      
+    }, 2000);
+    
+    
+    const url = await readClipboard();
+    
+    if (url.includes('https://maps.app.goo.gl/')) {
+      
+      const linkId = url.split('https://maps.app.goo.gl/')[1].split('?')[0];
+    
+      const resp = await axios.get('https://doorstep.berryscript.com/api/resolve?type=gm&id=' + linkId);
+    
+      destCrds = {
+        lat: resp.crds[0],
+        lon: resp.crds[1]
+      };
+      
+    }
     
   }
-  
-  if (motionPermission !== 'granted') {
-    
-    console.log('No orientation access');
-    
-  }
-
-
-  window.addEventListener('deviceorientation', onDeviceOrientation);
-    
     
 });
 
@@ -117,9 +152,11 @@ const log2 = document.querySelector('.log2');
 
 function onDeviceOrientation(e) {
   
+  motionGranted = true;
+  
   initEl.style.display = 'none'; //TBD@@
   
-  const park1= {
+  const park1 = {
     lat: 31.335425, 
     lon: 34.896735
   };
@@ -147,37 +184,106 @@ function onDeviceOrientation(e) {
     "lat": 31.335863941913445,
     "lon": 34.89715622159005
 }
-  const exitToForest=
+  const exitToForest =
   {
     "lat": 31.337429518562743,
     "lon": 34.895844301680484
 }
-const meitar=
+const meitar =
 {
     "lat": 31.327718516938347,
     "lon": 34.9379609847652
 }
 
   
-  const resp = estimation( givtonTzomet,Mhelper.positionGPS);
+  if (!destCrds) return;
   
-  if(Math.abs(resp.aspect.z) > 100)
-  {
+  const resp = estimation(destCrds, Mhelper.positionGPS);
+  
+  if(Math.abs(resp.aspect.z) > 100) {
+    
     arrowEl.innerHTML = '<div style="font-size: 50px;">&#128532</div>';
     log2.textContent = 'Behind you';
     //log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
 
-  }else{
+  } else {
+    
     arrowEl.innerHTML = '<div class="arrow" style="font-size: 90px;rotate: -90deg">➤</div>'
     arrowEl.style.rotate = -resp.aspect.y.toFixed(1) + 'deg';
     
     //log2.textContent = 'dy:' + resp.aspect.y.toFixed(1) + 'dx:'+resp.aspect.x.toFixed(1)+ 'dz:'+resp.aspect.z.toFixed(1);
     log2.textContent = 'range: ' + resp.walkDist + 'min';
+    
   }
 
 }
 
 
+
+// read clipboard
+let readClipboard = async () => {
+  
+  try {
+    
+    const text = await navigator.clipboard.readText();
+
+    return text;
+    
+  } catch(e) {
+    
+    return {
+      error: 'Permission declined'
+    };
+    
+  }
+
+};
+
+
+let axios = {
+  'get': (url, token, noParse) => {
+    return new Promise((resolve, reject) => {
+      try {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && String(this.status).startsWith('2')) {
+            try {
+              if (!noParse) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                resolve(this.responseText);
+              }
+            } catch(e) {
+              resolve();
+            }
+          } else if (this.responseText) {
+            try {
+              if (!noParse) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                resolve(this.responseText);
+              }
+            } catch(e) {}
+          }
+        };
+        xmlhttp.onerror = function () {
+          if (this.responseText) {
+            try {
+              if (!noParse) {
+                resolve(JSON.parse(this.responseText));
+              } else {
+                resolve(this.responseText);
+              }
+            } catch(e) {}
+          }
+        };
+
+        xmlhttp.open('GET', url, true);
+        xmlhttp.send();
+      } catch(e) { reject(e) }
+    });
+  }
+};
 
 </script>
 
