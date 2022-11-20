@@ -95,8 +95,6 @@ document.documentElement.addEventListener('click', async () => {
   
   if (!motionGranted) {
     
-    initEl.innerText = 'Tap to paste a place.';
-    
     let motionPermission;
     
     try {
@@ -152,6 +150,8 @@ const log2 = document.querySelector('.log2');
 window.addEventListener('deviceorientation', onDeviceOrientation);
 
 function onDeviceOrientation(e) {
+  
+  initEl.innerText = 'Tap to paste a place.';
   
   motionGranted = true;
     
