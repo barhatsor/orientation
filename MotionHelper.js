@@ -96,7 +96,7 @@ function UpdateCameraPos()
   
   let v_res=null;
   
-  if(positionXYZ!=null) {
+  if(Mhelper.positionXYZ!=null) {
     
     if(!isNaN(CameraWrapper.position.x)) {
       
