@@ -45,7 +45,7 @@ function SetInitRotation(e)
         CameraWrapper.rotation.z = 0;
 
         //Compass tends to be icorrect in the beginning, so we take 5 takes of it:
-        if(CmpssEventCounter > 5) 
+        if(RotHelper.CmpssEventCounter > 5) 
         {
             window.removeEventListener('compass-event', SetInitRotation);
             
