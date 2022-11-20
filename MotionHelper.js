@@ -19,11 +19,11 @@ Mhelper.worldIsSet = false; //Indicates that the center of the VR world is set w
 function InitMovement() {
   
   //Set the world center position to default value:
-  CenterPos.lat = 32.159106367661465;
-  CenterPos.lon = 34.80578701716976;
+  Mhelper.CenterPos.lat = 32.159106367661465;
+  Mhelper.CenterPos.lon = 34.80578701716976;
    
   //Set event handler on GPS event: 
-  id_watch = navigator.geolocation.watchPosition(nav_geo_success, 
+  let id_watch = navigator.geolocation.watchPosition(nav_geo_success, 
                                     nav_geo_error, this.options);
 
   //Listen to listener to completion event
@@ -42,8 +42,8 @@ function nav_geo_success(pos) {
   if ((!isNaN(pos.coords.latitude)) && (!isNaN(pos.coords.longitude))) {
     
     //Update current position:
-    positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
-    positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
+    Mhelper.positionGPS.lat = pos.coords.latitude;; //LastDeviceGPS.lat;
+    Mhelper.positionGPS.lon = pos.coords.longitude; //LastDeviceGPS.lon;
     
     
     //Calculate the position in XYZ world of the camera:
@@ -54,15 +54,16 @@ function nav_geo_success(pos) {
     let res4 = GetDirection(CenterPos, positionGPS); //[km]
   
     //Store the next camera position int vector form (global):
-    positionXYZ = new THREE.Vector3(res4.x * Scale, CameraWrapper.position.y, res4.y * Scale);
+    Mhelper.positionXYZ = new THREE.Vector3(res4.x * Mhelper.Scale, 
+                          CameraWrapper.position.y, res4.y * Mhelper.Scale);
   
     let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
     
     //Take the first good GPS reaqing and set the world center to be it:
-    if ( positionGPS.lat != 0 && positionGPS.lat != 0 && !worldIsSet ) {
+    if ( Mhelper.positionGPS.lat != 0 && Mhelper.positionGPS.lat != 0 && !Mhelper.worldIsSet ) {
       
-      InitWorldCenter(positionGPS, CenterPos);
-      worldIsSet = true;
+      InitWorldCenter(Mhelper.positionGPS, Mhelper.CenterPos);
+      Mhelper.worldIsSet = true;
       
     }    
   }
@@ -73,8 +74,8 @@ function nav_geo_success(pos) {
 //Set initial position for the player in VR space:
 function InitWorldCenter(PosCoord, WorldCenterPos) {
 
-  CenterPos.lon = PosCoord.lon;
-  CenterPos.lat = PosCoord.lat;
+  Mhelper.CenterPos.lon = PosCoord.lon;
+  Mhelper.CenterPos.lat = PosCoord.lat;
 
   const z = 1;
   
@@ -84,7 +85,7 @@ function InitWorldCenter(PosCoord, WorldCenterPos) {
 
   //Signal that there is gps:
   window.dispatchEvent(new CustomEvent('gps-coord-set',
-    {detail: {position: this.CenterPos}}));
+    {detail: {position: Mhelper.CenterPos}}));
 }
 
 
@@ -132,42 +133,42 @@ function UpdateCameraPos()
 //SmoothMotion(v1, v2, 20)
 
 //Globals:
-var curr_step = 0; //is midposition between to points
-var last_vb = null;
-var last_mid_pos = null;
+Mhelper.curr_step = 0; //is midposition between to points
+Mhelper.last_vb = null;
+Mhelper.last_mid_pos = null;
 
 function SmoothMotion(va,vb,num_steps) {
   
   //If in the middle of interpulation the destination moved,
   //We will start from the finish and update the new destination position with same step
-  if (last_vb != null) {
+  if (Mhelper.last_vb != null) {
     
-    if (!last_vb.equals(vb)) {
+    if (!Mhelper.last_vb.equals(vb)) {
       
-      curr_step = 0;
-      last_vb = vb;
+      Mhelper.curr_step = 0;
+      Mhelper.last_vb = vb;
       
-      return last_mid_pos;
+      return Mhelper.last_mid_pos;
     }
   }else{
     
-    last_vb = vb;
+    Mhelper.last_vb = vb;
     
   }
   
   //Update the alpha (percent/100 of final value)
-  let alpha = curr_step / num_steps;
+  let alpha = Mhelper.curr_step / num_steps;
 
   //If we've reached the target:
   if (alpha > 1) {
-    curr_step = 0;
-    last_mid_pos =vb;
-    return last_mid_pos;
+    Mhelper.curr_step = 0;
+    Mhelper.last_mid_pos = vb;
+    return Mhelper.last_mid_pos;
   } else { 
     //not yet reached the target, return next step towards the target
-    curr_step++;
-    last_mid_pos = va.lerp(vb, alpha);
-    return last_mid_pos;
+    Mhelper.curr_step++;
+    Mhelper.last_mid_pos = va.lerp(vb, alpha);
+    return Mhelper.last_mid_pos;
   }
 }
 
@@ -191,7 +192,7 @@ function GetDirection(Location_source, Location_target) {
     let lon1 = Location_source.lon;
 
 
-    let R = 6371; // [km]
+    const R = 6371; // [km]
     let phi1 = THREE.Math.degToRad(lat1);
     let phi2 = THREE.Math.degToRad(lat2);
     let lambda1 = THREE.Math.degToRad(lon1);
