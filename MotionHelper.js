@@ -51,7 +51,7 @@ function nav_geo_success(pos) {
     let currentPosition = CameraWrapper.position;
   
     //Convert from lat,lon -> x,y to next position of the camera:
-    let res4 = GetDirection(CenterPos, positionGPS); //[km]
+    let res4 = GetDirection(Mhelper.CenterPos, Mhelper.positionGPS); //[km]
   
     //Store the next camera position int vector form (global):
     Mhelper.positionXYZ = new THREE.Vector3(res4.x * Mhelper.Scale, 
