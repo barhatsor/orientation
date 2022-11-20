@@ -93,7 +93,11 @@ let destCrds;
 
 initEl.addEventListener('click', async () => {
   
+  console.log('a');
+  
   if (!motionGranted) {
+    
+    console.log('b');
     
     let motionPermission;
     
@@ -151,6 +155,8 @@ initEl.addEventListener('click', async () => {
 const log2 = document.querySelector('.log2');
 
 function onDeviceOrientation(e) {
+  
+  console.log('c');
   
   motionGranted = true;
   
