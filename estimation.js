@@ -14,11 +14,11 @@ function estimation(coord, currPos) {
   //Get the relative position to world center:
   let result = GetDirection(currPos, coord); //distance in [km]
 
-  let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Scale);
+  let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Mhelper.Scale);
   
   let dist = CameraWrapper.position.distanceTo(vrpos); //[km*Scale]
 
-  let walkingTime = (((dist / Scale) / WALK_SPEED) * 60).toFixed(1); //in[minutes]
+  let walkingTime = (((dist / Mhelper.Scale) / WALK_SPEED) * 60).toFixed(1); //in[minutes]
 
   return {walkDist: walkingTime, aspect: getAspect(vrpos) };
 
@@ -40,7 +40,7 @@ function getAspect(vrpos) {
   var pos = new THREE.Vector3(vrpos.x, vrpos.y, vrpos.z);
   
 
-  pos.x = -vrpos.x * Scale;
+  pos.x = -vrpos.x * Mhelper.Scale;
   
   pos.y = (CameraWrapper.position.y) + Math.floor(5*(Math.random())); //height of the point relative to plane xz
   
