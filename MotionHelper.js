@@ -66,7 +66,7 @@ function nav_geo_success(pos) {
 
     let crd_accuracy = pos.accuracy; //@@ GPS accuracy for debug only
 
-    if (crd_.accuracy > 65) { // If accuracy is less than 30 meters
+    if (crd_accuracy > 65) { // If accuracy is less than 30 meters
       //TBD - low accuracy
     } else {
       //TBD - normal accuracy
