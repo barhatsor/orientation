@@ -14,7 +14,7 @@ function estimation(coord, currPos) {
   //Get the relative position to world center:
   let result = GetDirection(currPos, coord); //distance in [km]
 
-  let vrpos = new THREE.Vector3(result.x * Scale, z, result.y * Mhelper.Scale);
+  let vrpos = new THREE.Vector3(result.x * Mhelper.Scale, z, result.y * Mhelper.Scale);
   
   let dist = CameraWrapper.position.distanceTo(vrpos); //[km*Scale]
 
