@@ -1,13 +1,15 @@
 //Rotation helper supports rotation of the player and his alignment to true north
 
 
+let RotHelper = {};
+
 //Counter for init reading:
-var CmpssEventCounter=0;
+RotHelper.CmpssEventCounter=0;
 
 //Hold compass heading :
-var CompassHeading=0;
+RotHelper.CompassHeading=0;
 
-Initial_cmpss_val=0; //for debug only
+RotHelper.Initial_cmpss_val=0; //for debug only
 
 
 
@@ -49,16 +51,16 @@ function SetInitRotation(e)
             
             console.log('Rotation module is loaded and ready');
             
-            Initial_cmpss_val = cmpss180;
+            RotHelper.Initial_cmpss_val = cmpss180;
             
-            CmpssEventCounter=0;
+            RotHelper.CmpssEventCounter=0;
             
         }else{
           
-            CmpssEventCounter++;
+            RotHelper.CmpssEventCounter++;
         }
         
-        CompassHeading = e.detail.compass_reading;
+        RotHelper.CompassHeading = e.detail.compass_reading;
     }
 }
 
