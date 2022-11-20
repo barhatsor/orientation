@@ -197,7 +197,9 @@ const meitar =
   
   if (!destCrds) return;
   
-  initEl.style.display = 'none';
+  initEl.innerText = JSON.stringify(destCrds);
+  
+  //initEl.style.display = 'none';
   
   const resp = estimation(destCrds, Mhelper.positionGPS);
   
