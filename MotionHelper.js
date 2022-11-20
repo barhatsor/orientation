@@ -1,14 +1,15 @@
 //GPS motion helper module:
 
+let Mhelper = {};
 
 //Globals:
-const Scale = 1000;//scale km to pixel
+Mhelper.Scale = 1000;//scale km to pixel
 
-var positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};//GPS position of the player
-var positionXYZ = null;//VR position of the player in Vector3 format [km*Scale]
+Mhelper.positionGPS = {lat: 0, lon: 0, last_lat: 0, last_lon: 0};//GPS position of the player
+Mhelper.positionXYZ = null;//VR position of the player in Vector3 format [km*Scale]
 
-var CenterPos = {lat: 0, lon: 0}; //Center of the VR world new Location(31.3365254f, 34.8968868f)
-var worldIsSet = false; //Indicates that the center of the VR world is set with GPS coordinates
+Mhelper.CenterPos = {lat: 0, lon: 0}; //Center of the VR world new Location(31.3365254f, 34.8968868f)
+Mhelper.worldIsSet = false; //Indicates that the center of the VR world is set with GPS coordinates
 
 
 
