@@ -32,9 +32,9 @@ function getAspect(vrpos) {
 
   //"camera" is global variable 
   //which defines the current point view of the player
-// camera.updateMatrix();
+  camera.updateMatrix();
   
-//  camera.updateMatrixWorld();
+  camera.updateMatrixWorld();
   
   // 3D point to check
   var pos = new THREE.Vector3(vrpos.x, vrpos.y, vrpos.z);
@@ -55,7 +55,10 @@ function getAspect(vrpos) {
   let ly = laser_rot.y * 180 / 3.14;
   let lx = laser_rot.x * 180 / 3.14; //pitch: [-90,..,-180,180,..,90]
   let lz = laser_rot.z * 180 / 3.14;
-
+    
+    laser.rotation.x=0;
+    laser.rotation.y=0;
+    laser.rotation.z=0;
   return {y:ly,x:lx,z:lz};//in degrees;
   
 }
